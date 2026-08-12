@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+سفارش ثبت شد
+{% endblock %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto px-6 py-16">
+
+    <h1 class="text-3xl font-bold mb-6">
+        سفارش شما ثبت شد 🎉
+    </h1>
+
+    <p>
+        دوره:
+        {{ order.course.title }}
+    </p>
+
+    <p>
+        مبلغ:
+        {{ order.amount }}
+        تومان
+    </p>
+
+    <p>
+        وضعیت:
+        {{ order.get_status_display }}
+    </p>
+
+</div>
+
+{% endblock %}
