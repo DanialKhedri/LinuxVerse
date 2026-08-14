@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Course
+from apps.courses.models import Course
 
 def course_detail(request, slug):
     course = get_object_or_404(

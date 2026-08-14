@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-    'core',
-    'courses',
-    'orders',
+    'apps.core',
+    'apps.courses',
+    'apps.orders',
     'django_ckeditor_5',
 ]
 

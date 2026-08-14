@@ -11,10 +11,10 @@ urlpatterns = [
         include('django_ckeditor_5.urls')
     ),
 
-    path('', include('core.urls')),
+    path('', include('apps.core.urls')),
 
-    path('courses/', include('courses.urls')),
-    path('orders/', include('orders.urls')),
+    path('courses/', include('apps.courses.urls')),
+    path('orders/', include('apps.orders.urls')),
 ]
 
 if settings.DEBUG:

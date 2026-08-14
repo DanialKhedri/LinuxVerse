@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-from courses.models import Course
+from apps.courses.models import Course
 
 
 class Order(models.Model):

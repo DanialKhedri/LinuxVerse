@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from courses.models import Course
+from apps.courses.models import Course
 from .forms import OrderForm
 from .models import Order
 
