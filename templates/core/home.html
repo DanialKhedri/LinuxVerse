@@ -1,259 +1,1485 @@
 {% extends "base.html" %}
+{% load number_filters %}
+
 
 {% block title %}LinuxVerse | یادگیری لینوکس، ساده و حرفه‌ای{% endblock %}
 
+
 {% block content %}
+
 
 <div dir="rtl" class="min-h-screen bg-white text-gray-900">
 
-    <!-- Hero -->
+
+    <!-- ========================================================= -->
+    <!-- HERO -->
+    <!-- ========================================================= -->
+
     <section class="relative overflow-hidden">
-        <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-violet-100/40 blur-3xl"></div>
-        <div class="absolute right-1/3 top-32 h-40 w-40 rounded-full bg-purple-100/30 blur-3xl"></div>
 
-        <div class="relative mx-auto grid max-w-7xl items-center gap-16 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
+        <!-- Background -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden">
 
-            <!-- Hero Content -->
+            <div class="
+                absolute -right-40 -top-40
+                h-[500px] w-[500px]
+                rounded-full
+                bg-violet-100/30
+                blur-[120px]
+            "></div>
+
+            <div class="
+                hidden sm:block
+                absolute -left-60 top-20
+                h-[500px] w-[500px]
+                rounded-full
+                bg-indigo-100/20
+                blur-[120px]
+            "></div>
+
+            <div class="
+                hidden lg:block
+                absolute left-1/2 top-1/3
+                h-[400px] w-[400px]
+                -translate-x-1/2
+                rounded-full
+                bg-purple-100/15
+                blur-[110px]
+            "></div>
+
+        </div>
+
+
+        <div class="
+            relative mx-auto
+            max-w-7xl
+            px-5
+            py-12
+            sm:px-8 sm:py-16
+            lg:grid
+            lg:grid-cols-2
+            lg:items-center
+            lg:gap-20
+            lg:py-28
+        ">
+
+
+            <!-- ================================================= -->
+            <!-- HERO CONTENT -->
+            <!-- ================================================= -->
+
             <div class="text-center lg:text-right">
 
-                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50/60 px-4 py-2 text-sm font-semibold text-violet-700">
-                    <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+
+                <!-- Badge -->
+
+                <div class="
+                    mb-5
+                    inline-flex items-center gap-2
+                    rounded-full
+                    border border-violet-200
+                    bg-violet-50
+                    px-4 py-2
+                    text-[11px]
+                    font-bold
+                    text-violet-700
+                    sm:px-5 sm:py-2.5 sm:text-xs
+                ">
+
+                    <span class="
+                        h-2 w-2
+                        rounded-full
+                        bg-violet-500
+                        animate-pulse
+                    "></span>
+
                     آموزش لینوکس، ساده و کاربردی
+
+                    <span class="hidden sm:inline text-violet-400">
+                        — LinuxVerse
+                    </span>
+
                 </div>
 
-                <h1 class="text-4xl font-black leading-[1.25] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
+
+                <!-- Heading -->
+
+                <h1 class="
+                    text-[2.15rem]
+                    font-black
+                    leading-[1.35]
+                    tracking-tight
+                    text-gray-950
+                    sm:text-5xl
+                    lg:text-[4.2rem]
+                    lg:leading-[1.2]
+                ">
+
                     لینوکس را
-                    <span class="text-violet-600">متفاوت</span>
+
+                    <span class="
+                        bg-gradient-to-r
+                        from-violet-500
+                        via-purple-500
+                        to-indigo-500
+                        bg-clip-text
+                        text-transparent
+                    ">
+                        متفاوت
+                    </span>
+
                     یاد بگیر.
+
                 </h1>
 
-                <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-gray-500 sm:text-lg lg:mx-0">
-                    آموزش‌های عملی و ساختاریافته LinuxVerse برای کسانی که می‌خواهند
-                    لینوکس را واقعاً یاد بگیرند؛ از اولین دستور ترمینال تا مباحث حرفه‌ای‌تر.
+
+                <!-- Description -->
+
+                <p class="
+                    mx-auto
+                    mt-5
+                    max-w-md
+                    text-[14px]
+                    font-medium
+                    leading-7
+                    text-gray-600
+                    sm:mt-6
+                    sm:max-w-xl
+                    sm:text-[16px]
+                    sm:leading-8
+                    lg:mx-0
+                ">
+
+                    آموزش عملی و ساختاریافته لینوکس؛
+                    از اولین دستور ترمینال تا مباحث حرفه‌ای.
+
                 </p>
 
-                <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
 
-                    <a href="#courses"
-                       class="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-violet-600/15 transition hover:-translate-y-0.5 hover:bg-violet-700">
-                        مشاهده دوره‌ها
-                        <span>←</span>
+                <!-- ================================================= -->
+                <!-- CTA -->
+                <!-- ================================================= -->
+
+                <div class="
+                    mt-7
+                    flex
+                    flex-col
+                    gap-3
+                    sm:flex-row
+                    sm:justify-center
+                    lg:justify-start
+                ">
+
+
+                    <a
+                        href="#courses"
+                        class="
+                            group
+                            inline-flex
+                            min-h-[52px]
+                            items-center
+                            justify-center
+                            gap-2
+                            rounded-2xl
+                            bg-gray-900
+                            px-7
+                            text-sm
+                            font-bold
+                            text-white
+                            shadow-lg
+                            shadow-gray-900/10
+                            transition-all
+                            duration-300
+                            hover:-translate-y-1
+                            hover:bg-violet-600
+                            hover:shadow-violet-500/25
+                        "
+                    >
+
+                        شروع یادگیری
+
+                        <span class="
+                            text-lg
+                            transition-transform
+                            duration-300
+                            group-hover:-translate-x-1
+                        ">
+                            ←
+                        </span>
+
                     </a>
 
+
                     {% if courses %}
+
                         {% with first_course=courses|first %}
-                            <a href="{% url 'course_detail' first_course.slug %}"
-                               class="inline-flex items-center rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-bold text-gray-700 transition hover:border-violet-200 hover:text-violet-700">
-                                شروع یادگیری
+
+                            <a
+                                href="{% url 'course_detail' first_course.slug %}"
+                                class="
+                                    hidden
+                                    sm:inline-flex
+                                    min-h-[52px]
+                                    items-center
+                                    justify-center
+                                    gap-2
+                                    rounded-2xl
+                                    border
+                                    border-gray-200
+                                    bg-white
+                                    px-7
+                                    text-sm
+                                    font-bold
+                                    text-gray-700
+                                    transition-all
+                                    duration-300
+                                    hover:-translate-y-1
+                                    hover:border-violet-300
+                                    hover:bg-violet-50
+                                    hover:text-violet-700
+                                    hover:shadow-lg
+                                "
+                            >
+
+                                مشاهده اولین دوره
+
+                                <span>🐧</span>
+
                             </a>
+
                         {% endwith %}
+
                     {% endif %}
 
                 </div>
-            </div>
 
 
-            <!-- Hero Terminal -->
-            <div class="relative mx-auto w-full max-w-xl">
-                <div class="absolute inset-10 rounded-full bg-violet-100/50 blur-3xl"></div>
+                <!-- Mobile Trust -->
 
-                <div class="relative overflow-hidden rounded-2xl border border-violet-100 bg-white shadow-2xl shadow-gray-200/70">
+                <div class="
+                    mt-5
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    text-[11px]
+                    font-medium
+                    text-gray-400
+                    sm:hidden
+                ">
 
-                    <div class="flex items-center gap-2 border-b border-gray-100 bg-gray-50/70 px-5 py-4">
-                        <span class="h-2.5 w-2.5 rounded-full bg-gray-200"></span>
-                        <span class="h-2.5 w-2.5 rounded-full bg-gray-200"></span>
-                        <span class="h-2.5 w-2.5 rounded-full bg-gray-200"></span>
-                    </div>
+                    <span class="text-emerald-500">✓</span>
 
-                    <div class="bg-gray-950 px-6 py-8 font-mono text-sm leading-8 text-gray-300" dir="ltr">
-                        <div>
-                            <span class="text-violet-400">dani@linuxverse</span>:~$
-                            <span class="text-white">ls</span>
-                        </div>
-
-                        <div class="text-gray-400">
-                            courses/ &nbsp; projects/ &nbsp; scripts/
-                        </div>
-
-                        <div class="mt-4">
-                            <span class="text-violet-400">dani@linuxverse</span>:~$
-                            <span class="text-white">whoami</span>
-                        </div>
-
-                        <div class="text-emerald-300">
-                            linux learner
-                        </div>
-
-                        <div class="mt-4">
-                            <span class="text-violet-400">dani@linuxverse</span>:~$
-                            <span class="text-white">sudo learn-linux</span>
-                        </div>
-
-                        <div class="text-emerald-300">
-                            Learning started...
-                        </div>
-                    </div>
+                    آموزش مرحله‌به‌مرحله و کاربردی
 
                 </div>
+
+
+                <!-- Desktop Trust -->
+
+                <div class="
+                    hidden
+                    lg:flex
+                    mt-8
+                    flex-wrap
+                    items-center
+                    justify-start
+                    gap-5
+                    text-sm
+                    font-medium
+                    text-gray-700
+                ">
+
+
+                    <span class="flex items-center gap-2.5">
+
+                        <span class="
+                            flex h-6 w-6
+                            items-center justify-center
+                            rounded-full
+                            bg-emerald-100
+                            text-emerald-700
+                            text-[11px]
+                            font-bold
+                        ">
+                            ✓
+                        </span>
+
+                        آموزش کاربردی
+
+                    </span>
+
+
+                    <span class="h-5 w-px bg-gray-200"></span>
+
+
+                    <span class="flex items-center gap-2.5">
+
+                        <span class="
+                            flex h-6 w-6
+                            items-center justify-center
+                            rounded-full
+                            bg-emerald-100
+                            text-emerald-700
+                            text-[11px]
+                            font-bold
+                        ">
+                            ✓
+                        </span>
+
+                        مسیر مرحله‌به‌مرحله
+
+                    </span>
+
+
+                    <span class="h-5 w-px bg-gray-200"></span>
+
+
+                    <span class="flex items-center gap-2.5">
+
+                        <span class="
+                            flex h-6 w-6
+                            items-center justify-center
+                            rounded-full
+                            bg-violet-100
+                            text-violet-700
+                            text-[13px]
+                            font-bold
+                        ">
+                            🐧
+                        </span>
+
+                        پشتیبانی
+
+                    </span>
+
+                </div>
+
             </div>
 
-        </div>
-    </section>
+
+            <!-- ================================================= -->
+            <!-- TERMINAL -->
+            <!-- ================================================= -->
+
+            <div class="
+                relative
+                mx-auto
+                mt-10
+                hidden
+                w-full
+                max-w-xl
+                lg:mt-0
+                lg:block
+            ">
 
 
-    <!-- Courses -->
-    <section id="courses" class="scroll-mt-20 border-t border-gray-50 py-20 sm:py-24">
-        <div class="mx-auto max-w-7xl px-5 sm:px-8">
-
-            <div class="mx-auto mb-12 max-w-2xl text-center">
-                <p class="mb-2 text-sm font-bold text-violet-600">
-                    LinuxVerse Courses
-                </p>
-
-                <h2 class="text-3xl font-black tracking-tight text-gray-950 sm:text-4xl">
-                    همه دوره‌ها
-                </h2>
-
-                <p class="mt-4 text-sm leading-7 text-gray-500 sm:text-base">
-                    دوره موردنظرت را انتخاب کن و مسیر یادگیری لینوکس را شروع کن.
-                </p>
-            </div>
+                <div class="
+                    absolute -inset-8
+                    rounded-[2.5rem]
+                    bg-gradient-to-r
+                    from-violet-100/20
+                    via-purple-100/15
+                    to-indigo-100/20
+                    blur-3xl
+                "></div>
 
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Penguin -->
 
-                {% for course in courses %}
+                <div class="
+                    absolute
+                    -right-6
+                    -top-7
+                    z-10
+                    select-none
+                    text-3xl
+                    drop-shadow-lg
+                    animate-bounce
+                ">
+                    🐧
+                </div>
 
-                    <a href="{% url 'course_detail' course.slug %}"
-                       class="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-violet-200 hover:shadow-xl hover:shadow-gray-200/50">
 
-                        <!-- Course Image -->
-                        <div class="aspect-video overflow-hidden bg-violet-50">
+                <!-- Terminal -->
 
-                            {% if course.image %}
+                <div class="
+                    terminal-window
+                    relative
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-gray-200
+                    bg-white
+                    shadow-[0_30px_80px_-25px_rgba(0,0,0,0.08)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-2
+                    hover:shadow-[0_40px_100px_-25px_rgba(108,60,233,0.12)]
+                ">
 
-                                <img src="{{ course.image.url }}"
-                                     alt="{{ course.title }}"
-                                     loading="lazy"
-                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
 
-                            {% else %}
+                    <!-- Terminal Header -->
 
-                                <div class="flex h-full items-center justify-center bg-gradient-to-br from-violet-50 to-white text-4xl font-black text-violet-500">
-                                    &gt;_
-                                </div>
+                    <div class="
+                        relative
+                        flex
+                        items-center
+                        justify-between
+                        border-b
+                        border-gray-100
+                        bg-gray-50
+                        px-5
+                        py-4
+                    ">
 
-                            {% endif %}
+
+                        <!-- Traffic Lights -->
+
+                        <div class="flex items-center gap-2.5">
+
+                            <span class="
+                                terminal-dot
+                                h-3.5 w-3.5
+                                rounded-full
+                                bg-rose-400
+                                transition-all
+                                duration-300
+                            "></span>
+
+                            <span class="
+                                terminal-dot
+                                h-3.5 w-3.5
+                                rounded-full
+                                bg-amber-500
+                                transition-all
+                                duration-300
+                            "></span>
+
+                            <span class="
+                                terminal-dot
+                                h-3.5 w-3.5
+                                rounded-full
+                                bg-emerald-500
+                                transition-all
+                                duration-300
+                            "></span>
 
                         </div>
 
 
-                        <!-- Course Content -->
-                        <div class="flex flex-1 flex-col p-6">
+                        <!-- Title -->
 
-                            <h3 class="text-lg font-extrabold leading-8 text-gray-900 transition group-hover:text-violet-700">
-                                {{ course.title }}
-                            </h3>
+                        <div class="
+                            absolute
+                            left-1/2
+                            -translate-x-1/2
+                            flex
+                            items-center
+                            gap-2
+                            text-xs
+                            font-medium
+                            text-gray-400
+                        ">
 
-                            <div class="mt-2 line-clamp-2 text-sm leading-7 text-gray-500">
-                                {{ course.description|striptags }}
-                            </div>
+                            <span class="
+                                flex
+                                h-7 w-8
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-gray-200
+                                bg-white
+                                font-mono
+                                text-[11px]
+                                font-bold
+                                text-violet-600
+                                shadow-sm
+                            ">
+                                &gt;_
+                            </span>
+
+                            <span class="font-mono text-gray-500">
+                                linuxverse@terminal
+                            </span>
+
+                        </div>
 
 
-                            <div class="mt-5 flex items-end justify-between gap-4 border-t border-gray-100 pt-5">
+                        <!-- Status -->
 
-                                <div>
-                                    <div class="text-base font-black text-violet-700">
-                                        {{ course.price|floatformat:0 }} تومان
-                                    </div>
+                        <div class="flex items-center gap-2">
 
-                                    {% if course.original_price > course.price %}
-                                        <div class="mt-1 text-xs text-gray-400 line-through">
-                                            {{ course.original_price|floatformat:0 }} تومان
-                                        </div>
-                                    {% endif %}
-                                </div>
+                            <span class="
+                                h-2 w-2
+                                rounded-full
+                                bg-emerald-400
+                                animate-pulse
+                            "></span>
+
+                            <span class="
+                                text-[10px]
+                                text-gray-400
+                                font-mono
+                            ">
+                                online
+                            </span>
+
+                        </div>
+
+                    </div>
 
 
-                                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-lg font-bold text-violet-600 transition group-hover:bg-violet-600 group-hover:text-white">
-                                    ←
+                    <!-- Terminal Body -->
+
+                    <div
+                        dir="ltr"
+                        class="
+                            relative
+                            min-h-[380px]
+                            overflow-hidden
+                            bg-[#0d0e12]
+                            px-6
+                            py-8
+                            font-mono
+                            text-[13px]
+                            leading-9
+                        "
+                    >
+
+                        <div class="relative z-10">
+
+
+                            <div>
+
+                                <span class="font-bold text-violet-400">
+                                    dani@linuxverse
+                                </span>
+
+                                <span class="text-gray-600">:</span>
+
+                                <span class="text-cyan-300">~</span>
+
+                                <span class="text-gray-500">$</span>
+
+                                <span class="ml-2 text-gray-100">
+                                    ls -la
                                 </span>
 
                             </div>
 
+
+                            <div class="pl-5 leading-7 text-gray-500">
+
+                                <div>
+                                    <span class="text-cyan-400">drwxr-xr-x</span>
+                                    <span class="mx-1 text-gray-600">2</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="mx-1 text-gray-600">4096</span>
+                                    <span class="text-gray-500">Jan 15</span>
+                                    <span class="font-bold text-amber-300">courses/</span>
+                                </div>
+
+                                <div>
+                                    <span class="text-cyan-400">drwxr-xr-x</span>
+                                    <span class="mx-1 text-gray-600">3</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="mx-1 text-gray-600">4096</span>
+                                    <span class="text-gray-500">Jan 14</span>
+                                    <span class="font-bold text-amber-300">projects/</span>
+                                </div>
+
+                                <div>
+                                    <span class="text-cyan-400">drwxr-xr-x</span>
+                                    <span class="mx-1 text-gray-600">5</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="mx-1 text-gray-600">4096</span>
+                                    <span class="text-gray-500">Jan 13</span>
+                                    <span class="font-bold text-emerald-300">scripts/</span>
+                                </div>
+
+                                <div>
+                                    <span class="text-cyan-400">-rw-r--r--</span>
+                                    <span class="mx-1 text-gray-600">1</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="text-violet-300">dani</span>
+                                    <span class="mx-1 text-gray-600">1024</span>
+                                    <span class="text-gray-500">Jan 15</span>
+                                    <span class="text-gray-300">README.md</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="mt-4">
+
+                                <span class="font-bold text-violet-400">
+                                    dani@linuxverse
+                                </span>
+
+                                <span class="text-gray-600">:</span>
+
+                                <span class="text-cyan-300">~</span>
+
+                                <span class="text-gray-500">$</span>
+
+                                <span class="ml-2 text-gray-100">
+                                    whoami
+                                </span>
+
+                            </div>
+
+
+                            <div class="pl-5 text-emerald-300">
+                                linux_learner 🐧
+                            </div>
+
+
+                            <div class="mt-4">
+
+                                <span class="font-bold text-violet-400">
+                                    dani@linuxverse
+                                </span>
+
+                                <span class="text-gray-600">:</span>
+
+                                <span class="text-cyan-300">~</span>
+
+                                <span class="text-gray-500">$</span>
+
+                                <span class="ml-2 text-gray-100">
+                                    sudo start-learning --level=pro
+                                </span>
+
+                            </div>
+
+
+                            <div class="pl-5">
+
+                                <span class="text-gray-600">[</span>
+
+                                <span class="text-emerald-400">✓</span>
+
+                                <span class="text-gray-400">
+                                    Learning environment ready
+                                </span>
+
+                                <span class="text-gray-600">]</span>
+
+                                <span class="
+                                    mt-1
+                                    block
+                                    text-xs
+                                    text-amber-300
+                                    opacity-70
+                                ">
+                                    🐧 Welcome to LinuxVerse!
+                                </span>
+
+                            </div>
+
+
+                            <div class="mt-4">
+
+                                <span class="font-bold text-violet-400">
+                                    dani@linuxverse
+                                </span>
+
+                                <span class="text-gray-600">:</span>
+
+                                <span class="text-cyan-300">~</span>
+
+                                <span class="text-gray-500">$</span>
+
+                                <span class="
+                                    ml-2
+                                    inline-block
+                                    h-5
+                                    w-2.5
+                                    translate-y-1
+                                    animate-pulse
+                                    rounded-sm
+                                    bg-violet-400
+                                "></span>
+
+                            </div>
+
+
                         </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- COURSES -->
+    <!-- ========================================================= -->
+
+    <section
+        id="courses"
+        class="
+            scroll-mt-20
+            border-t
+            border-gray-100
+            py-16
+            sm:py-24
+        "
+    >
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+
+            <!-- Heading -->
+
+            <div class="
+                mb-9
+                text-center
+                sm:mb-14
+            ">
+
+
+                <div class="
+                    mb-3
+                    inline-flex
+                    items-center
+                    gap-2
+                    rounded-full
+                    border
+                    border-violet-100
+                    bg-violet-50
+                    px-3
+                    py-1.5
+                    text-[10px]
+                    font-bold
+                    text-violet-600
+                    sm:px-4
+                    sm:text-[11px]
+                ">
+                    🐧 LinuxVerse Courses
+                </div>
+
+
+                <h2 class="
+                    text-2xl
+                    font-black
+                    tracking-tight
+                    text-gray-950
+                    sm:text-4xl
+                ">
+                    دوره‌ها
+                </h2>
+
+
+                <p class="
+                    mx-auto
+                    mt-3
+                    max-w-xl
+                    text-[13px]
+                    leading-7
+                    text-gray-500
+                    sm:text-[16px]
+                ">
+                    مسیر یادگیری لینوکس را از اینجا شروع کن.
+                </p>
+
+
+            </div>
+
+
+            <!-- Courses Grid -->
+
+            <div class="
+                grid
+                gap-5
+                sm:grid-cols-2
+                lg:grid-cols-3
+                lg:gap-7
+            ">
+
+
+                {% for course in courses %}
+
+
+                    <a
+                        href="{% url 'course_detail' course.slug %}"
+                        class="
+                            group
+                            flex
+                            h-full
+                            flex-col
+                            overflow-hidden
+                            rounded-2xl
+                            border
+                            border-gray-200
+                            bg-white
+                            transition-all
+                            duration-300
+                            hover:-translate-y-2
+                            hover:border-violet-300
+                            hover:shadow-[0_25px_60px_-20px_rgba(108,60,233,0.15)]
+                        "
+                    >
+
+
+                        <!-- Image -->
+
+                        <div class="
+                            relative
+                            aspect-[16/9]
+                            overflow-hidden
+                            bg-gray-50
+                        ">
+
+
+                            {% if course.image %}
+
+                                <img
+                                    src="{{ course.image.url }}"
+                                    alt="{{ course.title }}"
+                                    loading="lazy"
+                                    class="
+                                        h-full
+                                        w-full
+                                        object-cover
+                                        transition
+                                        duration-700
+                                        group-hover:scale-105
+                                    "
+                                >
+
+                            {% else %}
+
+                                <div class="
+                                    flex
+                                    h-full
+                                    items-center
+                                    justify-center
+                                    bg-gradient-to-br
+                                    from-violet-50
+                                    to-white
+                                    text-5xl
+                                ">
+                                    🐧
+                                </div>
+
+                            {% endif %}
+
+
+                            <!-- Badge -->
+
+                            <div class="
+                                absolute
+                                right-3
+                                top-3
+                                hidden
+                                rounded-xl
+                                border
+                                border-white
+                                bg-white/95
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                text-violet-600
+                                shadow-md
+                                sm:block
+                            ">
+                                LINUXVERSE
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- Content -->
+
+                        <div class="
+                            flex
+                            flex-1
+                            flex-col
+                            p-5
+                            sm:p-6
+                        ">
+
+
+                            <h3 class="
+                                text-[16px]
+                                font-extrabold
+                                leading-7
+                                text-gray-900
+                                transition-colors
+                                group-hover:text-violet-700
+                                sm:text-lg
+                                sm:leading-8
+                            ">
+                                {{ course.title }}
+                            </h3>
+
+
+                            <p class="
+                                mt-2
+                                line-clamp-2
+                                text-[13px]
+                                leading-6
+                                text-gray-500
+                                sm:text-[14px]
+                                sm:leading-7
+                            ">
+                                {{ course.description|striptags }}
+                            </p>
+
+
+                            <!-- Price -->
+
+                            <div class="
+                                mt-5
+                                flex
+                                items-center
+                                justify-between
+                                gap-3
+                                border-t
+                                border-gray-100
+                                pt-4
+                            ">
+
+
+                                <div>
+
+                                    <div class="
+                                        text-[15px]
+                                        font-black
+                                        text-gray-900
+                                        sm:text-base
+                                    ">
+
+                                        {{ course.price|toman }}
+
+                                        <span class="
+                                            text-[10px]
+                                            font-medium
+                                            text-gray-400
+                                        ">
+                                            
+                                        </span>
+
+                                    </div>
+
+
+                                    {% if course.original_price > course.price %}
+
+                                        <div class="
+                                            mt-0.5
+                                            text-[10px]
+                                            text-gray-400
+                                            line-through
+                                        ">
+                                            {{ course.original_price|toman }}
+                                        </div>
+
+                                    {% endif %}
+
+
+                                </div>
+
+
+                                <!-- Arrow -->
+
+                                <span class="
+                                    flex
+                                    h-10
+                                    w-10
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    bg-gray-100
+                                    text-lg
+                                    font-bold
+                                    text-gray-400
+                                    transition-all
+                                    duration-300
+                                    group-hover:bg-violet-600
+                                    group-hover:text-white
+                                    group-hover:shadow-lg
+                                    group-hover:shadow-violet-500/20
+                                ">
+                                    ←
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
 
                     </a>
 
+
                 {% empty %}
 
-                    <div class="col-span-full rounded-2xl border border-dashed border-violet-200 bg-violet-50/30 px-6 py-16 text-center text-sm text-gray-500">
-                        هنوز دوره‌ای برای نمایش وجود ندارد.
+
+                    <div class="
+                        col-span-full
+                        rounded-2xl
+                        border-2
+                        border-dashed
+                        border-gray-200
+                        px-6
+                        py-16
+                        text-center
+                    ">
+
+
+                        <div class="mb-3 text-5xl">
+                            🐧
+                        </div>
+
+
+                        <div class="text-sm text-gray-500">
+                            هنوز دوره‌ای برای نمایش وجود ندارد.
+                        </div>
+
+
                     </div>
+
 
                 {% endfor %}
 
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- Features -->
-    <section class="pb-20 sm:pb-24">
-        <div class="mx-auto max-w-7xl px-5 sm:px-8">
-
-            <div class="grid overflow-hidden rounded-2xl border border-gray-200 bg-white sm:grid-cols-3">
-
-                <div class="p-7 text-center sm:p-8">
-                    <div class="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 font-bold text-violet-600">
-                        01
-                    </div>
-
-                    <h3 class="font-extrabold text-gray-900">
-                        آموزش عملی
-                    </h3>
-
-                    <p class="mt-2 text-sm leading-7 text-gray-500">
-                        تمرکز روی کار واقعی با لینوکس، نه حفظ کردن دستورها.
-                    </p>
-                </div>
-
-
-                <div class="border-t border-gray-100 p-7 text-center sm:border-r sm:border-t-0 sm:p-8">
-                    <div class="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 font-bold text-violet-600">
-                        02
-                    </div>
-
-                    <h3 class="font-extrabold text-gray-900">
-                        مسیر ساختاریافته
-                    </h3>
-
-                    <p class="mt-2 text-sm leading-7 text-gray-500">
-                        مطالب مرحله‌به‌مرحله و منظم برای یادگیری بهتر.
-                    </p>
-                </div>
-
-
-                <div class="border-t border-gray-100 p-7 text-center sm:border-r sm:border-t-0 sm:p-8">
-                    <div class="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 font-bold text-violet-600">
-                        03
-                    </div>
-
-                    <h3 class="font-extrabold text-gray-900">
-                        یادگیری با LinuxVerse
-                    </h3>
-
-                    <p class="mt-2 text-sm leading-7 text-gray-500">
-                        یک مسیر ساده برای ورود جدی‌تر به دنیای لینوکس.
-                    </p>
-                </div>
 
             </div>
 
+
         </div>
+
+
     </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- FEATURES -->
+    <!-- ========================================================= -->
+
+    <section class="py-16 sm:py-24">
+
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+
+            <div class="
+                overflow-hidden
+                rounded-3xl
+                border
+                border-gray-200
+                bg-white
+            ">
+
+
+                <div class="
+                    grid
+                    divide-y
+                    divide-gray-100
+                    sm:grid-cols-3
+                    sm:divide-x
+                    sm:divide-y-0
+                ">
+
+
+                    <!-- Feature 1 -->
+
+                    <div class="
+                        group
+                        flex
+                        items-center
+                        gap-4
+                        p-6
+                        text-right
+                        transition
+                        hover:bg-violet-50/30
+                        sm:block
+                        sm:p-10
+                        sm:text-center
+                    ">
+
+
+                        <div class="
+                            flex
+                            h-11
+                            w-11
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-violet-100
+                            text-violet-600
+                            transition
+                            group-hover:scale-110
+                            sm:mx-auto
+                            sm:mb-5
+                            sm:h-14
+                            sm:w-14
+                            sm:rounded-2xl
+                        ">
+                            🐧
+                        </div>
+
+
+                        <div>
+
+                            <h3 class="
+                                text-sm
+                                font-extrabold
+                                text-gray-900
+                                sm:text-lg
+                            ">
+                                آموزش عملی
+                            </h3>
+
+
+                            <p class="
+                                mt-1
+                                text-xs
+                                leading-6
+                                text-gray-500
+                                sm:mt-3
+                                sm:text-sm
+                                sm:leading-7
+                            ">
+                                تمرکز روی کار واقعی با لینوکس.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Feature 2 -->
+
+                    <div class="
+                        group
+                        flex
+                        items-center
+                        gap-4
+                        p-6
+                        text-right
+                        transition
+                        hover:bg-cyan-50/30
+                        sm:block
+                        sm:p-10
+                        sm:text-center
+                    ">
+
+
+                        <div class="
+                            flex
+                            h-11
+                            w-11
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-cyan-100
+                            text-cyan-600
+                            transition
+                            group-hover:scale-110
+                            sm:mx-auto
+                            sm:mb-5
+                            sm:h-14
+                            sm:w-14
+                            sm:rounded-2xl
+                        ">
+                            📚
+                        </div>
+
+
+                        <div>
+
+                            <h3 class="
+                                text-sm
+                                font-extrabold
+                                text-gray-900
+                                sm:text-lg
+                            ">
+                                مسیر ساختاریافته
+                            </h3>
+
+
+                            <p class="
+                                mt-1
+                                text-xs
+                                leading-6
+                                text-gray-500
+                                sm:mt-3
+                                sm:text-sm
+                                sm:leading-7
+                            ">
+                                یادگیری مرحله‌به‌مرحله و منظم.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- Feature 3 -->
+
+                    <div class="
+                        group
+                        flex
+                        items-center
+                        gap-4
+                        p-6
+                        text-right
+                        transition
+                        hover:bg-amber-50/30
+                        sm:block
+                        sm:p-10
+                        sm:text-center
+                    ">
+
+
+                        <div class="
+                            flex
+                            h-11
+                            w-11
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-amber-100
+                            text-amber-600
+                            transition
+                            group-hover:scale-110
+                            sm:mx-auto
+                            sm:mb-5
+                            sm:h-14
+                            sm:w-14
+                            sm:rounded-2xl
+                        ">
+                            🎯
+                        </div>
+
+
+                        <div>
+
+                            <h3 class="
+                                text-sm
+                                font-extrabold
+                                text-gray-900
+                                sm:text-lg
+                            ">
+                                یادگیری هدفمند
+                            </h3>
+
+
+                            <p class="
+                                mt-1
+                                text-xs
+                                leading-6
+                                text-gray-500
+                                sm:mt-3
+                                sm:text-sm
+                                sm:leading-7
+                            ">
+                                تمرکز روی مهارت‌هایی که واقعاً لازم داری.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- CTA -->
+    <!-- ========================================================= -->
+
+    <section class="
+        hidden
+        overflow-hidden
+        bg-gradient-to-br
+        from-gray-900
+        via-gray-800
+        to-gray-900
+        py-24
+        sm:block
+    ">
+
+
+        <div class="
+            mx-auto
+            max-w-3xl
+            px-5
+            text-center
+        ">
+
+
+            <div class="mb-6 text-6xl">
+                🐧
+            </div>
+
+
+            <h2 class="
+                text-3xl
+                font-black
+                text-white
+                sm:text-4xl
+            ">
+
+                آماده‌ای لینوکس را
+
+                <span class="text-violet-400">
+                    متفاوت
+                </span>
+
+                یاد بگیری؟
+
+            </h2>
+
+
+            <p class="
+                mt-4
+                text-sm
+                leading-7
+                text-gray-300
+                sm:text-base
+            ">
+                از اولین دستور ترمینال تا مباحث حرفه‌ای‌تر.
+            </p>
+
+
+            <div class="
+                mt-8
+                flex
+                items-center
+                justify-center
+                gap-4
+            ">
+
+
+                <a
+                    href="#courses"
+                    class="
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-2xl
+                        bg-gradient-to-r
+                        from-violet-600
+                        to-purple-600
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-white
+                        shadow-lg
+                        shadow-violet-500/30
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:shadow-violet-500/50
+                    "
+                >
+                    شروع یادگیری 🐧
+                </a>
+
+
+                <a
+                    href="/about/"
+                    class="
+                        inline-flex
+                        items-center
+                        rounded-2xl
+                        border
+                        border-gray-700
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-gray-300
+                        transition
+                        hover:border-violet-500
+                        hover:bg-violet-500/10
+                        hover:text-white
+                    "
+                >
+                    درباره ما
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- TERMINAL INTERACTION -->
+    <!-- ========================================================= -->
+
+    <style>
+
+        .terminal-window:hover .terminal-dot:nth-child(1) {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(244, 63, 94, 0.06);
+        }
+
+        .terminal-window:hover .terminal-dot:nth-child(2) {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.06);
+        }
+
+        .terminal-window:hover .terminal-dot:nth-child(3) {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.06);
+        }
+
+    </style>
+
 
 </div>
+
 
 {% endblock %}

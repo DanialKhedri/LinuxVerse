@@ -10,9 +10,9 @@ urlpatterns = [
         name='create_order'
     ),
 
-    path(
-        'order/<int:order_id>/success/',
-        views.order_success,
-        name='order_success'
-    ),
+   path(
+    'order/<uuid:access_token>/success/',
+    views.order_success,
+    name='order_success'
+),
 ]

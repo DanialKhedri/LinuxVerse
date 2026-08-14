@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from courses.models import Course
 
@@ -27,6 +29,12 @@ class Order(models.Model):
         max_length=20,
         choices=STATUS_CHOICES,
         default='pending'
+    )
+
+    access_token = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        editable=False
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

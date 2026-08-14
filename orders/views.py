@@ -26,7 +26,7 @@ def create_order(request, slug):
 
             return redirect(
                 'order_success',
-                order_id=order.id
+                access_token=order.access_token
             )
 
     else:
@@ -42,10 +42,10 @@ def create_order(request, slug):
     )
 
 
-def order_success(request, order_id):
+def order_success(request, access_token):
     order = get_object_or_404(
         Order,
-        id=order_id
+        access_token=access_token
     )
 
     return render(

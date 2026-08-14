@@ -1,43 +1,1265 @@
+
+{% load static %}
+{% load number_filters %}
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}LinuxVerse{% endblock %}</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            LINUXVERSE — Explore the Linux Universe
+        {% endblock %}
+    </title>
+
+    <meta
+        name="description"
+        content="{% block meta_description %}LINUXVERSE — Explore the Linux Universe. آموزش لینوکس، برنامه‌نویسی و امنیت{% endblock %}"
+    >
+
+
+    <!-- ========================================================= -->
+    <!-- TAILWIND -->
+    <!-- ========================================================= -->
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    fontFamily: {
+
+                        sans: [
+                            'Vazirmatn',
+                            'sans-serif'
+                        ],
+
+                        mono: [
+                            'JetBrains Mono',
+                            'monospace'
+                        ]
+
+                    },
+
+
+                    colors: {
+
+                        verse: {
+
+                            50:  '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95'
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+
+    <!-- ========================================================= -->
+    <!-- FONTS -->
+    <!-- ========================================================= -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    {% block extra_css %}
+    {% endblock %}
+
+
+    <!-- ========================================================= -->
+    <!-- GLOBAL CSS -->
+    <!-- ========================================================= -->
+
+    <style>
+
+
+        /* ===================================================== */
+        /* ROOT */
+        /* ===================================================== */
+
+        :root {
+
+            --verse-primary: #7c3aed;
+
+            --verse-bright: #8b5cf6;
+
+            --verse-light: #a78bfa;
+
+            --verse-soft: #c4b5fd;
+
+        }
+
+
+        /* ===================================================== */
+        /* HTML */
+        /* ===================================================== */
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        /* ===================================================== */
+        /* BODY */
+        /* ===================================================== */
+
+        body {
+
+            font-family: 'Vazirmatn', sans-serif;
+
+        }
+
+
+        /* ===================================================== */
+        /* SCROLLBAR */
+        /* ===================================================== */
+
+        ::-webkit-scrollbar {
+
+            width: 6px;
+
+            height: 6px;
+
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background: #fafafa;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background: var(--verse-bright);
+
+            border-radius: 999px;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: var(--verse-primary);
+
+        }
+
+
+        /* ===================================================== */
+        /* SELECTION */
+        /* ===================================================== */
+
+        ::selection {
+
+            background: rgba(139, 92, 246, 0.25);
+
+            color: #4c1d95;
+
+        }
+
+
+        /* ===================================================== */
+        /* NAVBAR */
+        /* ===================================================== */
+
+        .nav-glass {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(19, 17, 28, 0.97),
+                    rgba(15, 15, 20, 0.96)
+                );
+
+            backdrop-filter: blur(20px);
+
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(167, 139, 250, 0.12);
+
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.16);
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+
+        }
+
+
+        .nav-glass:hover {
+
+            border-color:
+                rgba(167, 139, 250, 0.20);
+
+            box-shadow:
+                0 16px 50px rgba(0, 0, 0, 0.20);
+
+        }
+
+
+        /* ===================================================== */
+        /* LOGO BOX */
+        /* ===================================================== */
+
+        .logo-box {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.22),
+                    rgba(139, 92, 246, 0.10)
+                );
+
+            border:
+                1px solid
+                rgba(167, 139, 250, 0.20);
+
+            color:
+                #a78bfa;
+
+            box-shadow:
+                inset 0 0 20px rgba(139, 92, 246, 0.04);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .logo-box:hover {
+
+            transform:
+                translateY(-2px)
+                rotate(-2deg);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.32),
+                    rgba(139, 92, 246, 0.16)
+                );
+
+            box-shadow:
+                0 8px 25px rgba(124, 58, 237, 0.20);
+
+        }
+
+
+        /* ===================================================== */
+        /* BRAND */
+        /* ===================================================== */
+
+        .brand-name {
+
+            color: #ffffff;
+
+            transition:
+                color 0.25s ease;
+
+        }
+
+
+        .group:hover .brand-name {
+
+            color: #c4b5fd;
+
+        }
+
+
+        /* ===================================================== */
+        /* GRADIENT TEXT */
+        /* ===================================================== */
+
+        .gradient-text {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c4b5fd 0%,
+                    #a78bfa 35%,
+                    #8b5cf6 70%,
+                    #7c3aed 100%
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+
+        }
+
+
+        /* ===================================================== */
+        /* NAV LINKS */
+        /* ===================================================== */
+
+        .nav-link {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding:
+                0 16px;
+
+            border-radius: 12px;
+
+            color: #eeeeF2;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            transition:
+                color 0.25s ease,
+                background 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .nav-link:hover {
+
+            color: #ffffff;
+
+            background:
+                rgba(124, 58, 237, 0.14);
+
+            box-shadow:
+                0 6px 20px rgba(124, 58, 237, 0.08);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE COURSE BUTTON */
+        /* ===================================================== */
+
+        .mobile-course {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #8b5cf6
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 6px 18px
+                rgba(124, 58, 237, 0.22);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .mobile-course:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 9px 25px
+                rgba(124, 58, 237, 0.30);
+
+        }
+
+
+        .mobile-course:active {
+
+            transform:
+                scale(0.96);
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE MENU BUTTON */
+        /* ===================================================== */
+
+        .mobile-menu-button {
+
+            color: #e4e4e7;
+
+            background:
+                rgba(255, 255, 255, 0.045);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.09);
+
+            transition:
+                background 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease;
+
+        }
+
+
+        .mobile-menu-button:hover {
+
+            background:
+                rgba(124, 58, 237, 0.14);
+
+            border-color:
+                rgba(167, 139, 250, 0.22);
+
+        }
+
+
+        .mobile-menu-button:active {
+
+            transform:
+                scale(0.94);
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE MENU */
+        /* ===================================================== */
+
+        .mobile-menu {
+
+            max-height: 0;
+
+            opacity: 0;
+
+            overflow: hidden;
+
+            transform:
+                translateY(-8px);
+
+            pointer-events: none;
+
+            transition:
+                max-height 0.35s ease,
+                opacity 0.25s ease,
+                transform 0.35s ease;
+
+        }
+
+
+        .mobile-menu.open {
+
+            max-height: 420px;
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+
+            pointer-events: auto;
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE MENU ICONS */
+        /* ===================================================== */
+
+        .menu-icon {
+
+            color:
+                #a78bfa;
+
+        }
+
+
+        /* ===================================================== */
+        /* RESPONSIVE */
+        /* ===================================================== */
+
+        @media (max-width: 767px) {
+
+            .nav-glass {
+
+                border-radius: 16px;
+
+                box-shadow:
+                    0 8px 30px
+                    rgba(0, 0, 0, 0.14);
+
+            }
+
+
+            .nav-link {
+
+                justify-content:
+                    flex-start;
+
+                width: 100%;
+
+                min-height: 50px;
+
+                padding:
+                    0 15px;
+
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .nav-glass {
+
+                padding-left:
+                    10px;
+
+                padding-right:
+                    10px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
-<body class="bg-slate-950 text-white">
 
-    <header>
-        <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            
-            <a href="/" class="text-2xl font-black">
-                Linux<span class="text-cyan-400">Verse</span>
-            </a>
 
-            <a href="#course"
-               class="px-5 py-2.5 rounded-xl bg-cyan-400 text-slate-950 font-bold hover:bg-cyan-300 transition">
-                مشاهده دوره
-            </a>
+<body class="
+    min-h-screen
+    bg-white
+    text-gray-800
+    antialiased
+    font-sans
+">
+
+
+    <!-- ========================================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================================= -->
+
+    <header class="sticky top-0 z-50">
+
+        <nav class="
+            mx-auto
+            max-w-7xl
+            px-3
+            sm:px-6
+            lg:px-8
+            pt-3
+        ">
+
+
+            <div class="
+                nav-glass
+                relative
+                px-3
+                sm:px-6
+                py-2.5
+                sm:py-3
+                rounded-2xl
+            ">
+
+
+                <!-- ================================================= -->
+                <!-- TOP BAR -->
+                <!-- ================================================= -->
+
+                <div class="
+                    flex
+                    items-center
+                    justify-between
+                    gap-3
+                ">
+
+
+                    <!-- ================================================= -->
+                    <!-- LOGO -->
+                    <!-- ================================================= -->
+
+                    <a
+                        href="/"
+                        class="
+                            group
+                            flex
+                            items-center
+                            gap-2.5
+                            min-w-0
+                        "
+                    >
+
+
+                        <div class="
+                            logo-box
+                            flex
+                            items-center
+                            justify-center
+                            shrink-0
+                            w-9
+                            h-9
+                            sm:w-10
+                            sm:h-10
+                            rounded-xl
+                            font-mono
+                            text-lg
+                            sm:text-xl
+                            font-bold
+                        ">
+
+                            &gt;_
+
+                        </div>
+
+
+                        <div class="
+                            leading-tight
+                            min-w-0
+                        ">
+
+                            <div class="
+                                brand-name
+                                text-sm
+                                sm:text-lg
+                                font-extrabold
+                                tracking-wider
+                                font-mono
+                                truncate
+                            ">
+
+                                LINUXVERSE
+
+                            </div>
+
+
+                            <div class="
+                                hidden
+                                sm:block
+                                text-[9px]
+                                text-gray-500
+                                tracking-[0.15em]
+                                font-mono
+                            ">
+
+                                explore the linux universe
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- DESKTOP MENU -->
+                    <!-- ================================================= -->
+
+                    <div class="
+                        hidden
+                        md:flex
+                        items-center
+                        gap-1
+                    ">
+
+
+                        <a
+                            href="/"
+                            class="nav-link"
+                        >
+                            خانه
+                        </a>
+
+
+                        <a
+                            href="/courses/"
+                            class="nav-link"
+                        >
+                            دوره‌ها
+                        </a>
+
+
+                        <a
+                            href="/blog/"
+                            class="nav-link"
+                        >
+                            وبلاگ
+                        </a>
+
+
+                        <a
+                            href="/about/"
+                            class="nav-link"
+                        >
+                            درباره ما
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- DESKTOP ACTION -->
+                    <!-- ================================================= -->
+
+                    <div class="
+                        hidden
+                        md:flex
+                        items-center
+                    ">
+
+                        <a
+                            href="/courses/"
+                            class="
+                                nav-action
+                                flex
+                                items-center
+                                justify-center
+                                w-10
+                                h-10
+                                rounded-xl
+                                bg-violet-500/10
+                                border
+                                border-violet-400/10
+                                text-base
+                                transition-all
+                                duration-300
+                                hover:bg-violet-500/20
+                                hover:-translate-y-1
+                            "
+                        >
+
+                            🐧
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- ================================================= -->
+                    <!-- MOBILE -->
+                    <!-- ================================================= -->
+
+                    <div class="
+                        flex
+                        md:hidden
+                        items-center
+                        gap-2
+                    ">
+
+
+                        <a
+                            href="/courses/"
+                            class="
+                                mobile-course
+                                flex
+                                items-center
+                                justify-center
+                                px-3
+                                h-9
+                                rounded-xl
+                                text-xs
+                                font-bold
+                            "
+                        >
+
+                            دوره‌ها
+
+                        </a>
+
+
+                        <button
+                            type="button"
+                            id="mobileMenuButton"
+                            class="
+                                mobile-menu-button
+                                flex
+                                items-center
+                                justify-center
+                                w-9
+                                h-9
+                                rounded-xl
+                            "
+                            aria-label="باز کردن منو"
+                            aria-expanded="false"
+                        >
+
+                            <svg
+                                id="menuIcon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.8"
+                                stroke="currentColor"
+                                class="w-5 h-5"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                                />
+
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================================================= -->
+                <!-- MOBILE MENU -->
+                <!-- ================================================= -->
+
+                <div
+                    id="mobileMenu"
+                    class="
+                        mobile-menu
+                        md:hidden
+                    "
+                >
+
+                    <div class="
+                        mt-3
+                        pt-3
+                        border-t
+                        border-white/10
+                        space-y-1
+                    ">
+
+
+                        <a
+                            href="/"
+                            class="nav-link"
+                        >
+
+                            <span class="menu-icon ml-2">
+                                ⌂
+                            </span>
+
+                            خانه
+
+                        </a>
+
+
+                        <a
+                            href="/courses/"
+                            class="nav-link"
+                        >
+
+                            <span class="menu-icon ml-2">
+                                &gt;_
+                            </span>
+
+                            دوره‌ها
+
+                        </a>
+
+
+                        <a
+                            href="/blog/"
+                            class="nav-link"
+                        >
+
+                            <span class="menu-icon ml-2">
+                                /
+                            </span>
+
+                            وبلاگ
+
+                        </a>
+
+
+                        <a
+                            href="/about/"
+                            class="nav-link"
+                        >
+
+                            <span class="menu-icon ml-2">
+                                ?
+                            </span>
+
+                            درباره ما
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </nav>
+
     </header>
 
 
-    <main>
+
+    <!-- ========================================================= -->
+    <!-- MAIN -->
+    <!-- ========================================================= -->
+
+    <main class="relative">
+
         {% block content %}
         {% endblock %}
+
     </main>
 
 
-    <footer class="border-t border-white/10 mt-24">
-        <div class="max-w-7xl mx-auto px-6 py-8 text-center text-slate-500">
-            © 2026 LinuxVerse
+
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+
+    <footer class="
+        mt-20
+        border-t
+        border-gray-100
+        bg-white
+    ">
+
+
+        <div class="
+            max-w-7xl
+            mx-auto
+            px-4
+            sm:px-6
+            py-8
+        ">
+
+
+            <div class="
+                flex
+                flex-col
+                md:flex-row
+                items-center
+                justify-between
+                gap-4
+            ">
+
+
+                <div class="
+                    text-center
+                    md:text-right
+                ">
+
+
+                    <div class="
+                        flex
+                        items-center
+                        gap-2
+                        justify-center
+                        md:justify-start
+                    ">
+
+
+                        <span class="
+                            text-lg
+                            font-mono
+                            text-verse-600
+                        ">
+                            &gt;_
+                        </span>
+
+
+                        <span class="text-lg">
+                            🐧
+                        </span>
+
+
+                        <span class="
+                            text-lg
+                            font-extrabold
+                            gradient-text
+                            font-mono
+                        ">
+                            LINUXVERSE
+                        </span>
+
+                    </div>
+
+
+                    <p class="
+                        mt-1
+                        text-xs
+                        text-gray-400
+                        font-mono
+                    ">
+
+                        explore the linux universe
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="
+                    flex
+                    flex-wrap
+                    items-center
+                    justify-center
+                    gap-3
+                    text-xs
+                    text-gray-400
+                ">
+
+
+                    <a
+                        href="/"
+                        class="hover:text-violet-600 transition-colors"
+                    >
+                        خانه
+                    </a>
+
+
+                    <span class="text-gray-200">
+                        |
+                    </span>
+
+
+                    <a
+                        href="/courses/"
+                        class="hover:text-violet-600 transition-colors"
+                    >
+                        دوره‌ها
+                    </a>
+
+
+                    <span class="text-gray-200">
+                        |
+                    </span>
+
+
+                    <a
+                        href="/blog/"
+                        class="hover:text-violet-600 transition-colors"
+                    >
+                        وبلاگ
+                    </a>
+
+
+                    <span class="text-gray-200">
+                        |
+                    </span>
+
+
+                    <a
+                        href="/about/"
+                        class="hover:text-violet-600 transition-colors"
+                    >
+                        درباره ما
+                    </a>
+
+                </div>
+
+
+                <p class="
+                    text-xs
+                    text-gray-300
+                    font-mono
+                ">
+
+                    © {% now "Y" %} LINUXVERSE
+
+                </p>
+
+
+            </div>
+
         </div>
+
     </footer>
 
+
+
+    <!-- ========================================================= -->
+    <!-- MOBILE MENU JS -->
+    <!-- ========================================================= -->
+
+    <script>
+
+        const mobileMenuButton =
+            document.getElementById(
+                'mobileMenuButton'
+            );
+
+        const mobileMenu =
+            document.getElementById(
+                'mobileMenu'
+            );
+
+        const menuIcon =
+            document.getElementById(
+                'menuIcon'
+            );
+
+
+        if (
+            mobileMenuButton &&
+            mobileMenu &&
+            menuIcon
+        ) {
+
+
+            mobileMenuButton.addEventListener(
+                'click',
+                function () {
+
+
+                    const isOpen =
+                        mobileMenu.classList.toggle(
+                            'open'
+                        );
+
+
+                    mobileMenuButton.setAttribute(
+                        'aria-expanded',
+                        isOpen
+                    );
+
+
+                    if (isOpen) {
+
+                        menuIcon.innerHTML = `
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+
+                        `;
+
+                    }
+
+                    else {
+
+                        menuIcon.innerHTML = `
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                            />
+
+                        `;
+
+                    }
+
+                }
+            );
+
+
+            const mobileLinks =
+                mobileMenu.querySelectorAll(
+                    'a'
+                );
+
+
+            mobileLinks.forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        'click',
+                        function () {
+
+                            mobileMenu.classList.remove(
+                                'open'
+                            );
+
+                            mobileMenuButton.setAttribute(
+                                'aria-expanded',
+                                'false'
+                            );
+
+
+                            menuIcon.innerHTML = `
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                                />
+
+                            `;
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+    {% block extra_js %}
+    {% endblock %}
+
 </body>
+
 </html>

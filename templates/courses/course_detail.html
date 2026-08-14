@@ -1,109 +1,203 @@
+
 {% extends "base.html" %}
+{% load number_filters %}
 
 {% block title %}{{ course.title }} | LinuxVerse{% endblock %}
 
 {% block content %}
 
-<div dir="rtl" class="min-h-screen bg-white text-gray-900">
+<div dir="rtl" class="min-h-screen bg-white text-gray-900 pb-20 lg:pb-0">
 
-    <!-- Breadcrumb -->
-    <div class="border-b border-gray-100">
-        <div class="mx-auto max-w-7xl px-5 py-4 sm:px-8">
-            <nav class="flex items-center gap-2 text-sm text-gray-400">
-                <a href="{% url 'home' %}" class="transition hover:text-violet-600">
-                    خانه
-                </a>
+    <!-- ========================================================= -->
+    <!-- MOBILE STICKY BUY BAR -->
+    <!-- ========================================================= -->
 
-                <span>←</span>
+    <div class="
+        fixed bottom-0 left-0 right-0 z-50
+        border-t border-gray-200
+        bg-white/95
+        px-4 py-3
+        shadow-[0_-10px_30px_rgba(0,0,0,0.08)]
+        backdrop-blur-xl
+        lg:hidden
+    ">
 
-                <span class="text-gray-600">
-                    {{ course.title }}
-                </span>
-            </nav>
-        </div>
-    </div>
+        <div class="mx-auto flex max-w-lg items-center gap-3">
 
+            <div class="min-w-0 flex-1">
 
-    <!-- Course Hero -->
-    <section class="relative overflow-hidden">
-        <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-violet-100/40 blur-3xl"></div>
+                <div class="truncate text-[10px] font-medium text-gray-400">
+                    قیمت دوره
+                </div>
 
-        <div class="relative mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+                <div class="mt-0.5 flex items-baseline gap-1">
 
-            <div class="grid gap-12 lg:grid-cols-[1fr_420px] lg:items-start">
+                    <span class="text-lg font-black text-gray-950">
+                        {{ course.price|floatformat:0 }}
+                    </span>
 
-                <!-- Main Content -->
-                <div class="order-2 lg:order-1">
-
-                    <!-- Badge -->
-                    <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50/60 px-4 py-2 text-xs font-bold text-violet-700">
-                        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
-                        دوره آموزشی LinuxVerse
-                    </div>
-
-
-                    <!-- Title -->
-                    <h1 class="max-w-3xl text-3xl font-black leading-[1.4] tracking-tight text-gray-950 sm:text-4xl lg:text-5xl">
-                        {{ course.title }}
-                    </h1>
-
-
-                    <!-- Description -->
-                    <div class="mt-6 max-w-3xl text-base leading-8 text-gray-500 sm:text-lg">
-                        {{ course.short_description|default:"یادگیری لینوکس به‌صورت عملی، ساختاریافته و قدم‌به‌قدم." }}
-                    </div>
-
-
-                    <!-- Course Meta -->
-                    <div class="mt-8 flex flex-wrap gap-3">
-
-                        {% if course.level %}
-                            <div class="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                                <div class="text-xs text-gray-400">سطح</div>
-                                <div class="mt-1 text-sm font-bold text-gray-800">
-                                    {{ course.level }}
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        {% if course.duration %}
-                            <div class="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                                <div class="text-xs text-gray-400">مدت دوره</div>
-                                <div class="mt-1 text-sm font-bold text-gray-800">
-                                    {{ course.duration }}
-                                </div>
-                            </div>
-                        {% endif %}
-
-                        <div class="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                            <div class="text-xs text-gray-400">نوع دسترسی</div>
-                            <div class="mt-1 text-sm font-bold text-gray-800">
-                                اسپات پلیر
-                            </div>
-                        </div>
-
-                    </div>
+                   
 
                 </div>
 
+            </div>
 
-                <!-- Purchase Card -->
-                <aside class="order-1 lg:order-2">
+            <a
+                href="{% url 'create_order' course.slug %}"
+                class="
+                    flex-1
+                    max-w-[220px]
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-violet-600
+                    px-4 py-3.5
+                    text-sm
+                    font-extrabold
+                    text-white
+                    shadow-lg
+                    shadow-violet-500/20
+                    transition
+                    active:scale-[0.98]
+                "
+            >
+                شروع دوره
+                <span class="mr-1">←</span>
+            </a>
 
-                    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl shadow-gray-200/50">
+        </div>
 
-                        <!-- Image -->
-                        <div class="aspect-video overflow-hidden bg-violet-50">
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- BREADCRUMB -->
+    <!-- ========================================================= -->
+
+    <div class="border-b border-gray-100">
+
+        <div class="mx-auto max-w-7xl px-4 py-3 sm:px-8 sm:py-4">
+
+            <nav class="flex items-center gap-2 text-xs sm:text-sm">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="font-medium text-gray-400 transition hover:text-violet-600"
+                >
+                    خانه
+                </a>
+
+                <span class="text-gray-300">
+                    ←
+                </span>
+
+                <span class="max-w-[220px] truncate font-medium text-gray-600 sm:max-w-none">
+                    {{ course.title }}
+                </span>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- COURSE HERO -->
+    <!-- ========================================================= -->
+
+    <section class="relative overflow-hidden">
+
+        <!-- Desktop background decoration -->
+        <div class="
+            pointer-events-none
+            absolute
+            -left-32
+            -top-32
+            hidden
+            h-96
+            w-96
+            rounded-full
+            bg-violet-100/40
+            blur-3xl
+            lg:block
+        "></div>
+
+        <div class="
+            relative
+            mx-auto
+            max-w-7xl
+            px-4
+            py-6
+            sm:px-8
+            sm:py-12
+            lg:py-16
+        ">
+
+            <div class="
+                grid
+                gap-6
+                lg:grid-cols-[1fr_420px]
+                lg:items-start
+                lg:gap-12
+            ">
+
+
+                <!-- ================================================= -->
+                <!-- COURSE CARD / IMAGE -->
+                <!-- ================================================= -->
+
+                <div class="order-1 lg:order-2">
+
+                    <div class="
+                        overflow-hidden
+                        rounded-2xl
+                        border
+                        border-gray-200
+                        bg-white
+                        shadow-sm
+                        lg:rounded-2xl
+                        lg:shadow-xl
+                        lg:shadow-gray-200/50
+                    ">
+
+                        <!-- Course Image -->
+
+                        <div class="
+                            aspect-[16/9]
+                            overflow-hidden
+                            bg-violet-50
+                            sm:aspect-video
+                        ">
 
                             {% if course.image %}
 
-                                <img src="{{ course.image.url }}"
-                                     alt="{{ course.title }}"
-                                     class="h-full w-full object-cover">
+                                <img
+                                    src="{{ course.image.url }}"
+                                    alt="{{ course.title }}"
+                                    class="
+                                        h-full
+                                        w-full
+                                        object-cover
+                                    "
+                                >
 
                             {% else %}
 
-                                <div class="flex h-full items-center justify-center bg-gradient-to-br from-violet-50 to-white text-5xl font-black text-violet-500">
+                                <div class="
+                                    flex
+                                    h-full
+                                    items-center
+                                    justify-center
+                                    bg-gradient-to-br
+                                    from-violet-50
+                                    via-white
+                                    to-purple-50
+                                    text-5xl
+                                    font-black
+                                    text-violet-500
+                                    sm:text-6xl
+                                ">
                                     &gt;_
                                 </div>
 
@@ -112,39 +206,88 @@
                         </div>
 
 
-                        <div class="p-6">
+                        <!-- Purchase -->
 
-                            <!-- Price -->
-                            <div class="mb-6">
+                        <div class="p-4 sm:p-6">
 
-                                {% if course.original_price > course.price %}
-                                    <div class="mb-1 text-sm text-gray-400 line-through">
-                                        {{ course.original_price|floatformat:0 }} تومان
+                            <!-- Desktop / Mobile Price -->
+
+                            <div class="flex items-end justify-between gap-4">
+
+                                <div>
+
+                                    {% if course.original_price > course.price %}
+
+                                        <div class="
+                                            mb-1
+                                            text-xs
+                                            text-gray-400
+                                            line-through
+                                        ">
+                                            {{ course.original_price | toman }}
+                                            
+                                        </div>
+
+                                    {% endif %}
+
+                                    <div class="flex items-baseline gap-1.5">
+
+                                        <span class="
+                                            text-2xl
+                                            font-black
+                                            tracking-tight
+                                            text-gray-950
+                                            sm:text-3xl
+                                        ">
+                                            {{ course.price | toman }}
+                                        </span>
+
                                     </div>
-                                {% endif %}
 
-                                <div class="flex items-end gap-2">
-                                    <span class="text-3xl font-black tracking-tight text-gray-950">
-                                        {{ course.price|floatformat:0 }}
-                                    </span>
-
-                                    <span class="pb-1 text-sm text-gray-500">
-                                        تومان
-                                    </span>
                                 </div>
+
+
+                                <!-- Desktop Buy -->
+
+                                <a
+                                    href="{% url 'create_order' course.slug %}"
+                                    class="
+                                        hidden
+                                        items-center
+                                        justify-center
+                                        gap-2
+                                        rounded-xl
+                                        bg-violet-600
+                                        px-6
+                                        py-3.5
+                                        text-sm
+                                        font-extrabold
+                                        text-white
+                                        shadow-lg
+                                        shadow-violet-500/15
+                                        transition-all
+                                        hover:-translate-y-0.5
+                                        hover:bg-violet-700
+                                        hover:shadow-violet-500/25
+                                        sm:flex
+                                    "
+                                >
+                                    خرید دوره
+                                    <span>←</span>
+                                </a>
 
                             </div>
 
 
-                            <!-- Buy -->
-                            <a href="{% url 'create_order' course.slug %}"
-                               class="flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-4 text-sm font-extrabold text-white shadow-lg shadow-violet-600/15 transition hover:-translate-y-0.5 hover:bg-violet-700">
-                                خرید دوره
-                                <span>←</span>
-                            </a>
+                            <!-- Mobile tiny reassurance -->
 
-
-                            <p class="mt-4 text-center text-xs leading-6 text-gray-400">
+                            <p class="
+                                mt-3
+                                text-[10px]
+                                leading-5
+                                text-gray-400
+                                sm:text-xs
+                            ">
                                 پس از پرداخت، اطلاعات فعال‌سازی دوره برای شما ارسال می‌شود.
                             </p>
 
@@ -152,42 +295,361 @@
 
                     </div>
 
-                </aside>
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MAIN COURSE INFO -->
+                <!-- ================================================= -->
+
+                <div class="order-2 lg:order-1">
+
+                    <!-- Badge -->
+
+                    <div class="
+                        mb-4
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-full
+                        border
+                        border-violet-100
+                        bg-violet-50
+                        px-3
+                        py-1.5
+                        text-[10px]
+                        font-bold
+                        text-violet-700
+                        sm:px-4
+                        sm:py-2
+                        sm:text-xs
+                    ">
+
+                        <span class="
+                            h-1.5
+                            w-1.5
+                            rounded-full
+                            bg-violet-500
+                        "></span>
+
+                        دوره آموزشی LinuxVerse
+
+                    </div>
+
+
+                    <!-- Title -->
+
+                    <h1 class="
+                        max-w-3xl
+                        text-2xl
+                        font-black
+                        leading-[1.5]
+                        tracking-tight
+                        text-gray-950
+                        sm:text-4xl
+                        lg:text-5xl
+                    ">
+                        {{ course.title }}
+                    </h1>
+
+
+                    <!-- Short Description -->
+
+                    <div class="
+                        mt-3
+                        max-w-3xl
+                        text-sm
+                        leading-7
+                        text-gray-500
+                        sm:mt-6
+                        sm:text-lg
+                        sm:leading-8
+                    ">
+                        {{ course.short_description|default:"یادگیری لینوکس به‌صورت عملی، ساختاریافته و قدم‌به‌قدم." }}
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- COURSE META -->
+                    <!-- ================================================= -->
+
+                    <div class="
+                        mt-5
+                        grid
+                        grid-cols-2
+                        gap-2
+                        sm:mt-8
+                        sm:flex
+                        sm:flex-wrap
+                        sm:gap-3
+                    ">
+
+                        {% if course.level %}
+
+                            <div class="
+                                rounded-xl
+                                border
+                                border-gray-100
+                                bg-gray-50/70
+                                px-3
+                                py-2.5
+                                sm:bg-white
+                                sm:px-4
+                                sm:py-3
+                            ">
+
+                                <div class="text-[10px] text-gray-400 sm:text-xs">
+                                    سطح
+                                </div>
+
+                                <div class="
+                                    mt-0.5
+                                    truncate
+                                    text-xs
+                                    font-bold
+                                    text-gray-800
+                                    sm:mt-1
+                                    sm:text-sm
+                                ">
+                                    {{ course.level }}
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if course.duration %}
+
+                            <div class="
+                                rounded-xl
+                                border
+                                border-gray-100
+                                bg-gray-50/70
+                                px-3
+                                py-2.5
+                                sm:bg-white
+                                sm:px-4
+                                sm:py-3
+                            ">
+
+                                <div class="text-[10px] text-gray-400 sm:text-xs">
+                                    مدت دوره
+                                </div>
+
+                                <div class="
+                                    mt-0.5
+                                    truncate
+                                    text-xs
+                                    font-bold
+                                    text-gray-800
+                                    sm:mt-1
+                                    sm:text-sm
+                                ">
+                                    {{ course.duration }}
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <div class="
+                            rounded-xl
+                            border
+                            border-gray-100
+                            bg-gray-50/70
+                            px-3
+                            py-2.5
+                            sm:bg-white
+                            sm:px-4
+                            sm:py-3
+                        ">
+
+                            <div class="text-[10px] text-gray-400 sm:text-xs">
+                                نوع دسترسی
+                            </div>
+
+                            <div class="
+                                mt-0.5
+                                truncate
+                                text-xs
+                                font-bold
+                                text-gray-800
+                                sm:mt-1
+                                sm:text-sm
+                            ">
+                                اسپات پلیر
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- MOBILE QUICK BENEFITS -->
+                    <!-- ================================================= -->
+
+                    <div class="mt-6 sm:mt-8">
+
+                        <div class="
+                            flex
+                            items-center
+                            gap-2
+                            text-xs
+                            font-bold
+                            text-gray-700
+                            sm:text-sm
+                        ">
+
+                            <span class="
+                                flex
+                                h-6
+                                w-6
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-full
+                                bg-emerald-50
+                                text-[11px]
+                                text-emerald-600
+                            ">
+                                ✓
+                            </span>
+
+                            آموزش عملی و مرحله‌به‌مرحله
+
+                        </div>
+
+                        <div class="
+                            mt-2
+                            flex
+                            items-center
+                            gap-2
+                            text-xs
+                            font-bold
+                            text-gray-700
+                            sm:text-sm
+                        ">
+
+                            <span class="
+                                flex
+                                h-6
+                                w-6
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-full
+                                bg-emerald-50
+                                text-[11px]
+                                text-emerald-600
+                            ">
+                                ✓
+                            </span>
+
+                            مناسب برای یادگیری واقعی لینوکس
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Course Details -->
-    <section class="border-t border-gray-100 py-16 sm:py-20">
-        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <!-- ========================================================= -->
+    <!-- COURSE DESCRIPTION -->
+    <!-- ========================================================= -->
 
-            <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <section class="
+        border-t
+        border-gray-100
+        py-10
+        sm:py-16
+        lg:py-20
+    ">
 
-                <!-- Rich Text -->
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-4
+            sm:px-8
+        ">
+
+            <div class="
+                grid
+                gap-10
+                lg:grid-cols-[minmax(0,1fr)_300px]
+                lg:gap-12
+            ">
+
+
+                <!-- ================================================= -->
+                <!-- DESCRIPTION -->
+                <!-- ================================================= -->
+
                 <article>
 
-                    <div class="mb-8">
-                        <p class="text-sm font-bold text-violet-600">
+                    <div class="mb-6 sm:mb-8">
+
+                        <p class="
+                            text-xs
+                            font-bold
+                            text-violet-600
+                            sm:text-sm
+                        ">
                             درباره دوره
                         </p>
 
-                        <h2 class="mt-2 text-2xl font-black text-gray-950 sm:text-3xl">
+                        <h2 class="
+                            mt-1.5
+                            text-xl
+                            font-black
+                            text-gray-950
+                            sm:mt-2
+                            sm:text-3xl
+                        ">
                             {{ course.title }}
                         </h2>
+
                     </div>
 
 
-                    <div class="prose prose-gray max-w-none leading-8
-                                prose-headings:font-black
-                                prose-headings:text-gray-950
-                                prose-h2:mt-10
-                                prose-h3:mt-8
-                                prose-a:text-violet-600
-                                prose-strong:text-gray-900
-                                prose-li:my-1">
+                    <div class="
+                        prose
+                        prose-gray
+                        max-w-none
+                        text-sm
+                        leading-8
+                        sm:text-base
+                        sm:leading-8
+
+                        prose-headings:font-black
+                        prose-headings:text-gray-950
+
+                        prose-h2:mt-8
+                        prose-h2:text-xl
+                        sm:prose-h2:mt-10
+                        sm:prose-h2:text-2xl
+
+                        prose-h3:mt-6
+                        prose-h3:text-lg
+
+                        prose-p:my-4
+                        sm:prose-p:my-5
+
+                        prose-a:text-violet-600
+
+                        prose-strong:text-gray-900
+
+                        prose-li:my-1
+                    ">
 
                         {{ course.description|safe }}
 
@@ -196,36 +658,112 @@
                 </article>
 
 
-                <!-- Side Info -->
-                <aside class="h-fit lg:sticky lg:top-6">
+                <!-- ================================================= -->
+                <!-- SIDE INFO — DESKTOP ONLY -->
+                <!-- ================================================= -->
 
-                    <div class="rounded-2xl border border-gray-200 bg-gray-50/60 p-6">
+                <aside class="
+                    hidden
+                    h-fit
+                    lg:sticky
+                    lg:top-6
+                    lg:block
+                ">
 
-                        <h3 class="text-base font-black text-gray-900">
+                    <div class="
+                        rounded-2xl
+                        border
+                        border-gray-200
+                        bg-gray-50/60
+                        p-6
+                    ">
+
+                        <h3 class="
+                            text-base
+                            font-black
+                            text-gray-900
+                        ">
                             این دوره مناسب توست اگر...
                         </h3>
 
-                        <ul class="mt-5 space-y-4 text-sm leading-7 text-gray-600">
+
+                        <ul class="
+                            mt-5
+                            space-y-4
+                            text-sm
+                            leading-7
+                            text-gray-600
+                        ">
 
                             <li class="flex gap-3">
-                                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-xs font-bold text-violet-600">
+
+                                <span class="
+                                    mt-1
+                                    flex
+                                    h-6
+                                    w-6
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    bg-violet-50
+                                    text-xs
+                                    font-bold
+                                    text-violet-600
+                                ">
                                     ✓
                                 </span>
+
                                 می‌خواهی لینوکس را اصولی یاد بگیری.
+
                             </li>
 
+
                             <li class="flex gap-3">
-                                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-xs font-bold text-violet-600">
+
+                                <span class="
+                                    mt-1
+                                    flex
+                                    h-6
+                                    w-6
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    bg-violet-50
+                                    text-xs
+                                    font-bold
+                                    text-violet-600
+                                ">
                                     ✓
                                 </span>
+
                                 دنبال آموزش عملی و مرحله‌به‌مرحله هستی.
+
                             </li>
 
+
                             <li class="flex gap-3">
-                                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-xs font-bold text-violet-600">
+
+                                <span class="
+                                    mt-1
+                                    flex
+                                    h-6
+                                    w-6
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    bg-violet-50
+                                    text-xs
+                                    font-bold
+                                    text-violet-600
+                                ">
                                     ✓
                                 </span>
+
                                 می‌خواهی مسیرت را در دنیای لینوکس جدی‌تر ادامه بدهی.
+
                             </li>
 
                         </ul>
@@ -234,8 +772,24 @@
                         <div class="my-6 h-px bg-gray-200"></div>
 
 
-                        <a href="{% url 'create_order' course.slug %}"
-                           class="flex w-full items-center justify-center rounded-xl bg-violet-600 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-violet-700">
+                        <a
+                            href="{% url 'create_order' course.slug %}"
+                            class="
+                                flex
+                                w-full
+                                items-center
+                                justify-center
+                                rounded-xl
+                                bg-violet-600
+                                px-5
+                                py-3.5
+                                text-sm
+                                font-bold
+                                text-white
+                                transition
+                                hover:bg-violet-700
+                            "
+                        >
                             ثبت‌نام در دوره
                         </a>
 
@@ -246,24 +800,59 @@
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- Back to Courses -->
-    <section class="border-t border-gray-100 py-12">
-        <div class="mx-auto max-w-7xl px-5 text-center sm:px-8">
+    <!-- ========================================================= -->
+    <!-- BACK TO COURSES -->
+    <!-- ========================================================= -->
 
-            <p class="text-sm text-gray-500">
+    <section class="
+        border-t
+        border-gray-100
+        py-10
+        sm:py-12
+    ">
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-4
+            text-center
+            sm:px-8
+        ">
+
+            <p class="
+                text-xs
+                text-gray-400
+                sm:text-sm
+            ">
                 دنبال دوره دیگری هستی؟
             </p>
 
-            <a href="{% url 'home' %}#courses"
-               class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-violet-600 transition hover:text-violet-700">
+            <a
+                href="{% url 'home' %}#courses"
+                class="
+                    mt-2
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-xs
+                    font-bold
+                    text-violet-600
+                    transition
+                    hover:text-violet-700
+                    sm:mt-3
+                    sm:text-sm
+                "
+            >
                 مشاهده همه دوره‌ها
                 <span>←</span>
             </a>
 
         </div>
+
     </section>
 
 </div>
