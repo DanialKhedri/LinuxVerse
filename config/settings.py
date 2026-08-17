@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "linuxverse_db",
+        "NAME": "linuxverse-db",
         "USER": "linuxverse-user",
         "PASSWORD": "zDF2kKdDbNgmImB-4UNa",
         "HOST": "localhost",
