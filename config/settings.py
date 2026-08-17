@@ -82,8 +82,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "linuxverse_db",
-        "USER": "linuxverse_user",
-        "PASSWORD": "Dandan4704",
+        "USER": "linuxverse-user",
+        "PASSWORD": "zDF2kKdDbNgmImB-4UNa",
         "HOST": "localhost",
         "PORT": "5432",
     }
