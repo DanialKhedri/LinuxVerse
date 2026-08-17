@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "linuxverse-db",
         "USER": "linuxverse-user",
         "PASSWORD": "zDF2kKdDbNgmImB-4UNa",
-        "HOST": "localhost",
+        "HOST": "app-postgresql-3puw2",
         "PORT": "5432",
     }
 }
