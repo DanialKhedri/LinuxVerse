@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-c!@%m8e&!v_1xan3hbzso$mxub5iz90#-*v6cz*pg0s69)+0m=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "linuxverse.ir",
+    "www.linuxverse.ir",
+    "app-django-s47h2.apps.teh11.abrhapaas.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
