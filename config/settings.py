@@ -85,37 +85,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "linuxverse",
-#         "USER": "linuxverse",
-#         "PASSWORD": "LinuxVerse@2026",
-#         "HOST": "127.0.0.1",
-#         "PORT": "3306",
-#     }
-# }
+
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "linuxverse-mariadb",
         "USER": "username",
-        "PASSWORD": "Oe3GTvhFDFe3rUdrcc0_",
+        "PASSWORD": "legIh_OmZBJA7kLo96Vo",
         "HOST": "app-mariadb-4zuwp",
         "PORT": "3306",
     }
 }
+
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "linuxverse",
-#         "USER": "linuxverse",
-#         "PASSWORD": "LinuxVerse@2026",
-#         "HOST": "127.0.0.1",
-#         "PORT": "3306",
-#     }
-# }
+#      "default": {
+#          "ENGINE": "django.db.backends.mysql",
+#          "NAME": "linuxverse",
+#          "USER": "linuxverse",
+#          "PASSWORD": "LinuxVerse@2026",
+#          "HOST": "127.0.0.1",
+#          "PORT": "3306",
+#      }
+#  }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
