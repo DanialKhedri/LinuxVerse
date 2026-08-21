@@ -94,7 +94,7 @@ DATABASES = {
         "USER": "username",
         "PASSWORD": "HM_WS-iC_D0S7NEiGv3t",
         "HOST": "app-mariadb-yu80x.apps.teh2.abrhapaas.com",
-        "PORT": "3306",
+        "PORT": "32245",
     }
 }
 
