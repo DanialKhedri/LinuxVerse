@@ -93,7 +93,7 @@ DATABASES = {
         "NAME": "linuxverse-mariadb",
         "USER": "username",
         "PASSWORD": "MsoFqpiXYUy-d7fkOYGf",
-        "HOST": "app-mariadb-yati8",
+        "HOST": "app-mariadb-yati8-554f48c58-wwgp4",
         "PORT": "3306",
     }
 }
