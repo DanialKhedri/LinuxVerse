@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "linuxverse-mariadb",
-        "USER": "username",
-        "PASSWORD": "HM_WS-iC_D0S7NEiGv3t",
-        "HOST": "app-mariadb-yu80x.apps.teh2.abrhapaas.com",
-        "PORT": "32245",
+        "NAME": "ihcqujva_linuxverse",
+        "USER": "ihcqujva_dani",
+        "PASSWORD": "GC#^sBqEfoJ6uOHi",
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
