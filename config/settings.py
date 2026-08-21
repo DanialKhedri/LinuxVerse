@@ -92,8 +92,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "linuxverse-mariadb",
         "USER": "username",
-        "PASSWORD": "MsoFqpiXYUy-d7fkOYGf",
-        "HOST": "app-mariadb-yati8-554f48c58-wwgp4",
+        "PASSWORD": "HM_WS-iC_D0S7NEiGv3t",
+        "HOST": "app-mariadb-yu80x.apps.teh2.abrhapaas.com",
         "PORT": "3306",
     }
 }
