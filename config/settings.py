@@ -87,16 +87,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 
+
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "ihcqujva_linuxverse",
-        "USER": "ihcqujva_dani",
-        "PASSWORD": "GC#^sBqEfoJ6uOHi",
+        "NAME": "linuxver_db",
+        "USER": "linuxver_user",
+        "PASSWORD": "F}4AJ>uy)Z}Bcn}",
         "HOST": "localhost",
         "PORT": "3306",
     }
 }
+
+
+
+
 
 # DATABASES = {
 #      "default": {
