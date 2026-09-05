@@ -9,6 +9,7 @@ urlpatterns = [
         views.course_detail,
         name='course_detail'
     ),
+    path('', views.courses, name='courses'),
 
 
 ]

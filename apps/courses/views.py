@@ -15,3 +15,6 @@ def course_detail(request, slug):
         {'course': course}
     )
 
+def courses(request):  
+    all_courses = Course.objects.all().order_by('-created_at')       
+    return render(request, 'courses/courses.html', {'courses': all_courses})

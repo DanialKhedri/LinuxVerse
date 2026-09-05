@@ -1,0 +1,831 @@
+{% extends "base.html" %}
+{% load number_filters %}
+
+
+{% block title %}دوره‌های آموزشی | LinuxVerse{% endblock %}
+
+
+{% block meta_description %}دوره‌های تخصصی لینوکس، شبکه، برنامه‌نویسی و امنیت — آموزش عملی و حرفه‌ای{% endblock %}
+
+
+{% block content %}
+
+
+<div dir="rtl" class="min-h-screen bg-[#f4f7fc] text-gray-900">
+
+
+    <!-- ========================================================= -->
+    <!-- HERO COURSES -->
+    <!-- ========================================================= -->
+
+    <section class="relative overflow-hidden">
+
+        <!-- Background -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden">
+
+            <div class="
+                absolute -right-40 -top-40
+                h-[500px] w-[500px]
+                rounded-full
+                bg-blue-100/30
+                blur-[120px]
+            "></div>
+
+            <div class="
+                hidden sm:block
+                absolute -left-60 top-20
+                h-[500px] w-[500px]
+                rounded-full
+                bg-indigo-100/20
+                blur-[120px]
+            "></div>
+
+        </div>
+
+
+        <div class="
+            relative mx-auto
+            max-w-4xl
+            px-5
+            py-16
+            sm:px-8 sm:py-24
+            text-center
+        ">
+
+
+            <!-- Icon -->
+            <div class="mb-6 text-7xl animate-bounce">
+                📚
+            </div>
+
+
+            <!-- Badge -->
+            <div class="
+                mb-5
+                inline-flex items-center gap-2
+                rounded-full
+                border border-blue-200
+                bg-blue-50
+                px-4 py-2
+                text-[11px]
+                font-bold
+                text-blue-700
+                sm:px-5 sm:py-2.5 sm:text-xs
+            ">
+
+                <span class="
+                    h-2 w-2
+                    rounded-full
+                    bg-blue-500
+                    animate-pulse
+                "></span>
+
+                دوره‌های آموزشی
+
+            </div>
+
+
+            <!-- Heading -->
+            <h1 class="
+                text-[2.5rem]
+                font-black
+                leading-[1.3]
+                tracking-tight
+                text-gray-950
+                sm:text-5xl
+                lg:text-[4rem]
+                lg:leading-[1.2]
+            ">
+
+                دوره‌های
+
+                <span class="
+                    bg-gradient-to-r
+                    from-blue-600
+                    via-blue-500
+                    to-indigo-500
+                    bg-clip-text
+                    text-transparent
+                ">
+                    تخصصی
+                </span>
+
+                <br class="hidden sm:block">
+
+                LinuxVerse
+
+            </h1>
+
+
+            <!-- Description -->
+            <p class="
+                mx-auto
+                mt-5
+                max-w-2xl
+                text-[15px]
+                font-medium
+                leading-8
+                text-gray-600
+                sm:text-[17px]
+                sm:leading-9
+            ">
+
+                از لینوکس و شبکه تا برنامه‌نویسی و امنیت — همه دوره‌ها را
+                در یکجا ببینید و مسیر یادگیری خود را انتخاب کنید.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- FILTER & SEARCH -->
+    <!-- ========================================================= -->
+
+    <section class="pb-6 sm:pb-8">
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+            <div class="
+                flex
+                flex-col
+                gap-4
+                sm:flex-row
+                sm:items-center
+                sm:justify-between
+            ">
+
+                <!-- Search -->
+                <div class="relative flex-1 max-w-md">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="جستجوی دوره..."
+                        class="
+                            w-full
+                            rounded-2xl
+                            border
+                            border-gray-200
+                            bg-white
+                            px-5
+                            py-3
+                            pr-12
+                            text-sm
+                            text-gray-700
+                            transition-all
+                            duration-300
+                            focus:border-blue-400
+                            focus:outline-none
+                            focus:ring-4
+                            focus:ring-blue-100
+                        "
+                    >
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+                        🔍
+                    </span>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2">
+                    <button
+                        data-filter="all"
+                        class="filter-btn active
+                            rounded-full
+                            bg-blue-600
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            text-white
+                            transition-all
+                            duration-300
+                            hover:bg-blue-700
+                            shadow-sm
+                            shadow-blue-600/20
+                        "
+                    >
+                        همه
+                    </button>
+                    <button
+                        data-filter="linux"
+                        class="filter-btn
+                            rounded-full
+                            border
+                            border-gray-200
+                            bg-white
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            text-gray-600
+                            transition-all
+                            duration-300
+                            hover:border-blue-300
+                            hover:bg-blue-50
+                            hover:text-blue-700
+                        "
+                    >
+                        🐧 لینوکس
+                    </button>
+                    <button
+                        data-filter="network"
+                        class="filter-btn
+                            rounded-full
+                            border
+                            border-gray-200
+                            bg-white
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            text-gray-600
+                            transition-all
+                            duration-300
+                            hover:border-cyan-300
+                            hover:bg-cyan-50
+                            hover:text-cyan-700
+                        "
+                    >
+                        🌐 شبکه
+                    </button>
+                    <button
+                        data-filter="programming"
+                        class="filter-btn
+                            rounded-full
+                            border
+                            border-gray-200
+                            bg-white
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            text-gray-600
+                            transition-all
+                            duration-300
+                            hover:border-amber-300
+                            hover:bg-amber-50
+                            hover:text-amber-700
+                        "
+                    >
+                        💻 برنامه‌نویسی
+                    </button>
+                    <button
+                        data-filter="security"
+                        class="filter-btn
+                            rounded-full
+                            border
+                            border-gray-200
+                            bg-white
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            text-gray-600
+                            transition-all
+                            duration-300
+                            hover:border-red-300
+                            hover:bg-red-50
+                            hover:text-red-700
+                        "
+                    >
+                        🔒 امنیت
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- COURSES GRID -->
+    <!-- ========================================================= -->
+
+    <section class="py-8 sm:py-12">
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+            <!-- Results count -->
+            <div class="mb-6 text-sm text-gray-400" id="resultsCount">
+                <span id="courseCount">0</span> دوره
+            </div>
+
+            <!-- Grid -->
+            <div
+                id="coursesGrid"
+                class="
+                    grid
+                    gap-5
+                    sm:grid-cols-2
+                    lg:grid-cols-3
+                    lg:gap-7
+                "
+            >
+
+                {% for course in courses %}
+
+                    <a
+                        href="{% url 'course_detail' course.slug %}"
+                        class="
+                            course-card
+                            group
+                            flex
+                            h-full
+                            flex-col
+                            overflow-hidden
+                            rounded-2xl
+                            border
+                            border-gray-200
+                            bg-white
+                            transition-all
+                            duration-300
+                            hover:-translate-y-2
+                            hover:border-blue-300
+                            hover:shadow-[0_25px_60px_-20px_rgba(37,99,235,0.15)]
+                        "
+                        data-category="{{ course.category|default:'linux' }}"
+                    >
+
+                        <!-- Image -->
+                        <div class="
+                            relative
+                            aspect-[16/9]
+                            overflow-hidden
+                            bg-gray-50
+                        ">
+
+                            {% if course.image %}
+
+                                <img
+                                    src="{{ course.image.url }}"
+                                    alt="{{ course.title }}"
+                                    loading="lazy"
+                                    class="
+                                        h-full
+                                        w-full
+                                        object-cover
+                                        transition
+                                        duration-700
+                                        group-hover:scale-105
+                                    "
+                                >
+
+                            {% else %}
+
+                                <div class="
+                                    flex
+                                    h-full
+                                    items-center
+                                    justify-center
+                                    bg-gradient-to-br
+                                    from-blue-50
+                                    to-white
+                                    text-5xl
+                                ">
+                                    📚
+                                </div>
+
+                            {% endif %}
+
+                            <!-- Category Badge -->
+                            <div class="
+                                absolute
+                                right-3
+                                top-3
+                                rounded-xl
+                                border
+                                border-white
+                                bg-white/95
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                text-blue-600
+                                shadow-md
+                            ">
+                                {% if course.category == 'linux' %}
+                                    🐧 لینوکس
+                                {% elif course.category == 'network' %}
+                                    🌐 شبکه
+                                {% elif course.category == 'programming' %}
+                                    💻 برنامه‌نویسی
+                                {% elif course.category == 'security' %}
+                                    🔒 امنیت
+                                {% else %}
+                                    📚 دوره
+                                {% endif %}
+                            </div>
+
+                            <!-- Level Badge -->
+                            <div class="
+                                absolute
+                                left-3
+                                top-3
+                                rounded-xl
+                                border
+                                border-white
+                                bg-white/95
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                shadow-md
+                                {% if course.level == 'beginner' %}
+                                    text-emerald-600
+                                {% elif course.level == 'intermediate' %}
+                                    text-amber-600
+                                {% else %}
+                                    text-red-600
+                                {% endif %}
+                            ">
+                                {% if course.level == 'beginner' %}
+                                    🟢 مبتدی
+                                {% elif course.level == 'intermediate' %}
+                                    🟡 متوسط
+                                {% else %}
+                                    🔴 پیشرفته
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <!-- Content -->
+                        <div class="
+                            flex
+                            flex-1
+                            flex-col
+                            p-5
+                            sm:p-6
+                        ">
+
+                            <h3 class="
+                                text-[16px]
+                                font-extrabold
+                                leading-7
+                                text-gray-900
+                                transition-colors
+                                group-hover:text-blue-700
+                                sm:text-lg
+                                sm:leading-8
+                            ">
+                                {{ course.title }}
+                            </h3>
+
+                            <p class="
+                                mt-2
+                                line-clamp-2
+                                text-[13px]
+                                leading-6
+                                text-gray-500
+                                sm:text-[14px]
+                                sm:leading-7
+                            ">
+                                {{ course.description|striptags|truncatechars:120 }}
+                            </p>
+
+                            <!-- Meta Info -->
+                            <div class="
+                                mt-3
+                                flex
+                                flex-wrap
+                                items-center
+                                gap-3
+                                text-xs
+                                text-gray-400
+                            ">
+
+                                {% if course.duration %}
+                                    <span class="flex items-center gap-1">
+                                        ⏱️ {{ course.duration }}
+                                    </span>
+                                {% endif %}
+
+                                {% if course.lessons_count %}
+                                    <span class="flex items-center gap-1">
+                                        📹 {{ course.lessons_count }} درس
+                                    </span>
+                                {% endif %}
+
+                                {% if course.students_count %}
+                                    <span class="flex items-center gap-1">
+                                        👥 {{ course.students_count }} دانشجو
+                                    </span>
+                                {% endif %}
+
+                            </div>
+
+                            <!-- Price -->
+                            <div class="
+                                mt-4
+                                flex
+                                items-center
+                                justify-between
+                                gap-3
+                                border-t
+                                border-gray-100
+                                pt-4
+                            ">
+
+                                <div>
+
+                                    <div class="
+                                        text-[15px]
+                                        font-black
+                                        text-gray-900
+                                        sm:text-base
+                                    ">
+
+                                        {% if course.price == 0 %}
+                                            رایگان 🎁
+                                        {% else %}
+                                            {{ course.price|toman }}
+                                        {% endif %}
+
+                                    </div>
+
+                                    {% if course.original_price and course.original_price > course.price %}
+                                        <div class="
+                                            mt-0.5
+                                            text-[10px]
+                                            text-gray-400
+                                            line-through
+                                        ">
+                                            {{ course.original_price|toman }}
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+
+                                <!-- Arrow -->
+                                <span class="
+                                    flex
+                                    h-10
+                                    w-10
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    bg-gray-100
+                                    text-lg
+                                    font-bold
+                                    text-gray-400
+                                    transition-all
+                                    duration-300
+                                    group-hover:bg-blue-600
+                                    group-hover:text-white
+                                    group-hover:shadow-lg
+                                    group-hover:shadow-blue-500/20
+                                ">
+                                    ←
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                {% empty %}
+
+                    <div class="
+                        col-span-full
+                        rounded-2xl
+                        border-2
+                        border-dashed
+                        border-gray-200
+                        px-6
+                        py-16
+                        text-center
+                    ">
+
+                        <div class="mb-3 text-5xl">
+                            📚
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-900">
+                            هنوز دوره‌ای ثبت نشده است
+                        </h3>
+
+                        <p class="mt-2 text-sm text-gray-500">
+                            به زودی دوره‌های جدید اضافه می‌شوند.
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- CTA -->
+    <!-- ========================================================= -->
+
+    <section class="py-16 sm:py-20 bg-white border-t border-gray-200/60">
+
+        <div class="
+            mx-auto
+            max-w-3xl
+            px-5
+            text-center
+        ">
+
+            <div class="mb-4 text-5xl">
+                🐧
+            </div>
+
+            <h2 class="
+                text-2xl
+                font-black
+                tracking-tight
+                text-gray-950
+                sm:text-3xl
+            ">
+
+                نیاز به راهنمایی داری؟
+
+            </h2>
+
+            <p class="
+                mx-auto
+                mt-3
+                max-w-md
+                text-sm
+                leading-7
+                text-gray-500
+            ">
+                اگر نمی‌دانی از کجا شروع کنی، تیم پشتیبانی ما آماده راهنمایی توست.
+            </p>
+
+            <div class="
+                mt-8
+                flex
+                flex-col
+                items-center
+                justify-center
+                gap-3
+                sm:flex-row
+            ">
+
+                <a
+                    href="{% url 'about' %}"
+                    class="
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-2xl
+                        bg-blue-600
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-white
+                        shadow-lg
+                        shadow-blue-600/20
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:bg-blue-700
+                        hover:shadow-blue-600/30
+                    "
+                >
+                    درباره ما
+                </a>
+
+                <a
+                    href="{% url 'home' %}"
+                    class="
+                        inline-flex
+                        items-center
+                        rounded-2xl
+                        border
+                        border-gray-200
+                        bg-white
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-gray-600
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:border-blue-300
+                        hover:bg-blue-50
+                        hover:text-blue-700
+                    "
+                >
+                    صفحه اصلی
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- FILTER & SEARCH JS -->
+    <!-- ========================================================= -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const courseCards = document.querySelectorAll('.course-card');
+            const courseCount = document.getElementById('courseCount');
+
+            let currentFilter = 'all';
+            let currentSearch = '';
+
+            function filterCourses() {
+                let visibleCount = 0;
+
+                courseCards.forEach(function(card) {
+                    const category = card.dataset.category || '';
+                    const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+                    const desc = card.querySelector('p')?.textContent?.toLowerCase() || '';
+
+                    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                    const matchesSearch = title.includes(currentSearch) || desc.includes(currentSearch);
+
+                    if (matchesFilter && matchesSearch) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                courseCount.textContent = visibleCount;
+            }
+
+            // Filter buttons
+            filterButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(function(b) {
+                        b.classList.remove('active');
+                        b.className = b.className
+                            .replace('bg-blue-600 text-white shadow-sm shadow-blue-600/20', '')
+                            .replace('border-blue-300 bg-blue-50 text-blue-700', '')
+                            .replace('border-cyan-300 bg-cyan-50 text-cyan-700', '')
+                            .replace('border-amber-300 bg-amber-50 text-amber-700', '')
+                            .replace('border-red-300 bg-red-50 text-red-700', '');
+                        b.className = b.className
+                            .replace(/bg-[a-z-]+-\d+ /g, '')
+                            .replace(/text-[a-z-]+-\d+ /g, '')
+                            .replace(/border-[a-z-]+-\d+ /g, '');
+                        b.className = b.className.trim();
+                        // Reset to default style
+                        if (!b.classList.contains('active')) {
+                            b.className = b.className + ' rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold text-gray-600 transition-all duration-300 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700';
+                        }
+                    });
+
+                    this.className = 'filter-btn active rounded-full bg-blue-600 px-4 py-2 text-xs font-bold text-white transition-all duration-300 hover:bg-blue-700 shadow-sm shadow-blue-600/20';
+
+                    currentFilter = this.dataset.filter;
+                    filterCourses();
+                });
+            });
+
+            // Search input
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value.toLowerCase().trim();
+                filterCourses();
+            });
+
+            // Initial filter
+            filterCourses();
+
+        });
+    </script>
+
+
+</div>
+
+
+{% endblock %}
