@@ -136,6 +136,82 @@
         </div>
 
 
+        <!-- ================================================= -->
+        <!-- PURCHASE TYPE SELECTION -->
+        <!-- ================================================= -->
+
+        <div class="mt-6 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+
+            <h3 class="text-sm font-bold text-gray-800 mb-3">
+                نوع خرید را انتخاب کنید:
+            </h3>
+
+            <div class="space-y-3">
+
+                <!-- گزینه معمولی -->
+                <label class="
+                    flex items-center gap-3
+                    p-3 rounded-xl border-2
+                    transition-all cursor-pointer
+                    hover:border-blue-300
+                    {% if not request.POST.purchase_type or request.POST.purchase_type == 'normal' %}
+                        border-blue-500 bg-blue-50/50
+                    {% else %}
+                        border-gray-200
+                    {% endif %}
+                ">
+                    <input
+                        type="radio"
+                        name="purchase_type"
+                        value="normal"
+                        onchange="updatePrice('normal')"
+                        {% if not request.POST.purchase_type or request.POST.purchase_type == 'normal' %}checked{% endif %}
+                        class="w-4 h-4 text-blue-600"
+                    >
+                    <div class="flex-1">
+                        <div class="font-bold text-gray-900">خرید معمولی</div>
+                        <div class="text-sm text-gray-500">{{ course.price|toman }} تومان</div>
+                        <div class="text-xs text-gray-400 mt-1">📚 دسترسی به دوره</div>
+                    </div>
+                </label>
+
+                <!-- گزینه VIP (فقط اگه دوره VIP داشته باشه) -->
+                {% if course.has_vip and course.price_vip %}
+                <label class="
+                    flex items-center gap-3
+                    p-3 rounded-xl border-2
+                    transition-all cursor-pointer
+                    hover:border-amber-300
+                    {% if request.POST.purchase_type == 'vip' %}
+                        border-amber-500 bg-amber-50/50
+                    {% else %}
+                        border-gray-200
+                    {% endif %}
+                ">
+                    <input
+                        type="radio"
+                        name="purchase_type"
+                        value="vip"
+                        onchange="updatePrice('vip')"
+                        {% if request.POST.purchase_type == 'vip' %}checked{% endif %}
+                        class="w-4 h-4 text-amber-600"
+                    >
+                    <div class="flex-1">
+                        <div class="font-bold text-gray-900">
+                            خرید VIP 
+                            <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">ویژه</span>
+                        </div>
+                        <div class="text-sm text-gray-500">{{ course.price_vip|toman }} تومان</div>
+                        <div class="text-xs text-amber-600 mt-1">⭐ دسترسی به دوره + پشتیبانی دائمی + آپدیت‌های مستمر</div>
+                    </div>
+                </label>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
 
         <!-- ================================================= -->
         <!-- MAIN -->
@@ -196,6 +272,12 @@
                     <form method="post" class="space-y-5">
 
                         {% csrf_token %}
+
+                        <!-- ================================================= -->
+                        <!-- فیلد مخفی برای ذخیره نوع خرید (داخل فرم) -->
+                        <!-- ================================================= -->
+                        
+                        <input type="hidden" name="purchase_type" id="purchase_type_input" value="normal">
 
 
 
@@ -611,7 +693,7 @@
                                     font-black
                                     tracking-tight
                                     text-gray-950
-                                ">
+                                " id="desktop_price">
                                     {{ course.price|toman }}
                                 </div>
 
@@ -765,7 +847,7 @@
                         font-black
                         tracking-tight
                         text-gray-950
-                    ">
+                    " id="mobile_price">
                         {{ course.price|toman }}
                     </span>
 
@@ -822,5 +904,60 @@
     <div class="h-24 lg:hidden"></div>
 
 </div>
+
+<script>
+    function updatePrice(type) {
+        const normalPrice = {{ course.price }};
+        const vipPrice = {{ course.price_vip|default:'null' }};
+        const hasVip = {{ course.has_vip|yesno:'true,false' }};
+        
+        let price = normalPrice;
+        let typeText = 'معمولی';
+        
+        if (type === 'vip' && hasVip && vipPrice) {
+            price = vipPrice;
+            typeText = 'VIP';
+        }
+        
+        // به‌روزرسانی قیمت در دسکتاپ
+        const desktopPrice = document.getElementById('desktop_price');
+        if (desktopPrice) {
+            desktopPrice.textContent = price.toLocaleString() + ' تومان';
+        }
+        
+        // به‌روزرسانی قیمت در موبایل
+        const mobilePrice = document.getElementById('mobile_price');
+        if (mobilePrice) {
+            mobilePrice.textContent = price.toLocaleString() + ' تومان';
+        }
+        
+        // به‌روزرسانی فیلد مخفی
+        document.getElementById('purchase_type_input').value = type;
+        
+        // تغییر استایل انتخاب شده
+        document.querySelectorAll('input[name="purchase_type"]').forEach(function(elem) {
+            const label = elem.closest('label');
+            if (label) {
+                if (elem.checked) {
+                    if (elem.value === 'vip') {
+                        label.className = 'flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer border-amber-500 bg-amber-50/50';
+                    } else {
+                        label.className = 'flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer border-blue-500 bg-blue-50/50';
+                    }
+                } else {
+                    label.className = 'flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer border-gray-200 hover:border-blue-300';
+                }
+            }
+        });
+    }
+    
+    // وقتی صفحه لود شد، قیمت رو بر اساس انتخاب پیش‌فرض تنظیم کن
+    document.addEventListener('DOMContentLoaded', function() {
+        const checked = document.querySelector('input[name="purchase_type"]:checked');
+        if (checked) {
+            updatePrice(checked.value);
+        }
+    });
+</script>
 
 {% endblock %}

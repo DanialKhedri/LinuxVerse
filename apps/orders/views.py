@@ -18,8 +18,21 @@ def create_order(request, slug):
         if form.is_valid():
             order = form.save(commit=False)
 
+            # ===== این بخش مهمه =====
+            # دریافت نوع خرید از فرم
+            purchase_type = request.POST.get('purchase_type', 'normal')
+            
+            # تعیین قیمت بر اساس نوع خرید
+            if purchase_type == 'vip' and course.has_vip and course.price_vip:
+                amount = course.price_vip
+            else:
+                amount = course.price
+                purchase_type = 'normal'
+            # ===== ============= =====
+
             order.course = course
-            order.amount = course.price
+            order.amount = amount  # اینجا باید قیمت VIP باشه
+            order.purchase_type = purchase_type
             order.status = 'pending'
 
             order.save()
@@ -40,7 +53,6 @@ def create_order(request, slug):
             'form': form,
         }
     )
-
 
 def order_success(request, access_token):
     order = get_object_or_404(

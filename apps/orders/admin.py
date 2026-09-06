@@ -23,3 +23,6 @@ class OrderAdmin(admin.ModelAdmin):
         'email',
         'course__title',
     )
+
+    list_display = ('name', 'course', 'purchase_type', 'amount', 'status', 'created_at')
+    list_filter = ('purchase_type', 'status')

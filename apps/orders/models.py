@@ -10,6 +10,13 @@ class Order(models.Model):
         ('paid', 'پرداخت شده'),
         ('failed', 'ناموفق'),
     ]
+    
+    # ===== اضافه کردن این بخش =====
+    PURCHASE_TYPE_CHOICES = [
+        ('normal', 'معمولی'),
+        ('vip', 'VIP'),
+    ]
+    # ===== پایان بخش اضافه شده =====
 
     course = models.ForeignKey(
         Course,
@@ -24,6 +31,15 @@ class Order(models.Model):
     email = models.EmailField(blank=True)
 
     amount = models.PositiveIntegerField()
+    
+    # ===== اضافه کردن این فیلد جدید =====
+    purchase_type = models.CharField(
+        max_length=10,
+        choices=PURCHASE_TYPE_CHOICES,
+        default='normal',
+        help_text="نوع خرید: معمولی یا VIP"
+    )
+    # ===== پایان فیلد جدید =====
 
     status = models.CharField(
         max_length=20,
