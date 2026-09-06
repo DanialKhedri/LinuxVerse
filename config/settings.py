@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     'apps.courses',
     'apps.orders',
     'django_ckeditor_5',
+    'apps.payment',
 ]
 
 MIDDLEWARE = [
@@ -182,3 +188,12 @@ CKEDITOR_5_CONFIGS = {
         ],
     },
 }
+
+
+ZARINPAL_MERCHANT_ID = os.getenv(
+    'ZARINPAL_MERCHANT_ID'
+)
+
+ZARINPAL_CALLBACK_URL = os.getenv(
+    'ZARINPAL_CALLBACK_URL'
+)

@@ -25,7 +25,7 @@ def create_order(request, slug):
             order.save()
 
             return redirect(
-                'order_success',
+                'payment:start',
                 access_token=order.access_token
             )
 

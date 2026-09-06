@@ -1,12 +1,13 @@
-
 {% extends "base.html" %}
 {% load number_filters %}
 
 {% block title %}{{ course.title }} | LinuxVerse{% endblock %}
 
+{% block meta_description %}{{ course.short_description|default:course.title }}{% endblock %}
+
 {% block content %}
 
-<div dir="rtl" class="min-h-screen bg-white text-gray-900 pb-20 lg:pb-0">
+<div dir="rtl" class="min-h-screen bg-[#f4f7fc] text-gray-900 pb-20 lg:pb-0">
 
     <!-- ========================================================= -->
     <!-- MOBILE STICKY BUY BAR -->
@@ -36,8 +37,6 @@
                         {{ course.price|floatformat:0 }}
                     </span>
 
-                   
-
                 </div>
 
             </div>
@@ -50,18 +49,22 @@
                     items-center
                     justify-center
                     rounded-xl
-                    bg-violet-600
+                    bg-blue-600
                     px-4 py-3.5
                     text-sm
                     font-extrabold
                     text-white
                     shadow-lg
-                    shadow-violet-500/20
-                    transition
+                    shadow-blue-500/20
+                    transition-all
+                    hover:-translate-y-0.5
+                    hover:bg-blue-700
+                    hover:shadow-blue-500/30
                     active:scale-[0.98]
+                    flex
                 "
             >
-                شروع دوره
+                خرید دوره
                 <span class="mr-1">←</span>
             </a>
 
@@ -74,7 +77,7 @@
     <!-- BREADCRUMB -->
     <!-- ========================================================= -->
 
-    <div class="border-b border-gray-100">
+    <div class="border-b border-gray-200/60 bg-white/80 backdrop-blur-sm">
 
         <div class="mx-auto max-w-7xl px-4 py-3 sm:px-8 sm:py-4">
 
@@ -82,9 +85,20 @@
 
                 <a
                     href="{% url 'home' %}"
-                    class="font-medium text-gray-400 transition hover:text-violet-600"
+                    class="font-medium text-gray-400 transition hover:text-blue-600"
                 >
                     خانه
+                </a>
+
+                <span class="text-gray-300">
+                    ←
+                </span>
+
+                <a
+                    href="{% url 'home' %}#courses"
+                    class="font-medium text-gray-400 transition hover:text-blue-600"
+                >
+                    دوره‌ها
                 </a>
 
                 <span class="text-gray-300">
@@ -118,7 +132,21 @@
             h-96
             w-96
             rounded-full
-            bg-violet-100/40
+            bg-blue-100/40
+            blur-3xl
+            lg:block
+        "></div>
+
+        <div class="
+            pointer-events-none
+            absolute
+            -right-32
+            -bottom-32
+            hidden
+            h-96
+            w-96
+            rounded-full
+            bg-indigo-100/30
             blur-3xl
             lg:block
         "></div>
@@ -158,7 +186,7 @@
                         shadow-sm
                         lg:rounded-2xl
                         lg:shadow-xl
-                        lg:shadow-gray-200/50
+                        lg:shadow-blue-200/20
                     ">
 
                         <!-- Course Image -->
@@ -166,7 +194,7 @@
                         <div class="
                             aspect-[16/9]
                             overflow-hidden
-                            bg-violet-50
+                            bg-blue-50
                             sm:aspect-video
                         ">
 
@@ -190,18 +218,74 @@
                                     items-center
                                     justify-center
                                     bg-gradient-to-br
-                                    from-violet-50
+                                    from-blue-50
                                     via-white
-                                    to-purple-50
+                                    to-indigo-50
                                     text-5xl
                                     font-black
-                                    text-violet-500
+                                    text-blue-500
                                     sm:text-6xl
                                 ">
                                     &gt;_
                                 </div>
 
                             {% endif %}
+
+                            <!-- Category Badge -->
+                            <div class="
+                                absolute
+                                right-3
+                                top-3
+                                rounded-xl
+                                border
+                                border-white
+                                bg-white/95
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                text-blue-600
+                                shadow-md
+                            ">
+                                {% if course.category == 'linux' %}
+                                    🐧 لینوکس
+                                {% elif course.category == 'network' %}
+                                    🌐 شبکه
+                                {% elif course.category == 'programming' %}
+                                    💻 برنامه‌نویسی
+                                {% elif course.category == 'security' %}
+                                    🔒 امنیت
+                                {% else %}
+                                    📚 دوره
+                                {% endif %}
+                            </div>
+
+                            <!-- Level Badge -->
+                            <div class="
+                                absolute
+                                left-3
+                                top-3
+                                rounded-xl
+                                border
+                                border-white
+                                bg-white/95
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                shadow-md
+                                {% if course.level == 'beginner' %}
+                                    text-emerald-600
+                                {% elif course.level == 'intermediate' %}
+                                    text-amber-600
+                                {% else %}
+                                    text-red-600
+                                {% endif %}
+                            ">
+                             
+                                    🔴 {{ course.level }}
+                               
+                            </div>
 
                         </div>
 
@@ -216,7 +300,7 @@
 
                                 <div>
 
-                                    {% if course.original_price > course.price %}
+                                    {% if course.original_price and course.original_price > course.price %}
 
                                         <div class="
                                             mb-1
@@ -224,8 +308,7 @@
                                             text-gray-400
                                             line-through
                                         ">
-                                            {{ course.original_price | toman }}
-                                            
+                                            {{ course.original_price|toman }}
                                         </div>
 
                                     {% endif %}
@@ -239,7 +322,7 @@
                                             text-gray-950
                                             sm:text-3xl
                                         ">
-                                            {{ course.price | toman }}
+                                            {{ course.price|toman }}
                                         </span>
 
                                     </div>
@@ -257,22 +340,22 @@
                                         justify-center
                                         gap-2
                                         rounded-xl
-                                        bg-violet-600
+                                        bg-blue-600
                                         px-6
                                         py-3.5
                                         text-sm
                                         font-extrabold
                                         text-white
                                         shadow-lg
-                                        shadow-violet-500/15
+                                        shadow-blue-500/15
                                         transition-all
                                         hover:-translate-y-0.5
-                                        hover:bg-violet-700
-                                        hover:shadow-violet-500/25
+                                        hover:bg-blue-700
+                                        hover:shadow-blue-500/25
                                         sm:flex
                                     "
                                 >
-                                    خرید دوره
+                                ثبت نام در دوره
                                     <span>←</span>
                                 </a>
 
@@ -313,13 +396,13 @@
                         gap-2
                         rounded-full
                         border
-                        border-violet-100
-                        bg-violet-50
+                        border-blue-100
+                        bg-blue-50
                         px-3
                         py-1.5
                         text-[10px]
                         font-bold
-                        text-violet-700
+                        text-blue-700
                         sm:px-4
                         sm:py-2
                         sm:text-xs
@@ -329,7 +412,7 @@
                             h-1.5
                             w-1.5
                             rounded-full
-                            bg-violet-500
+                            bg-blue-500
                         "></span>
 
                         دوره آموزشی LinuxVerse
@@ -389,11 +472,10 @@
                             <div class="
                                 rounded-xl
                                 border
-                                border-gray-100
-                                bg-gray-50/70
+                                border-gray-200
+                                bg-white
                                 px-3
                                 py-2.5
-                                sm:bg-white
                                 sm:px-4
                                 sm:py-3
                             ">
@@ -424,11 +506,10 @@
                             <div class="
                                 rounded-xl
                                 border
-                                border-gray-100
-                                bg-gray-50/70
+                                border-gray-200
+                                bg-white
                                 px-3
                                 py-2.5
-                                sm:bg-white
                                 sm:px-4
                                 sm:py-3
                             ">
@@ -454,14 +535,47 @@
                         {% endif %}
 
 
+                        {% if course.lessons_count %}
+
+                            <div class="
+                                rounded-xl
+                                border
+                                border-gray-200
+                                bg-white
+                                px-3
+                                py-2.5
+                                sm:px-4
+                                sm:py-3
+                            ">
+
+                                <div class="text-[10px] text-gray-400 sm:text-xs">
+                                    تعداد درس
+                                </div>
+
+                                <div class="
+                                    mt-0.5
+                                    truncate
+                                    text-xs
+                                    font-bold
+                                    text-gray-800
+                                    sm:mt-1
+                                    sm:text-sm
+                                ">
+                                    {{ course.lessons_count }} درس
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+
                         <div class="
                             rounded-xl
                             border
-                            border-gray-100
-                            bg-gray-50/70
+                            border-gray-200
+                            bg-white
                             px-3
                             py-2.5
-                            sm:bg-white
                             sm:px-4
                             sm:py-3
                         ">
@@ -552,6 +666,36 @@
 
                         </div>
 
+                        <div class="
+                            mt-2
+                            flex
+                            items-center
+                            gap-2
+                            text-xs
+                            font-bold
+                            text-gray-700
+                            sm:text-sm
+                        ">
+
+                            <span class="
+                                flex
+                                h-6
+                                w-6
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-full
+                                bg-emerald-50
+                                text-[11px]
+                                text-emerald-600
+                            ">
+                                ✓
+                            </span>
+
+                            پشتیبانی و پاسخگویی سریع
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -569,7 +713,8 @@
 
     <section class="
         border-t
-        border-gray-100
+        border-gray-200/60
+        bg-white
         py-10
         sm:py-16
         lg:py-20
@@ -601,7 +746,7 @@
                         <p class="
                             text-xs
                             font-bold
-                            text-violet-600
+                            text-blue-600
                             sm:text-sm
                         ">
                             درباره دوره
@@ -644,11 +789,19 @@
                         prose-p:my-4
                         sm:prose-p:my-5
 
-                        prose-a:text-violet-600
+                        prose-a:text-blue-600
+                        prose-a:no-underline
+                        prose-a:hover:underline
 
                         prose-strong:text-gray-900
 
                         prose-li:my-1
+
+                        prose-ul:list-disc
+                        prose-ul:pr-6
+
+                        prose-ol:list-decimal
+                        prose-ol:pr-6
                     ">
 
                         {{ course.description|safe }}
@@ -674,7 +827,7 @@
                         rounded-2xl
                         border
                         border-gray-200
-                        bg-gray-50/60
+                        bg-[#f4f7fc]
                         p-6
                     ">
 
@@ -706,10 +859,10 @@
                                     items-center
                                     justify-center
                                     rounded-lg
-                                    bg-violet-50
+                                    bg-blue-50
                                     text-xs
                                     font-bold
-                                    text-violet-600
+                                    text-blue-600
                                 ">
                                     ✓
                                 </span>
@@ -730,10 +883,10 @@
                                     items-center
                                     justify-center
                                     rounded-lg
-                                    bg-violet-50
+                                    bg-blue-50
                                     text-xs
                                     font-bold
-                                    text-violet-600
+                                    text-blue-600
                                 ">
                                     ✓
                                 </span>
@@ -754,15 +907,39 @@
                                     items-center
                                     justify-center
                                     rounded-lg
-                                    bg-violet-50
+                                    bg-blue-50
                                     text-xs
                                     font-bold
-                                    text-violet-600
+                                    text-blue-600
                                 ">
                                     ✓
                                 </span>
 
                                 می‌خواهی مسیرت را در دنیای لینوکس جدی‌تر ادامه بدهی.
+
+                            </li>
+
+
+                            <li class="flex gap-3">
+
+                                <span class="
+                                    mt-1
+                                    flex
+                                    h-6
+                                    w-6
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-lg
+                                    bg-blue-50
+                                    text-xs
+                                    font-bold
+                                    text-blue-600
+                                ">
+                                    ✓
+                                </span>
+
+                                به دنبال یک دوره ساختاریافته و کاربردی هستی.
 
                             </li>
 
@@ -780,14 +957,18 @@
                                 items-center
                                 justify-center
                                 rounded-xl
-                                bg-violet-600
+                                bg-blue-600
                                 px-5
                                 py-3.5
                                 text-sm
                                 font-bold
                                 text-white
-                                transition
-                                hover:bg-violet-700
+                                shadow-lg
+                                shadow-blue-500/15
+                                transition-all
+                                hover:-translate-y-0.5
+                                hover:bg-blue-700
+                                hover:shadow-blue-500/25
                             "
                         >
                             ثبت‌نام در دوره
@@ -810,7 +991,8 @@
 
     <section class="
         border-t
-        border-gray-100
+        border-gray-200/60
+        bg-white
         py-10
         sm:py-12
     ">
@@ -840,9 +1022,9 @@
                     gap-2
                     text-xs
                     font-bold
-                    text-violet-600
+                    text-blue-600
                     transition
-                    hover:text-violet-700
+                    hover:text-blue-700
                     sm:mt-3
                     sm:text-sm
                 "

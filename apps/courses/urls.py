@@ -11,5 +11,4 @@ urlpatterns = [
     ),
     path('', views.courses, name='courses'),
 
-
 ]

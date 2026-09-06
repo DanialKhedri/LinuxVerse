@@ -454,13 +454,9 @@
                                     text-red-600
                                 {% endif %}
                             ">
-                                {% if course.level == 'beginner' %}
-                                    🟢 مبتدی
-                                {% elif course.level == 'intermediate' %}
-                                    🟡 متوسط
-                                {% else %}
-                                    🔴 پیشرفته
-                                {% endif %}
+                               
+                                    🔴 {{ course.level }}
+                               
                             </div>
 
                         </div>
