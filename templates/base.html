@@ -352,7 +352,7 @@
                     <div class="hidden md:flex items-center gap-0.5 order-2">
                         <a href="/" class="nav-link">خانه</a>
                         <a href="{% url 'courses' %}" class="nav-link">دوره‌ها</a>
-                        <a href="/blog/" class="nav-link">وبلاگ</a>
+                        <a href="{% url 'post_list' %}" class="nav-link">وبلاگ</a>
                         <a href="{% url 'about' %}" class="nav-link">درباره ما</a>
                     </div>
 
@@ -395,7 +395,7 @@
                         <a href="/courses/" class="nav-link">
                             <span class="menu-icon ml-2">&gt;_</span> دوره‌ها
                         </a>
-                        <a href="/blog/" class="nav-link">
+                        <a href="{% url 'post_list' %}" class="nav-link">
                             <span class="menu-icon ml-2">/</span> وبلاگ
                         </a>
                         <a href="/about/" class="nav-link">
@@ -443,7 +443,7 @@
                     <span class="text-gray-300">|</span>
                     <a href="/courses/" class="hover:text-blue-600 transition-colors">دوره‌ها</a>
                     <span class="text-gray-300">|</span>
-                    <a href="/blog/" class="hover:text-blue-600 transition-colors">وبلاگ</a>
+                    <a href="{% url 'post_list' %}" class="hover:text-blue-600 transition-colors">وبلاگ</a>
                     <span class="text-gray-300">|</span>
                     <a href="/about/" class="hover:text-blue-600 transition-colors">درباره ما</a>
                 </div>

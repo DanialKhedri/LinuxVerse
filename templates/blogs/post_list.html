@@ -1,0 +1,708 @@
+{% extends "base.html" %}
+{% load number_filters %}
+
+{% block title %}وبلاگ | LinuxVerse{% endblock %}
+
+{% block meta_description %}مطالب آموزشی لینوکس، شبکه، برنامه‌نویسی و امنیت — آخرین مقالات و آموزش‌ها{% endblock %}
+
+{% block content %}
+
+<div dir="rtl" class="min-h-screen bg-[#f4f7fc] text-gray-900">
+
+    <!-- ========================================================= -->
+    <!-- HERO BLOG -->
+    <!-- ========================================================= -->
+
+    <section class="relative overflow-hidden">
+
+        <!-- Background -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden">
+
+            <div class="
+                absolute -right-40 -top-40
+                h-[500px] w-[500px]
+                rounded-full
+                bg-blue-100/30
+                blur-[120px]
+            "></div>
+
+            <div class="
+                hidden sm:block
+                absolute -left-60 top-20
+                h-[500px] w-[500px]
+                rounded-full
+                bg-indigo-100/20
+                blur-[120px]
+            "></div>
+
+        </div>
+
+
+        <div class="
+            relative mx-auto
+            max-w-4xl
+            px-5
+            py-16
+            sm:px-8 sm:py-20
+            text-center
+        ">
+
+            <!-- Icon -->
+            <div class="mb-6 text-7xl animate-bounce">
+                ✍️
+            </div>
+
+            <!-- Badge -->
+            <div class="
+                mb-5
+                inline-flex items-center gap-2
+                rounded-full
+                border border-blue-200
+                bg-blue-50
+                px-4 py-2
+                text-[11px]
+                font-bold
+                text-blue-700
+                sm:px-5 sm:py-2.5 sm:text-xs
+            ">
+
+                <span class="
+                    h-2 w-2
+                    rounded-full
+                    bg-blue-500
+                    animate-pulse
+                "></span>
+
+                وبلاگ آموزشی
+
+            </div>
+
+            <!-- Heading -->
+            <h1 class="
+                text-[2.5rem]
+                font-black
+                leading-[1.3]
+                tracking-tight
+                text-gray-950
+                sm:text-5xl
+                lg:text-[4rem]
+                lg:leading-[1.2]
+            ">
+
+                <span class="
+                    bg-gradient-to-r
+                    from-blue-600
+                    via-blue-500
+                    to-indigo-500
+                    bg-clip-text
+                    text-transparent
+                ">
+                    مطالب
+                </span>
+
+                <br class="hidden sm:block">
+
+                وبلاگ LinuxVerse
+
+            </h1>
+
+            <!-- Description -->
+            <p class="
+                mx-auto
+                mt-5
+                max-w-2xl
+                text-[15px]
+                font-medium
+                leading-8
+                text-gray-600
+                sm:text-[17px]
+                sm:leading-9
+            ">
+
+                آخرین مقالات، آموزش‌ها و مطالب تخصصی در حوزه
+                لینوکس، شبکه، برنامه‌نویسی و امنیت.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- CATEGORY TAGS (بالای لیست پست‌ها) -->
+    <!-- ========================================================= -->
+
+    <section class="pb-6 sm:pb-8">
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+            <div class="
+                flex
+                flex-wrap
+                items-center
+                justify-center
+                gap-2
+            ">
+
+                <a
+                    href="{% url 'post_list' %}"
+                    class="
+                        rounded-full
+                        {% if not selected_category %}
+                            bg-blue-600 text-white shadow-md shadow-blue-600/20
+                        {% else %}
+                            border border-gray-200 bg-white text-gray-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700
+                        {% endif %}
+                        px-4
+                        py-2
+                        text-xs
+                        font-bold
+                        transition-all
+                        duration-300
+                    "
+                >
+                    همه
+                </a>
+
+                {% for category in categories %}
+
+                    <a
+                        href="{% url 'post_list' %}?category={{ category.slug }}"
+                        class="
+                            rounded-full
+                            {% if selected_category and selected_category.slug == category.slug %}
+                                bg-blue-600 text-white shadow-md shadow-blue-600/20
+                            {% else %}
+                                border border-gray-200 bg-white text-gray-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700
+                            {% endif %}
+                            px-4
+                            py-2
+                            text-xs
+                            font-bold
+                            transition-all
+                            duration-300
+                        "
+                    >
+                        {{ category.name }}
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- POSTS GRID -->
+    <!-- ========================================================= -->
+
+    <section class="py-8 sm:py-12">
+
+        <div class="
+            mx-auto
+            max-w-7xl
+            px-5
+            sm:px-8
+        ">
+
+            <!-- Results count -->
+            <div class="mb-6 text-sm text-gray-400">
+                <span>{{ posts|length }}</span> مطلب
+                {% if selected_category %}
+                    در «{{ selected_category.name }}»
+                {% endif %}
+            </div>
+
+            <!-- Grid -->
+            <div class="
+                grid
+                gap-6
+                sm:grid-cols-2
+                lg:grid-cols-3
+                lg:gap-8
+            ">
+
+                {% for post in posts %}
+
+                    <a
+                        href="{% url 'post_detail' post.slug %}"
+                        class="
+                            group
+                            flex
+                            h-full
+                            flex-col
+                            overflow-hidden
+                            rounded-2xl
+                            border
+                            border-gray-200
+                            bg-white
+                            transition-all
+                            duration-300
+                            hover:-translate-y-2
+                            hover:border-blue-300
+                            hover:shadow-[0_25px_60px_-20px_rgba(37,99,235,0.15)]
+                            cursor-pointer
+                        "
+                    >
+
+                        <!-- Image -->
+                        <div class="
+                            relative
+                            aspect-[16/9]
+                            overflow-hidden
+                            bg-blue-50
+                        ">
+
+                            {% if post.image %}
+
+                                <img
+                                    src="{{ post.image.url }}"
+                                    alt="{{ post.title }}"
+                                    loading="lazy"
+                                    class="
+                                        h-full
+                                        w-full
+                                        object-cover
+                                        transition
+                                        duration-700
+                                        group-hover:scale-105
+                                    "
+                                >
+
+                            {% else %}
+
+                                <div class="
+                                    flex
+                                    h-full
+                                    items-center
+                                    justify-center
+                                    bg-gradient-to-br
+                                    from-blue-50
+                                    to-white
+                                    text-5xl
+                                ">
+                                    ✍️
+                                </div>
+
+                            {% endif %}
+
+                            <!-- Category Badge -->
+                            {% if post.category %}
+
+                                <div class="
+                                    absolute
+                                    right-3
+                                    top-3
+                                    rounded-xl
+                                    border
+                                    border-white
+                                    bg-white/95
+                                    px-3
+                                    py-1.5
+                                    text-[10px]
+                                    font-bold
+                                    text-blue-600
+                                    shadow-md
+                                ">
+                                    {{ post.category.name }}
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Content -->
+                        <div class="
+                            flex
+                            flex-1
+                            flex-col
+                            p-5
+                            sm:p-6
+                        ">
+
+                            <!-- Meta -->
+                            <div class="
+                                flex
+                                items-center
+                                gap-3
+                                text-xs
+                                text-gray-400
+                            ">
+
+                                <span class="flex items-center gap-1">
+                                    🗓️ {{ post.created_at|date:"Y/m/d" }}
+                                </span>
+
+                                <span class="text-gray-200">|</span>
+
+                                <span class="flex items-center gap-1">
+                                    👤 {{ post.author.get_full_name|default:post.author.username }}
+                                </span>
+
+                            </div>
+
+                            <!-- Title -->
+                            <h2 class="
+                                mt-3
+                                text-[16px]
+                                font-extrabold
+                                leading-7
+                                text-gray-900
+                                transition-colors
+                                group-hover:text-blue-700
+                                sm:text-lg
+                                sm:leading-8
+                                line-clamp-2
+                            ">
+                                {{ post.title }}
+                            </h2>
+
+                            <!-- Excerpt -->
+                            <p class="
+                                mt-2
+                                line-clamp-3
+                                text-[13px]
+                                leading-6
+                                text-gray-500
+                                sm:text-[14px]
+                                sm:leading-7
+                            ">
+                                {{ post.content|striptags|truncatewords:25 }}
+                            </p>
+
+                            <!-- Read More -->
+                            <div class="
+                                mt-4
+                                flex
+                                items-center
+                                justify-between
+                                border-t
+                                border-gray-100
+                                pt-4
+                            ">
+
+                                <span class="
+                                    text-xs
+                                    font-medium
+                                    text-blue-600
+                                    transition
+                                    group-hover:text-blue-700
+                                ">
+                                    مطالعه بیشتر
+                                </span>
+
+                                <span class="
+                                    flex
+                                    h-8
+                                    w-8
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    bg-gray-100
+                                    text-sm
+                                    font-bold
+                                    text-gray-400
+                                    transition-all
+                                    duration-300
+                                    group-hover:bg-blue-600
+                                    group-hover:text-white
+                                    group-hover:shadow-lg
+                                    group-hover:shadow-blue-500/20
+                                ">
+                                    ←
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                {% empty %}
+
+                    <div class="
+                        col-span-full
+                        rounded-2xl
+                        border-2
+                        border-dashed
+                        border-gray-200
+                        px-6
+                        py-16
+                        text-center
+                    ">
+
+                        <div class="mb-3 text-5xl">
+                            ✍️
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-900">
+                            {% if selected_category %}
+                                مطلبی در این دسته‌بندی وجود ندارد
+                            {% else %}
+                                هنوز مطلبی منتشر نشده است
+                            {% endif %}
+                        </h3>
+
+                        <p class="mt-2 text-sm text-gray-500">
+                            {% if selected_category %}
+                                به زودی مطالب جدید در «{{ selected_category.name }}» اضافه می‌شوند.
+                            {% else %}
+                                به زودی اولین مطالب وبلاگ منتشر می‌شوند.
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- Pagination -->
+            {% if posts.has_other_pages %}
+
+                <div class="
+                    mt-10
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                ">
+
+                    {% if posts.has_previous %}
+
+                        <a
+                            href="?page={{ posts.previous_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}"
+                            class="
+                                flex
+                                h-10
+                                w-10
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-gray-200
+                                bg-white
+                                text-sm
+                                font-bold
+                                text-gray-600
+                                transition
+                                hover:border-blue-300
+                                hover:bg-blue-50
+                                hover:text-blue-700
+                            "
+                        >
+                            →
+                        </a>
+
+                    {% endif %}
+
+                    {% for num in posts.paginator.page_range %}
+
+                        {% if posts.number == num %}
+
+                            <span class="
+                                flex
+                                h-10
+                                w-10
+                                items-center
+                                justify-center
+                                rounded-xl
+                                bg-blue-600
+                                text-sm
+                                font-bold
+                                text-white
+                                shadow-md
+                                shadow-blue-600/20
+                            ">
+                                {{ num }}
+                            </span>
+
+                        {% else %}
+
+                            <a
+                                href="?page={{ num }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}"
+                                class="
+                                    flex
+                                    h-10
+                                    w-10
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    border
+                                    border-gray-200
+                                    bg-white
+                                    text-sm
+                                    font-bold
+                                    text-gray-600
+                                    transition
+                                    hover:border-blue-300
+                                    hover:bg-blue-50
+                                    hover:text-blue-700
+                                "
+                            >
+                                {{ num }}
+                            </a>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    {% if posts.has_next %}
+
+                        <a
+                            href="?page={{ posts.next_page_number }}{% if selected_category %}&category={{ selected_category.slug }}{% endif %}"
+                            class="
+                                flex
+                                h-10
+                                w-10
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-gray-200
+                                bg-white
+                                text-sm
+                                font-bold
+                                text-gray-600
+                                transition
+                                hover:border-blue-300
+                                hover:bg-blue-50
+                                hover:text-blue-700
+                            "
+                        >
+                            ←
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================================= -->
+    <!-- CTA -->
+    <!-- ========================================================= -->
+
+    <section class="py-16 sm:py-20 bg-white border-t border-gray-200/60">
+
+        <div class="
+            mx-auto
+            max-w-3xl
+            px-5
+            text-center
+        ">
+
+            <div class="mb-4 text-5xl">
+                🐧
+            </div>
+
+            <h2 class="
+                text-2xl
+                font-black
+                tracking-tight
+                text-gray-950
+                sm:text-3xl
+            ">
+
+                مطالب آموزشی بیشتری می‌خواهی؟
+
+            </h2>
+
+            <p class="
+                mx-auto
+                mt-3
+                max-w-md
+                text-sm
+                leading-7
+                text-gray-500
+            ">
+                برای دسترسی به دوره‌های تخصصی، به بخش دوره‌ها سر بزن.
+            </p>
+
+            <div class="
+                mt-8
+                flex
+                flex-col
+                items-center
+                justify-center
+                gap-3
+                sm:flex-row
+            ">
+
+                <a
+                    href="{% url 'courses' %}"
+                    class="
+                        inline-flex
+                        items-center
+                        gap-2
+                        rounded-2xl
+                        bg-blue-600
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-white
+                        shadow-lg
+                        shadow-blue-600/20
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:bg-blue-700
+                        hover:shadow-blue-600/30
+                    "
+                >
+                    مشاهده دوره‌ها 🐧
+                </a>
+
+                <a
+                    href="{% url 'home' %}"
+                    class="
+                        inline-flex
+                        items-center
+                        rounded-2xl
+                        border
+                        border-gray-200
+                        bg-white
+                        px-8
+                        py-4
+                        text-sm
+                        font-bold
+                        text-gray-600
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:border-blue-300
+                        hover:bg-blue-50
+                        hover:text-blue-700
+                    "
+                >
+                    صفحه اصلی
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

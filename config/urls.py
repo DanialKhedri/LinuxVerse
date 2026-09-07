@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
 
     path(
@@ -15,6 +16,7 @@ urlpatterns = [
 
     path('courses/', include('apps.courses.urls')),
     path('orders/', include('apps.orders.urls')),
+    path('blogs/', include('apps.blogs.urls')),
 ]
 
 if settings.DEBUG:

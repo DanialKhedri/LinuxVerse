@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'apps.orders',
     'django_ckeditor_5',
     'apps.payment',
+    'apps.blogs',
+    
 ]
 
 MIDDLEWARE = [
