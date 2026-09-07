@@ -1,350 +1,1884 @@
-{% extends "base.html" %}
-{% load number_filters %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 
-{% block title %}{{ course.title }} | LinuxVerse{% endblock %}
+<head>
 
-{% block meta_description %}{{ course.short_description|default:course.title }}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block content %}
+    <title>
+        دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی | LinuxVerse
+    </title>
 
-<div dir="rtl" class="min-h-screen bg-[#f4f7fc] text-gray-900 pb-20 lg:pb-0">
+    <meta name="description"
+          content="دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی">
 
     <!-- ========================================================= -->
-    <!-- MOBILE STICKY BUY BAR -->
+    <!-- TAILWIND -->
     <!-- ========================================================= -->
 
-    <div class="
-        fixed bottom-0 left-0 right-0 z-50
-        border-t border-gray-200
-        bg-white/95
-        px-4 py-3
-        shadow-[0_-10px_30px_rgba(0,0,0,0.08)]
-        backdrop-blur-xl
-        lg:hidden
-    ">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <div class="mx-auto flex max-w-lg items-center gap-3">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
 
-            <div class="min-w-0 flex-1">
+                    colors: {
+                        navy: {
+                            50: '#ebf4ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-                <div class="truncate text-[10px] font-medium text-gray-400">
-                    قیمت دوره
+
+    <!-- ========================================================= -->
+    <!-- FONTS -->
+    <!-- ========================================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ========================================================= -->
+    <!-- GLOBAL CSS -->
+    <!-- ========================================================= -->
+
+    <style>
+
+        /* ===================================================== */
+        /* ROOT */
+        /* ===================================================== */
+
+        :root {
+            --primary: #2563eb;
+            --primary-bright: #3b82f6;
+            --primary-light: #60a5fa;
+            --primary-soft: #93c5fd;
+            --primary-dark: #1e3a8a;
+            --surface-light: #f4f7fc;
+        }
+
+
+        /* ===================================================== */
+        /* HTML & BODY */
+        /* ===================================================== */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--surface-light);
+            min-height: 100vh;
+        }
+
+
+        /* ===================================================== */
+        /* SCROLLBAR */
+        /* ===================================================== */
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eef2f7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+
+        /* ===================================================== */
+        /* SELECTION */
+        /* ===================================================== */
+
+        ::selection {
+            background: rgba(37, 99, 235, 0.18);
+            color: var(--primary-dark);
+        }
+
+
+        /* ===================================================== */
+        /* NAVBAR */
+        /* ===================================================== */
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(37, 99, 235, 0.08);
+            border-bottom: 2px solid rgba(37, 99, 235, 0.06);
+
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .nav-glass:hover {
+            border-color: rgba(37, 99, 235, 0.14);
+
+            box-shadow:
+                0 12px 40px rgba(37, 99, 235, 0.08);
+        }
+
+
+        /* ===================================================== */
+        /* LOGO */
+        /* ===================================================== */
+
+        .logo-box {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 4px 14px rgba(37, 99, 235, 0.25);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .logo-box:hover {
+            transform: translateY(-2px) rotate(-2deg);
+
+            box-shadow:
+                0 8px 28px rgba(37, 99, 235, 0.30);
+        }
+
+
+        /* ===================================================== */
+        /* BRAND */
+        /* ===================================================== */
+
+        .brand-name {
+            color: #0f172a;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+
+            transition:
+                color 0.25s ease;
+        }
+
+        .group:hover .brand-name {
+            color: var(--primary);
+        }
+
+
+        /* ===================================================== */
+        /* NAV LINKS */
+        /* ===================================================== */
+
+        .nav-link {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 38px;
+
+            padding: 0 14px;
+
+            border-radius: 8px;
+
+            color: #334155;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            transition:
+                color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE COURSE BUTTON */
+        /* ===================================================== */
+
+        .mobile-course {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 4px 12px rgba(37, 99, 235, 0.18);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .mobile-course:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.24);
+        }
+
+        .mobile-course:active {
+            transform: scale(0.96);
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE MENU BUTTON */
+        /* ===================================================== */
+
+        .mobile-menu-button {
+            color: #334155;
+
+            background: rgba(0, 0, 0, 0.03);
+
+            border: 1px solid rgba(0, 0, 0, 0.06);
+
+            transition:
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .mobile-menu-button:hover {
+            background: rgba(37, 99, 235, 0.06);
+
+            border-color:
+                rgba(37, 99, 235, 0.12);
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE MENU */
+        /* ===================================================== */
+
+        .mobile-menu {
+            max-height: 0;
+            opacity: 0;
+
+            overflow: hidden;
+
+            transform: translateY(-6px);
+
+            pointer-events: none;
+
+            transition:
+                max-height 0.35s ease,
+                opacity 0.25s ease,
+                transform 0.35s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 420px;
+            opacity: 1;
+
+            transform: translateY(0);
+
+            pointer-events: auto;
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE ICONS */
+        /* ===================================================== */
+
+        .menu-icon {
+            color: var(--primary-light);
+        }
+
+
+        /* ===================================================== */
+        /* NAV ACTION */
+        /* ===================================================== */
+
+        .nav-action {
+            background: rgba(37, 99, 235, 0.06);
+
+            border: 1px solid rgba(37, 99, 235, 0.06);
+
+            transition: all 0.3s ease;
+        }
+
+        .nav-action:hover {
+            background: rgba(37, 99, 235, 0.12);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ===================================================== */
+        /* GRADIENT TEXT */
+        /* ===================================================== */
+
+        .gradient-text {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+        }
+
+
+        /* ===================================================== */
+        /* COURSE DESCRIPTION
+           مهم‌ترین بخش اصلاح شده
+        ===================================================== */
+
+        .course-description {
+            max-width: none;
+
+            color: #4b5563;
+
+            font-size: 1rem;
+            line-height: 2rem;
+        }
+
+
+        /* H2 داخل توضیحات */
+
+        .course-description h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+
+            color: #030712;
+
+            font-size: 1.75rem;
+            line-height: 2.35rem;
+
+            font-weight: 900;
+
+            letter-spacing: -0.02em;
+        }
+
+
+        /* H3 داخل توضیحات */
+
+        .course-description h3 {
+            margin-top: 2.25rem;
+            margin-bottom: 0.9rem;
+
+            color: #111827;
+
+            font-size: 1.35rem;
+            line-height: 2rem;
+
+            font-weight: 800;
+        }
+
+
+        /* Paragraph */
+
+        .course-description p {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+
+            color: #4b5563;
+
+            font-size: 1rem;
+            line-height: 2rem;
+        }
+
+
+        /* Strong */
+
+        .course-description strong {
+            color: #111827;
+            font-weight: 800;
+        }
+
+
+        /* Links */
+
+        .course-description a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+        .course-description a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Unordered list */
+
+        .course-description ul {
+            list-style-type: disc;
+
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+
+            padding-right: 1.75rem;
+        }
+
+
+        /* Ordered list */
+
+        .course-description ol {
+            list-style-type: decimal;
+
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+
+            padding-right: 1.75rem;
+        }
+
+
+        /* List items */
+
+        .course-description li {
+            margin-top: 0.6rem;
+            margin-bottom: 0.6rem;
+
+            padding-right: 0.25rem;
+
+            color: #4b5563;
+
+            line-height: 2rem;
+        }
+
+
+        /* Blockquote */
+
+        .course-description blockquote {
+            margin: 1.5rem 0;
+
+            padding: 1rem 1.25rem;
+
+            border-right: 4px solid #2563eb;
+
+            background: #eff6ff;
+
+            border-radius: 0.75rem;
+
+            color: #374151;
+        }
+
+
+        /* Code */
+
+        .course-description code {
+            padding: 0.15rem 0.4rem;
+
+            border-radius: 0.35rem;
+
+            background: #f1f5f9;
+
+            color: #1d4ed8;
+
+            font-family:
+                'JetBrains Mono',
+                monospace;
+
+            font-size: 0.9em;
+        }
+
+
+        /* Pre */
+
+        .course-description pre {
+            margin: 1.5rem 0;
+
+            padding: 1rem 1.25rem;
+
+            overflow-x: auto;
+
+            border-radius: 0.75rem;
+
+            background: #0f172a;
+
+            color: #e2e8f0;
+
+            direction: ltr;
+
+            text-align: left;
+        }
+
+        .course-description pre code {
+            padding: 0;
+
+            background: transparent;
+
+            color: inherit;
+        }
+
+
+        /* Tables */
+
+        .course-description table {
+            width: 100%;
+
+            margin: 1.5rem 0;
+
+            overflow: hidden;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 0.75rem;
+
+            border-collapse: separate;
+
+            border-spacing: 0;
+
+            font-size: 0.95rem;
+        }
+
+        .course-description th {
+            padding: 0.75rem 1rem;
+
+            background: #eff6ff;
+
+            color: #111827;
+
+            font-weight: 800;
+
+            text-align: right;
+        }
+
+        .course-description td {
+            padding: 0.75rem 1rem;
+
+            border-top: 1px solid #e5e7eb;
+
+            color: #4b5563;
+
+            text-align: right;
+        }
+
+
+        /* First heading shouldn't have huge top margin */
+
+        .course-description > h2:first-child,
+        .course-description > h3:first-child,
+        .course-description > p:first-child {
+            margin-top: 0;
+        }
+
+
+        /* ===================================================== */
+        /* RESPONSIVE */
+        /* ===================================================== */
+
+        @media (max-width: 767px) {
+
+            .nav-glass {
+                border-radius: 14px;
+
+                box-shadow:
+                    0 4px 20px rgba(0, 0, 0, 0.04);
+
+                border-bottom:
+                    2px solid rgba(37, 99, 235, 0.08);
+            }
+
+            .nav-link {
+                justify-content: flex-start;
+
+                width: 100%;
+
+                min-height: 46px;
+
+                padding: 0 14px;
+            }
+        }
+
+
+        @media (max-width: 640px) {
+
+            .course-description {
+                font-size: 0.95rem;
+                line-height: 1.9rem;
+            }
+
+            .course-description h2 {
+                margin-top: 2rem;
+                margin-bottom: 0.85rem;
+
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            .course-description h3 {
+                margin-top: 1.75rem;
+                margin-bottom: 0.75rem;
+
+                font-size: 1.2rem;
+                line-height: 1.8rem;
+            }
+
+            .course-description p {
+                font-size: 0.95rem;
+                line-height: 1.9rem;
+            }
+
+            .course-description li {
+                line-height: 1.9rem;
+            }
+        }
+
+
+        @media (max-width: 380px) {
+
+            .nav-glass {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body class="min-h-screen bg-[#f4f7fc] text-gray-800 antialiased font-sans">
+
+
+    <!-- ========================================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================================= -->
+
+    <header class="sticky top-0 z-50">
+
+        <nav class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 pt-3">
+
+            <div class="nav-glass relative px-3 sm:px-6 py-2 sm:py-2.5 rounded-2xl">
+
+                <!-- TOP BAR -->
+
+                <div class="flex items-center justify-between gap-3">
+
+
+                    <!-- BRAND -->
+
+                    <a href="/"
+                       class="group flex items-center gap-2.5 min-w-0 order-1">
+
+                        <div class="
+                            logo-box
+                            flex
+                            items-center
+                            justify-center
+                            shrink-0
+                            w-9
+                            h-9
+                            sm:w-10
+                            sm:h-10
+                            rounded-xl
+                            font-mono
+                            text-lg
+                            sm:text-xl
+                            font-bold
+                        ">
+                            >_
+                        </div>
+
+                        <span class="
+                            brand-name
+                            text-base
+                            sm:text-xl
+                            font-extrabold
+                            tracking-tight
+                            font-mono
+                            truncate
+                        ">
+                            LINUXVERSE
+                        </span>
+
+                    </a>
+
+
+                    <!-- DESKTOP MENU -->
+
+                    <div class="
+                        hidden
+                        md:flex
+                        items-center
+                        gap-0.5
+                        order-2
+                    ">
+
+                        <a href="/" class="nav-link">
+                            خانه
+                        </a>
+
+                        <a href="/courses/" class="nav-link">
+                            دوره‌ها
+                        </a>
+
+                        <a href="/blog/" class="nav-link">
+                            وبلاگ
+                        </a>
+
+                        <a href="/about/" class="nav-link">
+                            درباره ما
+                        </a>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="
+                        flex
+                        items-center
+                        gap-2
+                        order-3
+                    ">
+
+
+                        <!-- Desktop Penguin -->
+
+                        <a href="/courses/"
+                           class="
+                               hidden
+                               md:flex
+                               nav-action
+                               items-center
+                               justify-center
+                               w-9
+                               h-9
+                               rounded-xl
+                               text-base
+                           ">
+                            🐧
+                        </a>
+
+
+                        <!-- Mobile -->
+
+                        <div class="
+                            flex
+                            md:hidden
+                            items-center
+                            gap-2
+                        ">
+
+                            <a href="/courses/"
+                               class="
+                                   mobile-course
+                                   flex
+                                   items-center
+                                   justify-center
+                                   px-3
+                                   h-8
+                                   rounded-xl
+                                   text-xs
+                                   font-bold
+                               ">
+                                دوره‌ها
+                            </a>
+
+
+                            <button
+                                type="button"
+                                id="mobileMenuButton"
+                                class="
+                                    mobile-menu-button
+                                    flex
+                                    items-center
+                                    justify-center
+                                    w-8
+                                    h-8
+                                    rounded-xl
+                                "
+                                aria-label="باز کردن منو"
+                                aria-expanded="false"
+                            >
+
+                                <svg
+                                    id="menuIcon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.8"
+                                    stroke="currentColor"
+                                    class="w-5 h-5"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                                    />
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="mt-0.5 flex items-baseline gap-1">
 
-                    <span class="text-lg font-black text-gray-950">
-                        {{ course.price|floatformat:0 }}
-                    </span>
+                <!-- MOBILE MENU -->
+
+                <div
+                    id="mobileMenu"
+                    class="mobile-menu md:hidden"
+                >
+
+                    <div class="
+                        mt-2.5
+                        pt-2.5
+                        border-t
+                        border-gray-200/50
+                        space-y-0.5
+                    ">
+
+                        <a href="/" class="nav-link">
+                            <span class="menu-icon ml-2">⌂</span>
+                            خانه
+                        </a>
+
+                        <a href="/courses/" class="nav-link">
+                            <span class="menu-icon ml-2">>_</span>
+                            دوره‌ها
+                        </a>
+
+                        <a href="/blog/" class="nav-link">
+                            <span class="menu-icon ml-2">/</span>
+                            وبلاگ
+                        </a>
+
+                        <a href="/about/" class="nav-link">
+                            <span class="menu-icon ml-2">?</span>
+                            درباره ما
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
-            <a
-                href="{% url 'create_order' course.slug %}"
-                class="
-                    flex-1
-                    max-w-[220px]
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-blue-600
-                    px-4 py-3.5
-                    text-sm
-                    font-extrabold
-                    text-white
-                    shadow-lg
-                    shadow-blue-500/20
-                    transition-all
-                    hover:-translate-y-0.5
-                    hover:bg-blue-700
-                    hover:shadow-blue-500/30
-                    active:scale-[0.98]
-                    flex
-                "
-            >
-                خرید دوره
-                <span class="mr-1">←</span>
-            </a>
+        </nav>
 
-        </div>
-
-    </div>
+    </header>
 
 
     <!-- ========================================================= -->
-    <!-- BREADCRUMB -->
+    <!-- MAIN -->
     <!-- ========================================================= -->
 
-    <div class="border-b border-gray-200/60 bg-white/80 backdrop-blur-sm">
-
-        <div class="mx-auto max-w-7xl px-4 py-3 sm:px-8 sm:py-4">
-
-            <nav class="flex items-center gap-2 text-xs sm:text-sm">
-
-                <a
-                    href="{% url 'home' %}"
-                    class="font-medium text-gray-400 transition hover:text-blue-600"
-                >
-                    خانه
-                </a>
-
-                <span class="text-gray-300">
-                    ←
-                </span>
-
-                <a
-                    href="{% url 'home' %}#courses"
-                    class="font-medium text-gray-400 transition hover:text-blue-600"
-                >
-                    دوره‌ها
-                </a>
-
-                <span class="text-gray-300">
-                    ←
-                </span>
-
-                <span class="max-w-[220px] truncate font-medium text-gray-600 sm:max-w-none">
-                    {{ course.title }}
-                </span>
-
-            </nav>
-
-        </div>
-
-    </div>
+    <main class="relative">
 
 
-    <!-- ========================================================= -->
-    <!-- COURSE HERO -->
-    <!-- ========================================================= -->
+        <div
+            dir="rtl"
+            class="
+                min-h-screen
+                bg-[#f4f7fc]
+                text-gray-900
+                pb-20
+                lg:pb-0
+            "
+        >
 
-    <section class="relative overflow-hidden">
 
-        <!-- Desktop background decoration -->
-        <div class="
-            pointer-events-none
-            absolute
-            -left-32
-            -top-32
-            hidden
-            h-96
-            w-96
-            rounded-full
-            bg-blue-100/40
-            blur-3xl
-            lg:block
-        "></div>
-
-        <div class="
-            pointer-events-none
-            absolute
-            -right-32
-            -bottom-32
-            hidden
-            h-96
-            w-96
-            rounded-full
-            bg-indigo-100/30
-            blur-3xl
-            lg:block
-        "></div>
-
-        <div class="
-            relative
-            mx-auto
-            max-w-7xl
-            px-4
-            py-6
-            sm:px-8
-            sm:py-12
-            lg:py-16
-        ">
+            <!-- ===================================================== -->
+            <!-- MOBILE STICKY BUY BAR -->
+            <!-- ===================================================== -->
 
             <div class="
-                grid
-                gap-6
-                lg:grid-cols-[1fr_420px]
-                lg:items-start
-                lg:gap-12
+                fixed
+                bottom-0
+                left-0
+                right-0
+                z-50
+                border-t
+                border-gray-200
+                bg-white/95
+                px-4
+                py-3
+                shadow-[0_-10px_30px_rgba(0,0,0,0.08)]
+                backdrop-blur-xl
+                lg:hidden
             ">
 
+                <div class="
+                    mx-auto
+                    flex
+                    max-w-lg
+                    items-center
+                    gap-3
+                ">
 
-                <!-- ================================================= -->
-                <!-- COURSE CARD / IMAGE -->
-                <!-- ================================================= -->
-
-                <div class="order-1 lg:order-2">
-
-                    <div class="
-                        overflow-hidden
-                        rounded-2xl
-                        border
-                        border-gray-200
-                        bg-white
-                        shadow-sm
-                        lg:rounded-2xl
-                        lg:shadow-xl
-                        lg:shadow-blue-200/20
-                    ">
-
-                        <!-- Course Image -->
+                    <div class="min-w-0 flex-1">
 
                         <div class="
-                            aspect-[16/9]
-                            overflow-hidden
-                            bg-blue-50
-                            sm:aspect-video
+                            truncate
+                            text-[10px]
+                            font-medium
+                            text-gray-400
+                        ">
+                            قیمت دوره
+                        </div>
+
+                        <div class="
+                            mt-0.5
+                            flex
+                            items-baseline
+                            gap-1
                         ">
 
-                            {% if course.image %}
-
-                                <img
-                                    src="{{ course.image.url }}"
-                                    alt="{{ course.title }}"
-                                    class="
-                                        h-full
-                                        w-full
-                                        object-cover
-                                    "
-                                >
-
-                            {% else %}
-
-                                <div class="
-                                    flex
-                                    h-full
-                                    items-center
-                                    justify-center
-                                    bg-gradient-to-br
-                                    from-blue-50
-                                    via-white
-                                    to-indigo-50
-                                    text-5xl
-                                    font-black
-                                    text-blue-500
-                                    sm:text-6xl
-                                ">
-                                    &gt;_
-                                </div>
-
-                            {% endif %}
-
-                            <!-- Category Badge -->
-                            <div class="
-                                absolute
-                                right-3
-                                top-3
-                                rounded-xl
-                                border
-                                border-white
-                                bg-white/95
-                                px-3
-                                py-1.5
-                                text-[10px]
-                                font-bold
-                                text-blue-600
-                                shadow-md
+                            <span class="
+                                text-lg
+                                font-black
+                                text-gray-950
                             ">
-                                {% if course.category == 'linux' %}
-                                    🐧 لینوکس
-                                {% elif course.category == 'network' %}
-                                    🌐 شبکه
-                                {% elif course.category == 'programming' %}
-                                    💻 برنامه‌نویسی
-                                {% elif course.category == 'security' %}
-                                    🔒 امنیت
-                                {% else %}
-                                    📚 دوره
-                                {% endif %}
-                            </div>
+                                1000
+                            </span>
 
-                            <!-- Level Badge -->
-                            <div class="
-                                absolute
-                                left-3
-                                top-3
-                                rounded-xl
-                                border
-                                border-white
-                                bg-white/95
-                                px-3
-                                py-1.5
+                            <span class="
                                 text-[10px]
-                                font-bold
-                                shadow-md
-                                {% if course.level == 'beginner' %}
-                                    text-emerald-600
-                                {% elif course.level == 'intermediate' %}
-                                    text-amber-600
-                                {% else %}
-                                    text-red-600
-                                {% endif %}
+                                text-gray-400
                             ">
-                             
-                                    🔴 {{ course.level }}
-                               
-                            </div>
+                                تومان
+                            </span>
 
                         </div>
 
+                    </div>
 
-                        <!-- Purchase -->
 
-                        <div class="p-4 sm:p-6">
+                    <a
+                        href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                        class="
+                            flex
+                            flex-1
+                            max-w-[220px]
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-blue-600
+                            px-4
+                            py-3.5
+                            text-sm
+                            font-extrabold
+                            text-white
+                            shadow-lg
+                            shadow-blue-500/20
+                            transition-all
+                            hover:-translate-y-0.5
+                            hover:bg-blue-700
+                            hover:shadow-blue-500/30
+                            active:scale-[0.98]
+                        "
+                    >
+                        خرید دوره
+                        <span class="mr-1">←</span>
+                    </a>
 
-                            <!-- Desktop / Mobile Price -->
+                </div>
 
-                            <div class="flex items-end justify-between gap-4">
+            </div>
 
-                                <div>
 
-                                    {% if course.original_price and course.original_price > course.price %}
+            <!-- ===================================================== -->
+            <!-- BREADCRUMB -->
+            <!-- ===================================================== -->
 
-                                        <div class="
-                                            mb-1
-                                            text-xs
-                                            text-gray-400
-                                            line-through
-                                        ">
-                                            {{ course.original_price|toman }}
-                                        </div>
+            <div class="
+                border-b
+                border-gray-200/60
+                bg-white/80
+                backdrop-blur-sm
+            ">
 
-                                    {% endif %}
+                <div class="
+                    mx-auto
+                    max-w-7xl
+                    px-4
+                    py-3
+                    sm:px-8
+                    sm:py-4
+                ">
 
-                                    <div class="flex items-baseline gap-1.5">
+                    <nav class="
+                        flex
+                        items-center
+                        gap-2
+                        text-xs
+                        sm:text-sm
+                    ">
 
-                                        <span class="
-                                            text-2xl
-                                            font-black
-                                            tracking-tight
-                                            text-gray-950
-                                            sm:text-3xl
-                                        ">
-                                            {{ course.price|toman }}
-                                        </span>
+                        <a
+                            href="/"
+                            class="
+                                font-medium
+                                text-gray-400
+                                transition
+                                hover:text-blue-600
+                            "
+                        >
+                            خانه
+                        </a>
 
+                        <span class="text-gray-300">
+                            ←
+                        </span>
+
+                        <a
+                            href="/#courses"
+                            class="
+                                font-medium
+                                text-gray-400
+                                transition
+                                hover:text-blue-600
+                            "
+                        >
+                            دوره‌ها
+                        </a>
+
+                        <span class="text-gray-300">
+                            ←
+                        </span>
+
+                        <span class="
+                            max-w-[220px]
+                            truncate
+                            font-medium
+                            text-gray-600
+                            sm:max-w-none
+                        ">
+                            دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                        </span>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===================================================== -->
+            <!-- COURSE HERO -->
+            <!-- ===================================================== -->
+
+            <section class="relative overflow-hidden">
+
+
+                <!-- Background Decoration -->
+
+                <div class="
+                    pointer-events-none
+                    absolute
+                    -left-32
+                    -top-32
+                    hidden
+                    h-96
+                    w-96
+                    rounded-full
+                    bg-blue-100/40
+                    blur-3xl
+                    lg:block
+                "></div>
+
+
+                <div class="
+                    pointer-events-none
+                    absolute
+                    -right-32
+                    -bottom-32
+                    hidden
+                    h-96
+                    w-96
+                    rounded-full
+                    bg-indigo-100/30
+                    blur-3xl
+                    lg:block
+                "></div>
+
+
+                <div class="
+                    relative
+                    mx-auto
+                    max-w-7xl
+                    px-4
+                    py-6
+                    sm:px-8
+                    sm:py-12
+                    lg:py-16
+                ">
+
+                    <div class="
+                        grid
+                        gap-6
+                        lg:grid-cols-[1fr_420px]
+                        lg:items-start
+                        lg:gap-12
+                    ">
+
+
+                        <!-- ================================================= -->
+                        <!-- COURSE IMAGE / PURCHASE -->
+                        <!-- ================================================= -->
+
+                        <div class="order-1 lg:order-2">
+
+                            <div class="
+                                overflow-hidden
+                                rounded-2xl
+                                border
+                                border-gray-200
+                                bg-white
+                                shadow-sm
+                                lg:shadow-xl
+                                lg:shadow-blue-200/20
+                            ">
+
+
+                                <!-- IMAGE -->
+
+                                <div class="
+                                    relative
+                                    aspect-[16/9]
+                                    overflow-hidden
+                                    bg-blue-50
+                                    sm:aspect-video
+                                ">
+
+                                    <img
+                                        src="/media/courses/ChatGPT_Image_Sep_7_2026_01_42_41_PM.png"
+                                        alt="دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی"
+                                        class="
+                                            h-full
+                                            w-full
+                                            object-cover
+                                        "
+                                    >
+
+
+                                    <!-- Category -->
+
+                                    <div class="
+                                        absolute
+                                        right-3
+                                        top-3
+                                        rounded-xl
+                                        border
+                                        border-white
+                                        bg-white/95
+                                        px-3
+                                        py-1.5
+                                        text-[10px]
+                                        font-bold
+                                        text-blue-600
+                                        shadow-md
+                                    ">
+                                        📚 دوره
+                                    </div>
+
+
+                                    <!-- Level -->
+
+                                    <div class="
+                                        absolute
+                                        left-3
+                                        top-3
+                                        rounded-xl
+                                        border
+                                        border-white
+                                        bg-white/95
+                                        px-3
+                                        py-1.5
+                                        text-[10px]
+                                        font-bold
+                                        text-red-600
+                                        shadow-md
+                                    ">
+                                        🔴 مقدماتی تا متوسط
                                     </div>
 
                                 </div>
 
 
-                                <!-- Desktop Buy -->
+                                <!-- PURCHASE -->
 
-                                <a
-                                    href="{% url 'create_order' course.slug %}"
-                                    class="
-                                        hidden
+                                <div class="p-4 sm:p-6">
+
+                                    <div class="
+                                        flex
+                                        items-end
+                                        justify-between
+                                        gap-4
+                                    ">
+
+
+                                        <!-- PRICE -->
+
+                                        <div>
+
+                                            <div class="
+                                                mb-1
+                                                text-xs
+                                                text-gray-400
+                                                line-through
+                                            ">
+                                                7,000 تومان
+                                            </div>
+
+                                            <div class="
+                                                flex
+                                                items-baseline
+                                                gap-1.5
+                                            ">
+
+                                                <span class="
+                                                    text-2xl
+                                                    font-black
+                                                    tracking-tight
+                                                    text-gray-950
+                                                    sm:text-3xl
+                                                ">
+                                                    1,000 تومان
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <!-- BUY BUTTON -->
+
+                                        <a
+                                            href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                                            class="
+                                                hidden
+                                                items-center
+                                                justify-center
+                                                gap-2
+                                                rounded-xl
+                                                bg-blue-600
+                                                px-6
+                                                py-3.5
+                                                text-sm
+                                                font-extrabold
+                                                text-white
+                                                shadow-lg
+                                                shadow-blue-500/15
+                                                transition-all
+                                                hover:-translate-y-0.5
+                                                hover:bg-blue-700
+                                                hover:shadow-blue-500/25
+                                                sm:flex
+                                            "
+                                        >
+                                            ثبت نام در دوره
+                                            <span>←</span>
+                                        </a>
+
+                                    </div>
+
+
+                                    <p class="
+                                        mt-3
+                                        text-[10px]
+                                        leading-5
+                                        text-gray-400
+                                        sm:text-xs
+                                    ">
+                                        پس از پرداخت، اطلاعات فعال‌سازی دوره برای شما ارسال می‌شود.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- COURSE INFO -->
+                        <!-- ================================================= -->
+
+                        <div class="order-2 lg:order-1">
+
+
+                            <!-- BADGE -->
+
+                            <div class="
+                                mb-4
+                                inline-flex
+                                items-center
+                                gap-2
+                                rounded-full
+                                border
+                                border-blue-100
+                                bg-blue-50
+                                px-3
+                                py-1.5
+                                text-[10px]
+                                font-bold
+                                text-blue-700
+                                sm:px-4
+                                sm:py-2
+                                sm:text-xs
+                            ">
+
+                                <span class="
+                                    h-1.5
+                                    w-1.5
+                                    rounded-full
+                                    bg-blue-500
+                                "></span>
+
+                                دوره آموزشی LinuxVerse
+
+                            </div>
+
+
+                            <!-- TITLE -->
+
+                            <h1 class="
+                                max-w-3xl
+                                text-2xl
+                                font-black
+                                leading-[1.5]
+                                tracking-tight
+                                text-gray-950
+                                sm:text-4xl
+                                lg:text-5xl
+                            ">
+                                دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                            </h1>
+
+
+                            <!-- SHORT DESCRIPTION -->
+
+                            <div class="
+                                mt-3
+                                max-w-3xl
+                                text-sm
+                                leading-7
+                                text-gray-500
+                                sm:mt-6
+                                sm:text-lg
+                                sm:leading-8
+                            ">
+                                یادگیری لینوکس به‌صورت عملی، ساختاریافته و قدم‌به‌قدم.
+                            </div>
+
+
+                            <!-- COURSE META -->
+
+                            <div class="
+                                mt-5
+                                grid
+                                grid-cols-2
+                                gap-2
+                                sm:mt-8
+                                sm:flex
+                                sm:flex-wrap
+                                sm:gap-3
+                            ">
+
+
+                                <!-- LEVEL -->
+
+                                <div class="
+                                    rounded-xl
+                                    border
+                                    border-gray-200
+                                    bg-white
+                                    px-3
+                                    py-2.5
+                                    sm:px-4
+                                    sm:py-3
+                                ">
+
+                                    <div class="
+                                        text-[10px]
+                                        text-gray-400
+                                        sm:text-xs
+                                    ">
+                                        سطح
+                                    </div>
+
+                                    <div class="
+                                        mt-0.5
+                                        truncate
+                                        text-xs
+                                        font-bold
+                                        text-gray-800
+                                        sm:mt-1
+                                        sm:text-sm
+                                    ">
+                                        مقدماتی تا متوسط
+                                    </div>
+
+                                </div>
+
+
+                                <!-- DURATION -->
+
+                                <div class="
+                                    rounded-xl
+                                    border
+                                    border-gray-200
+                                    bg-white
+                                    px-3
+                                    py-2.5
+                                    sm:px-4
+                                    sm:py-3
+                                ">
+
+                                    <div class="
+                                        text-[10px]
+                                        text-gray-400
+                                        sm:text-xs
+                                    ">
+                                        مدت دوره
+                                    </div>
+
+                                    <div class="
+                                        mt-0.5
+                                        truncate
+                                        text-xs
+                                        font-bold
+                                        text-gray-800
+                                        sm:mt-1
+                                        sm:text-sm
+                                    ">
+                                        12:42 ساعت
+                                    </div>
+
+                                </div>
+
+
+                                <!-- ACCESS -->
+
+                                <div class="
+                                    rounded-xl
+                                    border
+                                    border-gray-200
+                                    bg-white
+                                    px-3
+                                    py-2.5
+                                    sm:px-4
+                                    sm:py-3
+                                ">
+
+                                    <div class="
+                                        text-[10px]
+                                        text-gray-400
+                                        sm:text-xs
+                                    ">
+                                        نوع دسترسی
+                                    </div>
+
+                                    <div class="
+                                        mt-0.5
+                                        truncate
+                                        text-xs
+                                        font-bold
+                                        text-gray-800
+                                        sm:mt-1
+                                        sm:text-sm
+                                    ">
+                                        اسپات پلیر
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- BENEFITS -->
+
+                            <div class="mt-6 sm:mt-8">
+
+
+                                <div class="
+                                    flex
+                                    items-center
+                                    gap-2
+                                    text-xs
+                                    font-bold
+                                    text-gray-700
+                                    sm:text-sm
+                                ">
+
+                                    <span class="
+                                        flex
+                                        h-6
+                                        w-6
+                                        shrink-0
                                         items-center
                                         justify-center
-                                        gap-2
+                                        rounded-full
+                                        bg-emerald-50
+                                        text-[11px]
+                                        text-emerald-600
+                                    ">
+                                        ✓
+                                    </span>
+
+                                    آموزش عملی و مرحله‌به‌مرحله
+
+                                </div>
+
+
+                                <div class="
+                                    mt-2
+                                    flex
+                                    items-center
+                                    gap-2
+                                    text-xs
+                                    font-bold
+                                    text-gray-700
+                                    sm:text-sm
+                                ">
+
+                                    <span class="
+                                        flex
+                                        h-6
+                                        w-6
+                                        shrink-0
+                                        items-center
+                                        justify-center
+                                        rounded-full
+                                        bg-emerald-50
+                                        text-[11px]
+                                        text-emerald-600
+                                    ">
+                                        ✓
+                                    </span>
+
+                                    مناسب برای یادگیری واقعی لینوکس
+
+                                </div>
+
+
+                                <div class="
+                                    mt-2
+                                    flex
+                                    items-center
+                                    gap-2
+                                    text-xs
+                                    font-bold
+                                    text-gray-700
+                                    sm:text-sm
+                                ">
+
+                                    <span class="
+                                        flex
+                                        h-6
+                                        w-6
+                                        shrink-0
+                                        items-center
+                                        justify-center
+                                        rounded-full
+                                        bg-emerald-50
+                                        text-[11px]
+                                        text-emerald-600
+                                    ">
+                                        ✓
+                                    </span>
+
+                                    پشتیبانی و پاسخگویی سریع
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================================= -->
+            <!-- COURSE DESCRIPTION -->
+            <!-- ========================================================= -->
+
+            <section class="
+                border-t
+                border-gray-200/60
+                bg-white
+                py-10
+                sm:py-16
+                lg:py-20
+            ">
+
+                <div class="
+                    mx-auto
+                    max-w-7xl
+                    px-4
+                    sm:px-8
+                ">
+
+                    <div class="
+                        grid
+                        gap-10
+                        lg:grid-cols-[minmax(0,1fr)_300px]
+                        lg:gap-12
+                    ">
+
+
+                        <!-- ================================================= -->
+                        <!-- DESCRIPTION -->
+                        <!-- ================================================= -->
+
+                        <article>
+
+
+                            <!-- SECTION TITLE -->
+
+                            <div class="mb-6 sm:mb-8">
+
+                                <p class="
+                                    text-xs
+                                    font-bold
+                                    text-blue-600
+                                    sm:text-sm
+                                ">
+                                    درباره دوره
+                                </p>
+
+                                <h2 class="
+                                    mt-1.5
+                                    text-xl
+                                    font-black
+                                    text-gray-950
+                                    sm:mt-2
+                                    sm:text-3xl
+                                ">
+                                    دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                                </h2>
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- IMPORTANT: COURSE DESCRIPTION -->
+                            <!-- ================================================= -->
+
+                            <div class="course-description">
+
+                                {{ course.description|safe }}
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- ================================================= -->
+                        <!-- SIDE INFO -->
+                        <!-- ================================================= -->
+
+                        <aside class="
+                            hidden
+                            h-fit
+                            lg:sticky
+                            lg:top-6
+                            lg:block
+                        ">
+
+                            <div class="
+                                rounded-2xl
+                                border
+                                border-gray-200
+                                bg-[#f4f7fc]
+                                p-6
+                            ">
+
+
+                                <h3 class="
+                                    text-base
+                                    font-black
+                                    text-gray-900
+                                ">
+                                    این دوره مناسب توست اگر...
+                                </h3>
+
+
+                                <ul class="
+                                    mt-5
+                                    space-y-4
+                                    text-sm
+                                    leading-7
+                                    text-gray-600
+                                ">
+
+
+                                    <li class="flex gap-3">
+
+                                        <span class="
+                                            mt-1
+                                            flex
+                                            h-6
+                                            w-6
+                                            shrink-0
+                                            items-center
+                                            justify-center
+                                            rounded-lg
+                                            bg-blue-50
+                                            text-xs
+                                            font-bold
+                                            text-blue-600
+                                        ">
+                                            ✓
+                                        </span>
+
+                                        می‌خواهی لینوکس را اصولی یاد بگیری.
+
+                                    </li>
+
+
+                                    <li class="flex gap-3">
+
+                                        <span class="
+                                            mt-1
+                                            flex
+                                            h-6
+                                            w-6
+                                            shrink-0
+                                            items-center
+                                            justify-center
+                                            rounded-lg
+                                            bg-blue-50
+                                            text-xs
+                                            font-bold
+                                            text-blue-600
+                                        ">
+                                            ✓
+                                        </span>
+
+                                        دنبال آموزش عملی و مرحله‌به‌مرحله هستی.
+
+                                    </li>
+
+
+                                    <li class="flex gap-3">
+
+                                        <span class="
+                                            mt-1
+                                            flex
+                                            h-6
+                                            w-6
+                                            shrink-0
+                                            items-center
+                                            justify-center
+                                            rounded-lg
+                                            bg-blue-50
+                                            text-xs
+                                            font-bold
+                                            text-blue-600
+                                        ">
+                                            ✓
+                                        </span>
+
+                                        می‌خواهی مسیرت را در دنیای لینوکس جدی‌تر ادامه بدهی.
+
+                                    </li>
+
+
+                                    <li class="flex gap-3">
+
+                                        <span class="
+                                            mt-1
+                                            flex
+                                            h-6
+                                            w-6
+                                            shrink-0
+                                            items-center
+                                            justify-center
+                                            rounded-lg
+                                            bg-blue-50
+                                            text-xs
+                                            font-bold
+                                            text-blue-600
+                                        ">
+                                            ✓
+                                        </span>
+
+                                        به دنبال یک دوره ساختاریافته و کاربردی هستی.
+
+                                    </li>
+
+                                </ul>
+
+
+                                <div class="
+                                    my-6
+                                    h-px
+                                    bg-gray-200
+                                "></div>
+
+
+                                <a
+                                    href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                                    class="
+                                        flex
+                                        w-full
+                                        items-center
+                                        justify-center
                                         rounded-xl
                                         bg-blue-600
-                                        px-6
+                                        px-5
                                         py-3.5
                                         text-sm
-                                        font-extrabold
+                                        font-bold
                                         text-white
                                         shadow-lg
                                         shadow-blue-500/15
@@ -352,691 +1886,349 @@
                                         hover:-translate-y-0.5
                                         hover:bg-blue-700
                                         hover:shadow-blue-500/25
-                                        sm:flex
                                     "
                                 >
-                                ثبت نام در دوره
-                                    <span>←</span>
+                                    ثبت‌نام در دوره
                                 </a>
 
                             </div>
 
-
-                            <!-- Mobile tiny reassurance -->
-
-                            <p class="
-                                mt-3
-                                text-[10px]
-                                leading-5
-                                text-gray-400
-                                sm:text-xs
-                            ">
-                                پس از پرداخت، اطلاعات فعال‌سازی دوره برای شما ارسال می‌شود.
-                            </p>
-
-                        </div>
+                        </aside>
 
                     </div>
 
                 </div>
 
-
-                <!-- ================================================= -->
-                <!-- MAIN COURSE INFO -->
-                <!-- ================================================= -->
-
-                <div class="order-2 lg:order-1">
-
-                    <!-- Badge -->
-
-                    <div class="
-                        mb-4
-                        inline-flex
-                        items-center
-                        gap-2
-                        rounded-full
-                        border
-                        border-blue-100
-                        bg-blue-50
-                        px-3
-                        py-1.5
-                        text-[10px]
-                        font-bold
-                        text-blue-700
-                        sm:px-4
-                        sm:py-2
-                        sm:text-xs
-                    ">
-
-                        <span class="
-                            h-1.5
-                            w-1.5
-                            rounded-full
-                            bg-blue-500
-                        "></span>
-
-                        دوره آموزشی LinuxVerse
-
-                    </div>
-
-
-                    <!-- Title -->
-
-                    <h1 class="
-                        max-w-3xl
-                        text-2xl
-                        font-black
-                        leading-[1.5]
-                        tracking-tight
-                        text-gray-950
-                        sm:text-4xl
-                        lg:text-5xl
-                    ">
-                        {{ course.title }}
-                    </h1>
-
-
-                    <!-- Short Description -->
-
-                    <div class="
-                        mt-3
-                        max-w-3xl
-                        text-sm
-                        leading-7
-                        text-gray-500
-                        sm:mt-6
-                        sm:text-lg
-                        sm:leading-8
-                    ">
-                        {{ course.short_description|default:"یادگیری لینوکس به‌صورت عملی، ساختاریافته و قدم‌به‌قدم." }}
-                    </div>
-
-
-                    <!-- ================================================= -->
-                    <!-- COURSE META -->
-                    <!-- ================================================= -->
-
-                    <div class="
-                        mt-5
-                        grid
-                        grid-cols-2
-                        gap-2
-                        sm:mt-8
-                        sm:flex
-                        sm:flex-wrap
-                        sm:gap-3
-                    ">
-
-                        {% if course.level %}
-
-                            <div class="
-                                rounded-xl
-                                border
-                                border-gray-200
-                                bg-white
-                                px-3
-                                py-2.5
-                                sm:px-4
-                                sm:py-3
-                            ">
-
-                                <div class="text-[10px] text-gray-400 sm:text-xs">
-                                    سطح
-                                </div>
-
-                                <div class="
-                                    mt-0.5
-                                    truncate
-                                    text-xs
-                                    font-bold
-                                    text-gray-800
-                                    sm:mt-1
-                                    sm:text-sm
-                                ">
-                                    {{ course.level }}
-                                </div>
-
-                            </div>
-
-                        {% endif %}
-
-
-                        {% if course.duration %}
-
-                            <div class="
-                                rounded-xl
-                                border
-                                border-gray-200
-                                bg-white
-                                px-3
-                                py-2.5
-                                sm:px-4
-                                sm:py-3
-                            ">
-
-                                <div class="text-[10px] text-gray-400 sm:text-xs">
-                                    مدت دوره
-                                </div>
-
-                                <div class="
-                                    mt-0.5
-                                    truncate
-                                    text-xs
-                                    font-bold
-                                    text-gray-800
-                                    sm:mt-1
-                                    sm:text-sm
-                                ">
-                                    {{ course.duration }}
-                                </div>
-
-                            </div>
-
-                        {% endif %}
-
-
-                        {% if course.lessons_count %}
-
-                            <div class="
-                                rounded-xl
-                                border
-                                border-gray-200
-                                bg-white
-                                px-3
-                                py-2.5
-                                sm:px-4
-                                sm:py-3
-                            ">
-
-                                <div class="text-[10px] text-gray-400 sm:text-xs">
-                                    تعداد درس
-                                </div>
-
-                                <div class="
-                                    mt-0.5
-                                    truncate
-                                    text-xs
-                                    font-bold
-                                    text-gray-800
-                                    sm:mt-1
-                                    sm:text-sm
-                                ">
-                                    {{ course.lessons_count }} درس
-                                </div>
-
-                            </div>
-
-                        {% endif %}
-
-
-                        <div class="
-                            rounded-xl
-                            border
-                            border-gray-200
-                            bg-white
-                            px-3
-                            py-2.5
-                            sm:px-4
-                            sm:py-3
-                        ">
-
-                            <div class="text-[10px] text-gray-400 sm:text-xs">
-                                نوع دسترسی
-                            </div>
-
-                            <div class="
-                                mt-0.5
-                                truncate
-                                text-xs
-                                font-bold
-                                text-gray-800
-                                sm:mt-1
-                                sm:text-sm
-                            ">
-                                اسپات پلیر
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- ================================================= -->
-                    <!-- MOBILE QUICK BENEFITS -->
-                    <!-- ================================================= -->
-
-                    <div class="mt-6 sm:mt-8">
-
-                        <div class="
-                            flex
-                            items-center
-                            gap-2
-                            text-xs
-                            font-bold
-                            text-gray-700
-                            sm:text-sm
-                        ">
-
-                            <span class="
-                                flex
-                                h-6
-                                w-6
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-full
-                                bg-emerald-50
-                                text-[11px]
-                                text-emerald-600
-                            ">
-                                ✓
-                            </span>
-
-                            آموزش عملی و مرحله‌به‌مرحله
-
-                        </div>
-
-                        <div class="
-                            mt-2
-                            flex
-                            items-center
-                            gap-2
-                            text-xs
-                            font-bold
-                            text-gray-700
-                            sm:text-sm
-                        ">
-
-                            <span class="
-                                flex
-                                h-6
-                                w-6
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-full
-                                bg-emerald-50
-                                text-[11px]
-                                text-emerald-600
-                            ">
-                                ✓
-                            </span>
-
-                            مناسب برای یادگیری واقعی لینوکس
-
-                        </div>
-
-                        <div class="
-                            mt-2
-                            flex
-                            items-center
-                            gap-2
-                            text-xs
-                            font-bold
-                            text-gray-700
-                            sm:text-sm
-                        ">
-
-                            <span class="
-                                flex
-                                h-6
-                                w-6
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-full
-                                bg-emerald-50
-                                text-[11px]
-                                text-emerald-600
-                            ">
-                                ✓
-                            </span>
-
-                            پشتیبانی و پاسخگویی سریع
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ========================================================= -->
-    <!-- COURSE DESCRIPTION -->
-    <!-- ========================================================= -->
-
-    <section class="
-        border-t
-        border-gray-200/60
-        bg-white
-        py-10
-        sm:py-16
-        lg:py-20
-    ">
-
-        <div class="
-            mx-auto
-            max-w-7xl
-            px-4
-            sm:px-8
-        ">
-
-            <div class="
-                grid
-                gap-10
-                lg:grid-cols-[minmax(0,1fr)_300px]
-                lg:gap-12
+            </section>
+
+
+            <!-- ========================================================= -->
+            <!-- BACK TO COURSES -->
+            <!-- ========================================================= -->
+
+            <section class="
+                border-t
+                border-gray-200/60
+                bg-white
+                py-10
+                sm:py-12
             ">
 
+                <div class="
+                    mx-auto
+                    max-w-7xl
+                    px-4
+                    text-center
+                    sm:px-8
+                ">
 
-                <!-- ================================================= -->
-                <!-- DESCRIPTION -->
-                <!-- ================================================= -->
+                    <p class="
+                        text-xs
+                        text-gray-400
+                        sm:text-sm
+                    ">
+                        دنبال دوره دیگری هستی؟
+                    </p>
 
-                <article>
 
-                    <div class="mb-6 sm:mb-8">
-
-                        <p class="
+                    <a
+                        href="/#courses"
+                        class="
+                            mt-2
+                            inline-flex
+                            items-center
+                            gap-2
                             text-xs
                             font-bold
                             text-blue-600
+                            transition
+                            hover:text-blue-700
+                            sm:mt-3
                             sm:text-sm
-                        ">
-                            درباره دوره
-                        </p>
+                        "
+                    >
+                        مشاهده همه دوره‌ها
+                        <span>←</span>
+                    </a>
 
-                        <h2 class="
-                            mt-1.5
-                            text-xl
-                            font-black
-                            text-gray-950
-                            sm:mt-2
-                            sm:text-3xl
-                        ">
-                            {{ course.title }}
-                        </h2>
+                </div>
 
-                    </div>
+            </section>
+
+        </div>
+
+    </main>
 
 
-                    <div class="
-                        prose
-                        prose-gray
-                        max-w-none
-                        text-sm
-                        leading-8
-                        sm:text-base
-                        sm:leading-8
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
 
-                        prose-headings:font-black
-                        prose-headings:text-gray-950
+    <footer class="
+        mt-20
+        border-t
+        border-gray-200/50
+        bg-[#f4f7fc]
+    ">
 
-                        prose-h2:mt-8
-                        prose-h2:text-xl
-                        sm:prose-h2:mt-10
-                        sm:prose-h2:text-2xl
+        <div class="
+            max-w-7xl
+            mx-auto
+            px-4
+            sm:px-6
+            py-8
+        ">
 
-                        prose-h3:mt-6
-                        prose-h3:text-lg
-
-                        prose-p:my-4
-                        sm:prose-p:my-5
-
-                        prose-a:text-blue-600
-                        prose-a:no-underline
-                        prose-a:hover:underline
-
-                        prose-strong:text-gray-900
-
-                        prose-li:my-1
-
-                        prose-ul:list-disc
-                        prose-ul:pr-6
-
-                        prose-ol:list-decimal
-                        prose-ol:pr-6
-                    ">
-
-                        {{ course.description|safe }}
-
-                    </div>
-
-                </article>
+            <div class="
+                flex
+                flex-col
+                md:flex-row
+                items-center
+                justify-between
+                gap-4
+            ">
 
 
-                <!-- ================================================= -->
-                <!-- SIDE INFO — DESKTOP ONLY -->
-                <!-- ================================================= -->
+                <!-- BRAND -->
 
-                <aside class="
-                    hidden
-                    h-fit
-                    lg:sticky
-                    lg:top-6
-                    lg:block
+                <div class="
+                    text-center
+                    md:text-right
                 ">
 
                     <div class="
-                        rounded-2xl
-                        border
-                        border-gray-200
-                        bg-[#f4f7fc]
-                        p-6
+                        flex
+                        items-center
+                        gap-2
+                        justify-center
+                        md:justify-start
                     ">
 
-                        <h3 class="
-                            text-base
-                            font-black
-                            text-gray-900
+                        <span class="
+                            text-lg
+                            font-mono
+                            text-blue-600
                         ">
-                            این دوره مناسب توست اگر...
-                        </h3>
+                            >_
+                        </span>
 
+                        <span class="text-lg">
+                            🐧
+                        </span>
 
-                        <ul class="
-                            mt-5
-                            space-y-4
-                            text-sm
-                            leading-7
-                            text-gray-600
+                        <span class="
+                            text-lg
+                            font-extrabold
+                            gradient-text
+                            font-mono
                         ">
-
-                            <li class="flex gap-3">
-
-                                <span class="
-                                    mt-1
-                                    flex
-                                    h-6
-                                    w-6
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-blue-50
-                                    text-xs
-                                    font-bold
-                                    text-blue-600
-                                ">
-                                    ✓
-                                </span>
-
-                                می‌خواهی لینوکس را اصولی یاد بگیری.
-
-                            </li>
-
-
-                            <li class="flex gap-3">
-
-                                <span class="
-                                    mt-1
-                                    flex
-                                    h-6
-                                    w-6
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-blue-50
-                                    text-xs
-                                    font-bold
-                                    text-blue-600
-                                ">
-                                    ✓
-                                </span>
-
-                                دنبال آموزش عملی و مرحله‌به‌مرحله هستی.
-
-                            </li>
-
-
-                            <li class="flex gap-3">
-
-                                <span class="
-                                    mt-1
-                                    flex
-                                    h-6
-                                    w-6
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-blue-50
-                                    text-xs
-                                    font-bold
-                                    text-blue-600
-                                ">
-                                    ✓
-                                </span>
-
-                                می‌خواهی مسیرت را در دنیای لینوکس جدی‌تر ادامه بدهی.
-
-                            </li>
-
-
-                            <li class="flex gap-3">
-
-                                <span class="
-                                    mt-1
-                                    flex
-                                    h-6
-                                    w-6
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-lg
-                                    bg-blue-50
-                                    text-xs
-                                    font-bold
-                                    text-blue-600
-                                ">
-                                    ✓
-                                </span>
-
-                                به دنبال یک دوره ساختاریافته و کاربردی هستی.
-
-                            </li>
-
-                        </ul>
-
-
-                        <div class="my-6 h-px bg-gray-200"></div>
-
-
-                        <a
-                            href="{% url 'create_order' course.slug %}"
-                            class="
-                                flex
-                                w-full
-                                items-center
-                                justify-center
-                                rounded-xl
-                                bg-blue-600
-                                px-5
-                                py-3.5
-                                text-sm
-                                font-bold
-                                text-white
-                                shadow-lg
-                                shadow-blue-500/15
-                                transition-all
-                                hover:-translate-y-0.5
-                                hover:bg-blue-700
-                                hover:shadow-blue-500/25
-                            "
-                        >
-                            ثبت‌نام در دوره
-                        </a>
+                            LINUXVERSE
+                        </span>
 
                     </div>
 
-                </aside>
+                </div>
+
+
+                <!-- NAV -->
+
+                <div class="
+                    flex
+                    flex-wrap
+                    items-center
+                    justify-center
+                    gap-3
+                    text-xs
+                    text-gray-400
+                ">
+
+                    <a
+                        href="/"
+                        class="hover:text-blue-600 transition-colors"
+                    >
+                        خانه
+                    </a>
+
+                    <span class="text-gray-300">
+                        |
+                    </span>
+
+                    <a
+                        href="/courses/"
+                        class="hover:text-blue-600 transition-colors"
+                    >
+                        دوره‌ها
+                    </a>
+
+                    <span class="text-gray-300">
+                        |
+                    </span>
+
+                    <a
+                        href="/blog/"
+                        class="hover:text-blue-600 transition-colors"
+                    >
+                        وبلاگ
+                    </a>
+
+                    <span class="text-gray-300">
+                        |
+                    </span>
+
+                    <a
+                        href="/about/"
+                        class="hover:text-blue-600 transition-colors"
+                    >
+                        درباره ما
+                    </a>
+
+                </div>
+
+
+                <!-- ENAMAD + COPYRIGHT -->
+
+                <div class="
+                    flex
+                    flex-col
+                    sm:flex-row
+                    items-center
+                    gap-3
+                ">
+
+                    <a
+                        referrerpolicy="origin"
+                        target="_blank"
+                        href="https://trustseal.enamad.ir/?id=7522634&Code=YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv"
+                    >
+
+                        <img
+                            referrerpolicy="origin"
+                            src="https://trustseal.enamad.ir/logo.aspx?id=7522634&Code=YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv"
+                            alt=""
+                            style="cursor:pointer"
+                            code="YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv"
+                        >
+
+                    </a>
+
+                    <p class="
+                        text-xs
+                        text-gray-300
+                        font-mono
+                        whitespace-nowrap
+                    ">
+                        © 2026 LINUXVERSE
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
-    </section>
+    </footer>
 
 
     <!-- ========================================================= -->
-    <!-- BACK TO COURSES -->
+    <!-- MOBILE MENU JS -->
     <!-- ========================================================= -->
 
-    <section class="
-        border-t
-        border-gray-200/60
-        bg-white
-        py-10
-        sm:py-12
-    ">
+    <script>
 
-        <div class="
-            mx-auto
-            max-w-7xl
-            px-4
-            text-center
-            sm:px-8
-        ">
+        const mobileMenuButton =
+            document.getElementById('mobileMenuButton');
 
-            <p class="
-                text-xs
-                text-gray-400
-                sm:text-sm
-            ">
-                دنبال دوره دیگری هستی؟
-            </p>
+        const mobileMenu =
+            document.getElementById('mobileMenu');
 
-            <a
-                href="{% url 'home' %}#courses"
-                class="
-                    mt-2
-                    inline-flex
-                    items-center
-                    gap-2
-                    text-xs
-                    font-bold
-                    text-blue-600
-                    transition
-                    hover:text-blue-700
-                    sm:mt-3
-                    sm:text-sm
-                "
-            >
-                مشاهده همه دوره‌ها
-                <span>←</span>
-            </a>
+        const menuIcon =
+            document.getElementById('menuIcon');
 
-        </div>
 
-    </section>
+        if (
+            mobileMenuButton &&
+            mobileMenu &&
+            menuIcon
+        ) {
 
-</div>
+            mobileMenuButton.addEventListener(
+                'click',
+                function () {
 
-{% endblock %}
+                    const isOpen =
+                        mobileMenu.classList.toggle('open');
+
+
+                    mobileMenuButton.setAttribute(
+                        'aria-expanded',
+                        isOpen
+                    );
+
+
+                    if (isOpen) {
+
+                        menuIcon.innerHTML = `
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        `;
+
+                    } else {
+
+                        menuIcon.innerHTML = `
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                            />
+                        `;
+
+                    }
+
+                }
+            );
+
+
+            const mobileLinks =
+                mobileMenu.querySelectorAll('a');
+
+
+            mobileLinks.forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        'click',
+                        function () {
+
+                            mobileMenu.classList.remove('open');
+
+                            mobileMenuButton.setAttribute(
+                                'aria-expanded',
+                                'false'
+                            );
+
+
+                            menuIcon.innerHTML = `
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                                />
+                            `;
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
