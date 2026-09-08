@@ -32,17 +32,12 @@
                         mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        navy: {
-                            50:  '#ebf4ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a'
+                        penguin: {
+                            dark: '#001530',     
+                            gold: '#FEB801',     
+                            white: '#FFFFFF',
+                            goldLight: '#FFF3D4',
+                            darkSoft: '#0A1F3B',
                         }
                     }
                 }
@@ -62,26 +57,26 @@
     {% endblock %}
 
     <!-- ========================================================= -->
-    <!-- GLOBAL CSS -->
+    <!-- GLOBAL CSS — مینیمال، مدرن، هنری -->
     <!-- ========================================================= -->
 
     <style>
 
         /* ===================================================== */
-        /* ROOT — پالت زنده و مدرن */
+        /* ROOT — پالت مینیمال با جزئیات طلایی */
         /* ===================================================== */
 
         :root {
-            --primary: #2563eb;
-            --primary-bright: #3b82f6;
-            --primary-light: #60a5fa;
-            --primary-soft: #93c5fd;
-            --primary-dark: #1e3a8a;
-            --surface-light: #f4f7fc;
+            --penguin-dark: #001530;
+            --penguin-gold: #FEB801;
+            --penguin-white: #FFFFFF;
+            --gold-soft: #FFF8E7;
+            --dark-soft: #0A1F3B;
+            --gold-glow: rgba(254, 184, 1, 0.08);
         }
 
         /* ===================================================== */
-        /* HTML & BODY */
+        /* HTML & BODY — سفید مینیمال */
         /* ===================================================== */
 
         html {
@@ -90,93 +85,107 @@
 
         body {
             font-family: 'Vazirmatn', sans-serif;
-            background: var(--surface-light);
+            background: #FFFFFF;
+            color: #1A1A2E;
             min-height: 100vh;
         }
 
         /* ===================================================== */
-        /* SCROLLBAR */
+        /* SCROLLBAR — ظریف طلایی */
         /* ===================================================== */
 
         ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #eef2f7;
+            background: #F5F5F5;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
+            background: #FEB801;
             border-radius: 999px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
+            background: #E5A800;
         }
 
         /* ===================================================== */
-        /* SELECTION */
+        /* SELECTION — طلایی ملایم */
         /* ===================================================== */
 
         ::selection {
-            background: rgba(37, 99, 235, 0.18);
-            color: var(--primary-dark);
+            background: rgba(254, 184, 1, 0.15);
+            color: #001530;
         }
 
         /* ===================================================== */
-        /* NAVBAR — مشخص با سایه و خط زیر */
+        /* NAVBAR — روشن، شیشه‌ای، با جزئیات طلایی ظریف */
         /* ===================================================== */
 
         .nav-glass {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(37, 99, 235, 0.08);
-            border-bottom: 2px solid rgba(37, 99, 235, 0.06);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(254, 184, 1, 0.08);
+            border-bottom: 1.5px solid rgba(254, 184, 1, 0.12);
+            box-shadow: 0 4px 24px rgba(0, 21, 48, 0.04);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .nav-glass:hover {
-            border-color: rgba(37, 99, 235, 0.14);
-            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.08);
+            border-color: rgba(254, 184, 1, 0.15);
+            box-shadow: 0 8px 32px rgba(254, 184, 1, 0.04);
         }
 
         /* ===================================================== */
-        /* LOGO BOX */
+        /* LOGO BOX — طلایی با متن تیره */
         /* ===================================================== */
 
         .logo-box {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #FEB801;
+            color: #001530;
+            box-shadow: 0 2px 12px rgba(254, 184, 1, 0.15);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(254, 184, 1, 0.1);
         }
 
         .logo-box:hover {
-            transform: translateY(-2px) rotate(-2deg);
-            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.30);
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(254, 184, 1, 0.2);
         }
 
         /* ===================================================== */
-        /* BRAND NAME */
+        /* BRAND NAME — LINUX تیره، VERSE طلایی */
         /* ===================================================== */
 
         .brand-name {
-            color: #0f172a;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            transition: color 0.25s ease;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            transition: all 0.3s ease;
         }
 
-        .group:hover .brand-name {
-            color: var(--primary);
+        .brand-name .linux {
+            color: #001530;
+        }
+
+        .brand-name .verse {
+            color: #FEB801;
+        }
+
+        .group:hover .brand-name .linux {
+            color: #001530;
+        }
+
+        .group:hover .brand-name .verse {
+            color: #FEB801;
+            text-shadow: 0 0 20px rgba(254, 184, 1, 0.1);
         }
 
         /* ===================================================== */
-        /* NAV LINKS */
+        /* NAV LINKS — درشت‌تر، خوانا با نشانه‌های طلایی */
         /* ===================================================== */
 
         .nav-link {
@@ -184,67 +193,92 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 38px;
-            padding: 0 14px;
+            min-height: 42px;
+            padding: 0 18px;
             border-radius: 8px;
-            color: #334155;
-            font-size: 13px;
-            font-weight: 500;
-            transition: color 0.2s ease, background 0.2s ease;
+            color: #3A3A4A;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2.5px;
+            background: #FEB801;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 999px;
         }
 
         .nav-link:hover {
-            color: var(--primary);
-            background: rgba(37, 99, 235, 0.06);
+            color: #001530;
+            background: rgba(254, 184, 1, 0.05);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        .nav-link:active {
+            transform: scale(0.97);
         }
 
         /* ===================================================== */
-        /* MOBILE COURSE BUTTON */
+        /* MOBILE COURSE BUTTON — طلایی با متن تیره */
         /* ===================================================== */
 
         .mobile-course {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.18);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: #FEB801;
+            color: #001530;
+            border: 1px solid rgba(254, 184, 1, 0.1);
+            box-shadow: 0 2px 8px rgba(254, 184, 1, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 13px;
         }
 
         .mobile-course:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.24);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(254, 184, 1, 0.15);
         }
 
         .mobile-course:active {
-            transform: scale(0.96);
+            transform: scale(0.97);
         }
 
         /* ===================================================== */
-        /* MOBILE MENU BUTTON */
+        /* MOBILE MENU BUTTON — مینیمال */
         /* ===================================================== */
 
         .mobile-menu-button {
-            color: #334155;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            transition: background 0.25s ease, border-color 0.25s ease;
+            color: #001530;
+            background: rgba(0, 21, 48, 0.02);
+            border: 1px solid rgba(0, 21, 48, 0.04);
+            transition: all 0.3s ease;
         }
 
         .mobile-menu-button:hover {
-            background: rgba(37, 99, 235, 0.06);
-            border-color: rgba(37, 99, 235, 0.12);
+            background: rgba(254, 184, 1, 0.04);
+            border-color: rgba(254, 184, 1, 0.08);
         }
 
         /* ===================================================== */
-        /* MOBILE MENU */
+        /* MOBILE MENU — ظریف */
         /* ===================================================== */
 
         .mobile-menu {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transform: translateY(-6px);
+            transform: translateY(-4px);
             pointer-events: none;
-            transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .mobile-menu.open {
@@ -255,37 +289,63 @@
         }
 
         /* ===================================================== */
-        /* MOBILE MENU ICONS */
+        /* MOBILE MENU LINKS — درشت‌تر و خوانا */
+        /* ===================================================== */
+
+        .mobile-menu .nav-link {
+            font-size: 15px;
+            font-weight: 600;
+            min-height: 48px;
+            padding: 0 16px;
+            color: #3A3A4A;
+        }
+
+        .mobile-menu .nav-link:hover {
+            color: #001530;
+            background: rgba(254, 184, 1, 0.05);
+        }
+
+        .mobile-menu .nav-link::after {
+            display: none;
+        }
+
+        /* ===================================================== */
+        /* MOBILE MENU ICONS — طلایی ظریف */
         /* ===================================================== */
 
         .menu-icon {
-            color: var(--primary-light);
+            color: #FEB801;
+            opacity: 0.7;
+            font-size: 16px;
         }
 
         /* ===================================================== */
-        /* DESKTOP ACTION (پنگوئن) */
+        /* DESKTOP ACTION (پنگوئن) — هنری */
         /* ===================================================== */
 
         .nav-action {
-            background: rgba(37, 99, 235, 0.06);
-            border: 1px solid rgba(37, 99, 235, 0.06);
-            transition: all 0.3s ease;
+            background: rgba(254, 184, 1, 0.04);
+            border: 1px solid rgba(254, 184, 1, 0.06);
+            transition: all 0.4s ease;
+            font-size: 17px;
         }
 
         .nav-action:hover {
-            background: rgba(37, 99, 235, 0.12);
-            transform: translateY(-1px);
+            background: rgba(254, 184, 1, 0.08);
+            transform: translateY(-1px) scale(1.02);
+            border-color: rgba(254, 184, 1, 0.12);
         }
 
         /* ===================================================== */
-        /* GRADIENT TEXT برای فوتر */
+        /* GRADIENT TEXT — طلایی هنری برای فوتر */
         /* ===================================================== */
 
         .gradient-text {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            background: linear-gradient(135deg, #FEB801 0%, #FEB801 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 800;
         }
 
         /* ===================================================== */
@@ -294,34 +354,134 @@
 
         @media (max-width: 767px) {
             .nav-glass {
-                border-radius: 14px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-                border-bottom: 2px solid rgba(37, 99, 235, 0.08);
+                border-radius: 16px;
+                box-shadow: 0 4px 16px rgba(0, 21, 48, 0.02);
+                border-bottom: 1.5px solid rgba(254, 184, 1, 0.06);
             }
 
             .nav-link {
                 justify-content: flex-start;
                 width: 100%;
-                min-height: 46px;
-                padding: 0 14px;
+                min-height: 48px;
+                padding: 0 16px;
+                font-size: 15px;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link:hover {
+                background: rgba(254, 184, 1, 0.05);
             }
         }
 
         @media (max-width: 380px) {
             .nav-glass {
-                padding-left: 10px;
-                padding-right: 10px;
+                padding-left: 8px;
+                padding-right: 8px;
             }
+        }
+
+        /* ===================================================== */
+        /* FOOTER — مینیمال با جزئیات طلایی */
+        /* ===================================================== */
+
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(254, 184, 1, 0.08);
+        }
+
+        footer a {
+            color: #7A7A8A;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #FEB801;
+        }
+
+        footer .gradient-text {
+            background: linear-gradient(135deg, #FEB801 0%, #FEB801 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        footer .text-gray-300,
+        footer .text-gray-400 {
+            color: #9A9AAA;
+        }
+
+        footer .border-gray-200\/50 {
+            border-color: rgba(0, 21, 48, 0.04);
+        }
+
+        footer .text-xs {
+            color: #9A9AAA;
+        }
+
+        /* ===================================================== */
+        /* MAIN CONTENT — سفید تمیز */
+        /* ===================================================== */
+
+        main {
+            background: #FFFFFF;
+        }
+
+        /* ===================================================== */
+        /* ACCENT ELEMENTS — طلایی ظریف */
+        /* ===================================================== */
+
+        .gold-accent {
+            border-color: rgba(254, 184, 1, 0.08);
+        }
+
+        .gold-accent-hover:hover {
+            border-color: rgba(254, 184, 1, 0.15);
+        }
+
+        /* ===================================================== */
+        /* SUBTLE GLOW — برای المان‌های خاص */
+        /* ===================================================== */
+
+        .gold-glow {
+            box-shadow: 0 0 40px rgba(254, 184, 1, 0.02);
+        }
+
+        /* ===================================================== */
+        /* FOOTER BRAND NAME — LINUX تیره، VERSE طلایی */
+        /* ===================================================== */
+
+        .footer-brand .linux {
+            color: #001530;
+        }
+
+        .footer-brand .verse {
+            color: #FEB801;
+        }
+
+        /* ===================================================== */
+        /* DESKTOP NAV LINKS — فاصله بیشتر برای خوانایی */
+        /* ===================================================== */
+
+        .desktop-nav {
+            gap: 2px;
+        }
+
+        .desktop-nav .nav-link {
+            margin: 0 2px;
         }
 
     </style>
 
 </head>
 
-<body class="min-h-screen bg-[#f4f7fc] text-gray-800 antialiased font-sans">
+<body class="min-h-screen bg-white text-[#1A1A2E] antialiased font-sans">
 
     <!-- ========================================================= -->
-    <!-- NAVBAR — خالی و مینیمال با لوگو سمت راست -->
+    <!-- NAVBAR — روشن، شیشه‌ای، با جزئیات طلایی ظریف -->
     <!-- ========================================================= -->
 
     <header class="sticky top-0 z-50">
@@ -329,7 +489,7 @@
 
             <div class="nav-glass relative px-3 sm:px-6 py-2 sm:py-2.5 rounded-2xl">
 
-                <!-- TOP BAR — چیدمان راست‌چین -->
+                <!-- TOP BAR — راست‌چین -->
                 <div class="flex items-center justify-between gap-3">
 
                     <!-- ============================================= -->
@@ -341,15 +501,15 @@
                             &gt;_
                         </div>
                         <span class="brand-name text-base sm:text-xl font-extrabold tracking-tight font-mono truncate">
-                            LINUXVERSE
+                            <span class="linux">LINUX</span><span class="verse">VERSE</span>
                         </span>
                     </a>
 
                     <!-- ============================================= -->
-                    <!-- وسط: دسکتاپ منو (خالی و مینیمال) -->
+                    <!-- وسط: دسکتاپ منو — درشت‌تر و خوانا -->
                     <!-- ============================================= -->
 
-                    <div class="hidden md:flex items-center gap-0.5 order-2">
+                    <div class="hidden md:flex items-center desktop-nav order-2">
                         <a href="/" class="nav-link">خانه</a>
                         <a href="{% url 'courses' %}" class="nav-link">دوره‌ها</a>
                         <a href="{% url 'post_list' %}" class="nav-link">وبلاگ</a>
@@ -362,18 +522,18 @@
 
                     <div class="flex items-center gap-2 order-3">
 
-                        <!-- دکمه پنگوئن (دسکتاپ) -->
+                        <!-- دکمه پنگوئن (دسکتاپ) — هنری -->
                         <a href="/courses/" class="hidden md:flex nav-action items-center justify-center w-9 h-9 rounded-xl text-base">
                             🐧
                         </a>
 
                         <!-- دکمه منوی موبایل -->
                         <div class="flex md:hidden items-center gap-2">
-                            <a href="{% url 'courses' %}" class="mobile-course flex items-center justify-center px-3 h-8 rounded-xl text-xs font-bold">
+                            <a href="{% url 'courses' %}" class="mobile-course flex items-center justify-center px-3 h-8 rounded-xl text-xs">
                                 دوره‌ها
                             </a>
                             <button type="button" id="mobileMenuButton" class="mobile-menu-button flex items-center justify-center w-8 h-8 rounded-xl" aria-label="باز کردن منو" aria-expanded="false">
-                                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+                                <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5 text-[#001530]">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
                                 </svg>
                             </button>
@@ -384,11 +544,11 @@
                 </div>
 
                 <!-- ============================================= -->
-                <!-- موبایل منو -->
+                <!-- موبایل منو — درشت‌تر و خوانا -->
                 <!-- ============================================= -->
 
                 <div id="mobileMenu" class="mobile-menu md:hidden">
-                    <div class="mt-2.5 pt-2.5 border-t border-gray-200/50 space-y-0.5">
+                    <div class="mt-2.5 pt-2.5 border-t border-[#001530]/5 space-y-0.5">
                         <a href="/" class="nav-link">
                             <span class="menu-icon ml-2">⌂</span> خانه
                         </a>
@@ -413,17 +573,17 @@
     <!-- MAIN — محتوای اصلی شما اینجا قرار می‌گیره -->
     <!-- ========================================================= -->
 
-    <main class="relative">
+    <main class="relative bg-white">
         {% block content %}
         <!-- محتوای صفحات اینجا قرار می‌گیره -->
         {% endblock %}
     </main>
 
     <!-- ========================================================= -->
-    <!-- FOOTER — مینیمال -->
+    <!-- FOOTER — مینیمال با جزئیات طلایی ظریف -->
     <!-- ========================================================= -->
 
-    <footer class="mt-20 border-t border-gray-200/50 bg-[#f4f7fc]">
+    <footer class="mt-20 border-t border-[#FEB801]/8 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
 
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -431,21 +591,23 @@
                 <!-- BRAND -->
                 <div class="text-center md:text-right">
                     <div class="flex items-center gap-2 justify-center md:justify-start">
-                        <span class="text-lg font-mono text-blue-600">&gt;_</span>
+                        <span class="text-lg font-mono text-[#FEB801]">&gt;_</span>
                         <span class="text-lg">🐧</span>
-                        <span class="text-lg font-extrabold gradient-text font-mono">LINUXVERSE</span>
+                        <span class="text-lg font-extrabold font-mono footer-brand">
+                            <span class="linux">LINUX</span><span class="verse">VERSE</span>
+                        </span>
                     </div>
                 </div>
 
                 <!-- NAV LINKS -->
-                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-400">
-                    <a href="/" class="hover:text-blue-600 transition-colors">خانه</a>
-                    <span class="text-gray-300">|</span>
-                    <a href="/courses/" class="hover:text-blue-600 transition-colors">دوره‌ها</a>
-                    <span class="text-gray-300">|</span>
-                    <a href="{% url 'post_list' %}" class="hover:text-blue-600 transition-colors">وبلاگ</a>
-                    <span class="text-gray-300">|</span>
-                    <a href="/about/" class="hover:text-blue-600 transition-colors">درباره ما</a>
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-[#7A7A8A]">
+                    <a href="/" class="hover:text-[#FEB801] transition-colors">خانه</a>
+                    <span class="text-[#D0D0D0]">|</span>
+                    <a href="/courses/" class="hover:text-[#FEB801] transition-colors">دوره‌ها</a>
+                    <span class="text-[#D0D0D0]">|</span>
+                    <a href="{% url 'post_list' %}" class="hover:text-[#FEB801] transition-colors">وبلاگ</a>
+                    <span class="text-[#D0D0D0]">|</span>
+                    <a href="/about/" class="hover:text-[#FEB801] transition-colors">درباره ما</a>
                 </div>
 
                 <!-- ENAMAD + COPYRIGHT -->
@@ -453,7 +615,7 @@
                     <a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=7522634&Code=YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv'>
                         <img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=7522634&Code=YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv' alt='' style='cursor:pointer' code='YPpKk23EwsECwOFiEyDgT4uVWT2x2BNv'>
                     </a>
-                    <p class="text-xs text-gray-300 font-mono whitespace-nowrap">© {% now "Y" %} LINUXVERSE</p>
+                    <p class="text-xs text-[#9A9AAA] font-mono whitespace-nowrap">© {% now "Y" %} LINUXVERSE</p>
                 </div>
 
             </div>
