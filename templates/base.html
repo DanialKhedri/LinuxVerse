@@ -11,7 +11,7 @@
 
     <title>
         {% block title %}
-        45309214 
+        LINUXVERSE — Explore the Linux Universe
         {% endblock %}
     </title>
 
@@ -38,6 +38,31 @@
                             white: '#FFFFFF',
                             goldLight: '#FFF3D4',
                             darkSoft: '#0A1F3B',
+                            blue: '#2563EB',
+                            blueLight: '#DBEAFE',
+                            indigo: '#4F46E5',
+                            purple: '#7C3AED',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                        'bounce-gentle': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-4px)' },
                         }
                     }
                 }
@@ -51,19 +76,19 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     {% block extra_css %}
     {% endblock %}
 
     <!-- ========================================================= -->
-    <!-- GLOBAL CSS — مینیمال، مدرن، هنری -->
+    <!-- GLOBAL CSS — زنده، پویا، با انرژی طلایی خالص -->
     <!-- ========================================================= -->
 
     <style>
 
         /* ===================================================== */
-        /* ROOT — پالت مینیمال با جزئیات طلایی */
+        /* ROOT — پالت پرانرژی با طلایی خالص */
         /* ===================================================== */
 
         :root {
@@ -72,11 +97,12 @@
             --penguin-white: #FFFFFF;
             --gold-soft: #FFF8E7;
             --dark-soft: #0A1F3B;
-            --gold-glow: rgba(254, 184, 1, 0.08);
+            --gold-glow: rgba(254, 184, 1, 0.12);
+            --gradient-gold: linear-gradient(135deg, #FEB801, #FFD700, #FEB801);
         }
 
         /* ===================================================== */
-        /* HTML & BODY — سفید مینیمال */
+        /* HTML & BODY */
         /* ===================================================== */
 
         html {
@@ -91,12 +117,12 @@
         }
 
         /* ===================================================== */
-        /* SCROLLBAR — ظریف طلایی */
+        /* SCROLLBAR — طلایی خالص */
         /* ===================================================== */
 
         ::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
         }
 
         ::-webkit-scrollbar-track {
@@ -117,75 +143,82 @@
         /* ===================================================== */
 
         ::selection {
-            background: rgba(254, 184, 1, 0.15);
+            background: rgba(254, 184, 1, 0.2);
+            color: #001530;
+        }
+
+        ::-moz-selection {
+            background: rgba(254, 184, 1, 0.2);
             color: #001530;
         }
 
         /* ===================================================== */
-        /* NAVBAR — روشن، شیشه‌ای، با جزئیات طلایی ظریف */
+        /* NAVBAR — شیشه‌ای با هاله‌ی طلایی */
         /* ===================================================== */
 
         .nav-glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(254, 184, 1, 0.08);
-            border-bottom: 1.5px solid rgba(254, 184, 1, 0.12);
-            box-shadow: 0 4px 24px rgba(0, 21, 48, 0.04);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(24px) saturate(1.1);
+            -webkit-backdrop-filter: blur(24px) saturate(1.1);
+            border: 1px solid rgba(254, 184, 1, 0.1);
+            border-bottom: 2px solid rgba(254, 184, 1, 0.15);
+            box-shadow: 0 4px 30px rgba(254, 184, 1, 0.04);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .nav-glass:hover {
-            border-color: rgba(254, 184, 1, 0.15);
-            box-shadow: 0 8px 32px rgba(254, 184, 1, 0.04);
+            border-color: rgba(254, 184, 1, 0.2);
+            box-shadow: 0 8px 40px rgba(254, 184, 1, 0.06);
         }
 
         /* ===================================================== */
-        /* LOGO BOX — طلایی با متن تیره */
+        /* LOGO BOX — طلایی با افکت نور */
         /* ===================================================== */
 
         .logo-box {
-            background: #FEB801;
+            background: linear-gradient(135deg, #FEB801, #FFD700);
             color: #001530;
-            box-shadow: 0 2px 12px rgba(254, 184, 1, 0.15);
+            box-shadow: 0 2px 16px rgba(254, 184, 1, 0.2), 0 0 40px rgba(254, 184, 1, 0.05);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(254, 184, 1, 0.1);
+            border: 1px solid rgba(254, 184, 1, 0.15);
         }
 
         .logo-box:hover {
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(254, 184, 1, 0.2);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 30px rgba(254, 184, 1, 0.25), 0 0 60px rgba(254, 184, 1, 0.08);
         }
 
         /* ===================================================== */
-        /* BRAND NAME — LINUX تیره، VERSE طلایی */
+        /* BRAND NAME — با گرادیان زنده طلایی خالص */
         /* ===================================================== */
 
         .brand-name {
             font-weight: 800;
             letter-spacing: -0.3px;
             transition: all 0.3s ease;
+            background: linear-gradient(90deg, #001530 0%, #001530 45%, #FEB801 45%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
         }
 
-        .brand-name .linux {
-            color: #001530;
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
 
-        .brand-name .verse {
-            color: #FEB801;
-        }
-
-        .group:hover .brand-name .linux {
-            color: #001530;
-        }
-
-        .group:hover .brand-name .verse {
-            color: #FEB801;
-            text-shadow: 0 0 20px rgba(254, 184, 1, 0.1);
+        .group:hover .brand-name {
+            background: linear-gradient(90deg, #001530 0%, #001530 35%, #FEB801 35%, #FFD700 65%, #FEB801 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 300% auto;
         }
 
         /* ===================================================== */
-        /* NAV LINKS — درشت‌تر، خوانا با نشانه‌های طلایی */
+        /* NAV LINKS — خط زیرین طلایی خالص */
         /* ===================================================== */
 
         .nav-link {
@@ -194,8 +227,8 @@
             align-items: center;
             justify-content: center;
             min-height: 42px;
-            padding: 0 18px;
-            border-radius: 8px;
+            padding: 0 20px;
+            border-radius: 10px;
             color: #3A3A4A;
             font-size: 15px;
             font-weight: 600;
@@ -210,99 +243,110 @@
             left: 50%;
             transform: translateX(-50%);
             width: 0;
-            height: 2.5px;
+            height: 3px;
             background: #FEB801;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border-radius: 999px;
         }
 
         .nav-link:hover {
             color: #001530;
-            background: rgba(254, 184, 1, 0.05);
+            background: rgba(254, 184, 1, 0.06);
         }
 
         .nav-link:hover::after {
-            width: 70%;
+            width: 75%;
         }
 
         .nav-link:active {
-            transform: scale(0.97);
+            transform: scale(0.96);
+        }
+
+        .nav-link.active {
+            color: #001530;
+            background: rgba(254, 184, 1, 0.06);
+        }
+
+        .nav-link.active::after {
+            width: 75%;
         }
 
         /* ===================================================== */
-        /* MOBILE COURSE BUTTON — طلایی با متن تیره */
+        /* MOBILE BUTTON — طلایی */
         /* ===================================================== */
 
         .mobile-course {
-            background: #FEB801;
+            background: linear-gradient(135deg, #FEB801, #FFD700);
             color: #001530;
-            border: 1px solid rgba(254, 184, 1, 0.1);
-            box-shadow: 0 2px 8px rgba(254, 184, 1, 0.1);
+            border: 1px solid rgba(254, 184, 1, 0.15);
+            box-shadow: 0 2px 12px rgba(254, 184, 1, 0.12);
             transition: all 0.3s ease;
             font-weight: 700;
             font-size: 13px;
         }
 
         .mobile-course:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(254, 184, 1, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(254, 184, 1, 0.2);
         }
 
         .mobile-course:active {
-            transform: scale(0.97);
+            transform: scale(0.96);
         }
 
         /* ===================================================== */
-        /* MOBILE MENU BUTTON — مینیمال */
+        /* MOBILE MENU BUTTON */
         /* ===================================================== */
 
         .mobile-menu-button {
             color: #001530;
-            background: rgba(0, 21, 48, 0.02);
-            border: 1px solid rgba(0, 21, 48, 0.04);
+            background: rgba(0, 21, 48, 0.03);
+            border: 1px solid rgba(0, 21, 48, 0.06);
             transition: all 0.3s ease;
         }
 
         .mobile-menu-button:hover {
-            background: rgba(254, 184, 1, 0.04);
-            border-color: rgba(254, 184, 1, 0.08);
+            background: rgba(254, 184, 1, 0.06);
+            border-color: rgba(254, 184, 1, 0.12);
+            transform: scale(1.04);
         }
 
         /* ===================================================== */
-        /* MOBILE MENU — ظریف */
+        /* MOBILE MENU */
         /* ===================================================== */
 
         .mobile-menu {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             pointer-events: none;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .mobile-menu.open {
-            max-height: 420px;
+            max-height: 460px;
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
         }
 
         /* ===================================================== */
-        /* MOBILE MENU LINKS — درشت‌تر و خوانا */
+        /* MOBILE MENU LINKS */
         /* ===================================================== */
 
         .mobile-menu .nav-link {
             font-size: 15px;
             font-weight: 600;
-            min-height: 48px;
+            min-height: 50px;
             padding: 0 16px;
             color: #3A3A4A;
+            justify-content: flex-start;
         }
 
         .mobile-menu .nav-link:hover {
             color: #001530;
-            background: rgba(254, 184, 1, 0.05);
+            background: rgba(254, 184, 1, 0.06);
         }
 
         .mobile-menu .nav-link::after {
@@ -310,100 +354,78 @@
         }
 
         /* ===================================================== */
-        /* MOBILE MENU ICONS — طلایی ظریف */
+        /* MOBILE MENU ICONS — طلایی */
         /* ===================================================== */
 
         .menu-icon {
             color: #FEB801;
-            opacity: 0.7;
-            font-size: 16px;
+            opacity: 0.8;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover .menu-icon {
+            opacity: 1;
+            transform: scale(1.1);
         }
 
         /* ===================================================== */
-        /* DESKTOP ACTION (پنگوئن) — هنری */
+        /* DESKTOP ACTION (پنگوئن) — با افکت نور طلایی */
         /* ===================================================== */
 
         .nav-action {
-            background: rgba(254, 184, 1, 0.04);
-            border: 1px solid rgba(254, 184, 1, 0.06);
+            background: rgba(254, 184, 1, 0.06);
+            border: 1px solid rgba(254, 184, 1, 0.08);
             transition: all 0.4s ease;
-            font-size: 17px;
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(254, 184, 1, 0.02);
         }
 
         .nav-action:hover {
-            background: rgba(254, 184, 1, 0.08);
-            transform: translateY(-1px) scale(1.02);
-            border-color: rgba(254, 184, 1, 0.12);
+            background: rgba(254, 184, 1, 0.12);
+            transform: translateY(-2px) scale(1.06);
+            border-color: rgba(254, 184, 1, 0.2);
+            box-shadow: 0 4px 20px rgba(254, 184, 1, 0.1);
         }
 
         /* ===================================================== */
-        /* GRADIENT TEXT — طلایی هنری برای فوتر */
-        /* ===================================================== */
-
-        .gradient-text {
-            background: linear-gradient(135deg, #FEB801 0%, #FEB801 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
-
-        /* ===================================================== */
-        /* RESPONSIVE */
-        /* ===================================================== */
-
-        @media (max-width: 767px) {
-            .nav-glass {
-                border-radius: 16px;
-                box-shadow: 0 4px 16px rgba(0, 21, 48, 0.02);
-                border-bottom: 1.5px solid rgba(254, 184, 1, 0.06);
-            }
-
-            .nav-link {
-                justify-content: flex-start;
-                width: 100%;
-                min-height: 48px;
-                padding: 0 16px;
-                font-size: 15px;
-            }
-
-            .nav-link::after {
-                display: none;
-            }
-
-            .nav-link:hover {
-                background: rgba(254, 184, 1, 0.05);
-            }
-        }
-
-        @media (max-width: 380px) {
-            .nav-glass {
-                padding-left: 8px;
-                padding-right: 8px;
-            }
-        }
-
-        /* ===================================================== */
-        /* FOOTER — مینیمال با جزئیات طلایی */
+        /* FOOTER — طلایی خالص */
         /* ===================================================== */
 
         footer {
             background: #FFFFFF;
-            border-top: 1px solid rgba(254, 184, 1, 0.08);
+            border-top: 2px solid rgba(254, 184, 1, 0.08);
         }
 
         footer a {
             color: #7A7A8A;
             transition: all 0.3s ease;
             font-weight: 500;
+            position: relative;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FEB801;
+            transition: width 0.3s ease;
+            border-radius: 999px;
         }
 
         footer a:hover {
-            color: #FEB801;
+            color: #001530;
+        }
+
+        footer a:hover::after {
+            width: 100%;
         }
 
         footer .gradient-text {
-            background: linear-gradient(135deg, #FEB801 0%, #FEB801 100%);
+            background: linear-gradient(135deg, #FEB801, #FFD700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -423,55 +445,95 @@
         }
 
         /* ===================================================== */
-        /* MAIN CONTENT — سفید تمیز */
+        /* FOOTER BRAND — طلایی خالص */
         /* ===================================================== */
 
-        main {
-            background: #FFFFFF;
+        .footer-brand {
+            font-weight: 800;
+            background: linear-gradient(90deg, #001530 0%, #001530 40%, #FEB801 40%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
         }
 
         /* ===================================================== */
-        /* ACCENT ELEMENTS — طلایی ظریف */
+        /* RESPONSIVE */
         /* ===================================================== */
 
-        .gold-accent {
-            border-color: rgba(254, 184, 1, 0.08);
+        @media (max-width: 767px) {
+            .nav-glass {
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0, 21, 48, 0.02);
+                border-bottom: 1.5px solid rgba(254, 184, 1, 0.06);
+            }
+
+            .nav-link {
+                justify-content: flex-start;
+                width: 100%;
+                min-height: 48px;
+                padding: 0 16px;
+                font-size: 15px;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-link:hover {
+                background: rgba(254, 184, 1, 0.05);
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
         }
 
-        .gold-accent-hover:hover {
-            border-color: rgba(254, 184, 1, 0.15);
+        @media (max-width: 380px) {
+            .nav-glass {
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+
+            .brand-name {
+                font-size: 12px;
+            }
+
+            .logo-box {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
         }
 
         /* ===================================================== */
-        /* SUBTLE GLOW — برای المان‌های خاص */
+        /* GLOW EFFECTS — طلایی خالص */
         /* ===================================================== */
 
         .gold-glow {
-            box-shadow: 0 0 40px rgba(254, 184, 1, 0.02);
+            box-shadow: 0 0 60px rgba(254, 184, 1, 0.03);
         }
 
         /* ===================================================== */
-        /* FOOTER BRAND NAME — LINUX تیره، VERSE طلایی */
+        /* PENGUIN EMOJI — با انیمیشن ملایم */
         /* ===================================================== */
 
-        .footer-brand .linux {
-            color: #001530;
-        }
-
-        .footer-brand .verse {
-            color: #FEB801;
+        .penguin-float {
+            animation: float 4s ease-in-out infinite;
         }
 
         /* ===================================================== */
-        /* DESKTOP NAV LINKS — فاصله بیشتر برای خوانایی */
+        /* CARD HOVER */
         /* ===================================================== */
 
-        .desktop-nav {
-            gap: 2px;
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .desktop-nav .nav-link {
-            margin: 0 2px;
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(254, 184, 1, 0.06);
         }
 
     </style>
@@ -481,7 +543,7 @@
 <body class="min-h-screen bg-white text-[#1A1A2E] antialiased font-sans">
 
     <!-- ========================================================= -->
-    <!-- NAVBAR — روشن، شیشه‌ای، با جزئیات طلایی ظریف -->
+    <!-- NAVBAR — روشن، شیشه‌ای، با انرژی طلایی خالص -->
     <!-- ========================================================= -->
 
     <header class="sticky top-0 z-50">
@@ -501,7 +563,7 @@
                             &gt;_
                         </div>
                         <span class="brand-name text-base sm:text-xl font-extrabold tracking-tight font-mono truncate">
-                            <span class="linux">LINUX</span><span class="verse">VERSE</span>
+                            LINUXVERSE
                         </span>
                     </a>
 
@@ -523,7 +585,7 @@
                     <div class="flex items-center gap-2 order-3">
 
                         <!-- دکمه پنگوئن (دسکتاپ) — هنری -->
-                        <a href="/courses/" class="hidden md:flex nav-action items-center justify-center w-9 h-9 rounded-xl text-base">
+                        <a href="/courses/" class="hidden md:flex nav-action items-center justify-center w-9 h-9 rounded-xl text-base penguin-float">
                             🐧
                         </a>
 
@@ -552,13 +614,13 @@
                         <a href="/" class="nav-link">
                             <span class="menu-icon ml-2">⌂</span> خانه
                         </a>
-                        <a href="/courses/" class="nav-link">
+                        <a href="{% url 'courses' %}" class="nav-link">
                             <span class="menu-icon ml-2">&gt;_</span> دوره‌ها
                         </a>
                         <a href="{% url 'post_list' %}" class="nav-link">
                             <span class="menu-icon ml-2">/</span> وبلاگ
                         </a>
-                        <a href="/about/" class="nav-link">
+                        <a href="{% url 'about' %}" class="nav-link">
                             <span class="menu-icon ml-2">?</span> درباره ما
                         </a>
                     </div>
@@ -580,21 +642,27 @@
     </main>
 
     <!-- ========================================================= -->
-    <!-- FOOTER — مینیمال با جزئیات طلایی ظریف -->
+    <!-- FOOTER — با انرژی طلایی خالص -->
     <!-- ========================================================= -->
 
-    <footer class="mt-20 border-t border-[#FEB801]/8 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+    <footer class="mt-20 border-t-2 border-[#FEB801]/10 bg-white relative overflow-hidden">
+
+        <!-- Decorative glow -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[100px] bg-[#FEB801]/5 blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10">
 
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
 
                 <!-- BRAND -->
                 <div class="text-center md:text-right">
                     <div class="flex items-center gap-2 justify-center md:justify-start">
-                        <span class="text-lg font-mono text-[#FEB801]">&gt;_</span>
-                        <span class="text-lg">🐧</span>
+                        <span class="text-lg font-mono text-[#FEB801] animate-bounce-gentle">&gt;_</span>
+                        <span class="text-lg penguin-float">🐧</span>
                         <span class="text-lg font-extrabold font-mono footer-brand">
-                            <span class="linux">LINUX</span><span class="verse">VERSE</span>
+                            LINUXVERSE
                         </span>
                     </div>
                 </div>
@@ -603,11 +671,11 @@
                 <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-[#7A7A8A]">
                     <a href="/" class="hover:text-[#FEB801] transition-colors">خانه</a>
                     <span class="text-[#D0D0D0]">|</span>
-                    <a href="/courses/" class="hover:text-[#FEB801] transition-colors">دوره‌ها</a>
+                    <a href="{% url 'courses' %}" class="hover:text-[#FEB801] transition-colors">دوره‌ها</a>
                     <span class="text-[#D0D0D0]">|</span>
                     <a href="{% url 'post_list' %}" class="hover:text-[#FEB801] transition-colors">وبلاگ</a>
                     <span class="text-[#D0D0D0]">|</span>
-                    <a href="/about/" class="hover:text-[#FEB801] transition-colors">درباره ما</a>
+                    <a href="{% url 'about' %}" class="hover:text-[#FEB801] transition-colors">درباره ما</a>
                 </div>
 
                 <!-- ENAMAD + COPYRIGHT -->
