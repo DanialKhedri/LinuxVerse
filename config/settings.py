@@ -105,6 +105,10 @@ DATABASES = {
         "PASSWORD": "F}4AJ>uy)Z}Bcn}",
         "HOST": "localhost",
         "PORT": "3306",
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        },
     }
 }
 
