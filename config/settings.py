@@ -117,15 +117,15 @@ DATABASES = {
 
 
 #DATABASES = {
-      #"default": {
-         # "ENGINE": "django.db.backends.mysql",
-        #  "NAME": "linuxverse",
-       #   "USER": "linuxverse",
-      #    "PASSWORD": "LinuxVerse@2026",
-     #     "HOST": "127.0.0.1",
-    #      "PORT": "3306",
-   #   }
-  #}
+#      "default": {
+#          "ENGINE": "django.db.backends.mysql",
+#          "NAME": "linuxverse",
+#          "USER": "linuxverse",
+#          "PASSWORD": "LinuxVerse@2026",
+#          "HOST": "127.0.0.1",
+#          "PORT": "3306",
+#      }
+#  }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
@@ -163,7 +163,14 @@ USE_TZ = True
 import os
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+# اینجا آدرس پوشه‌ای که فایل‌های استاتیک خودت رو می‌ذاری:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # یا هر پوشه دیگه‌ای غیر از STATIC_ROOT
+]
+
+# اینجا آدرس پوشه‌ای که collectstatic فایل‌ها رو توش جمع می‌کنه:
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # نباید با STATICFILES_DIRS یکی باشه
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
