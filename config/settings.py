@@ -107,7 +107,7 @@ DATABASES = {
         "PORT": "3306",
         'OPTIONS': {
             'charset': 'utf8mb4',
-            'use_unicode': True,
+           'use_unicode': True,
         },
     }
 }
@@ -125,7 +125,7 @@ DATABASES = {
       #    "HOST": "127.0.0.1",
        #   "PORT": "3306",
       #}
- # }
+  #}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators

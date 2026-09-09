@@ -11,7 +11,138 @@
 {% block content %}
 
 
+{% block extra_css %}
 
+<style>
+
+    /* ===================================================== */
+    /* COURSE DESCRIPTION / RICH TEXT */
+    /* ===================================================== */
+
+    .course-description h1 {
+        font-size: 2.25rem;
+        line-height: 1.4;
+        font-weight: 900;
+        color: #111827;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-description h2 {
+        font-size: 1.875rem;
+        line-height: 1.5;
+        font-weight: 900;
+        color: #111827;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-description h3 {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        font-weight: 800;
+        color: #111827;
+        margin-top: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .course-description p {
+        font-size: 1rem;
+        line-height: 2;
+        color: #374151;
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .course-description ul {
+        list-style-type: disc;
+        padding-right: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-description ol {
+        list-style-type: decimal;
+        padding-right: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .course-description li {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        line-height: 2;
+    }
+
+    .course-description strong {
+        font-weight: 800;
+        color: #111827;
+    }
+
+    .course-description a {
+        color: #2563EB;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .course-description blockquote {
+        margin: 1.5rem 0;
+        padding: 1rem 1.25rem;
+        border-right: 4px solid #2563EB;
+        background: #EFF6FF;
+        color: #374151;
+        border-radius: 0.75rem;
+    }
+
+    .course-description code {
+        font-family: 'JetBrains Mono', monospace;
+        background: #F3F4F6;
+        color: #2563EB;
+        padding: 0.15rem 0.4rem;
+        border-radius: 0.4rem;
+        font-size: 0.9em;
+    }
+
+    .course-description pre {
+        overflow-x: auto;
+        background: #111827;
+        color: #F9FAFB;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        margin: 1.5rem 0;
+    }
+
+    .course-description img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    @media (max-width: 640px) {
+
+        .course-description h1 {
+            font-size: 1.75rem;
+        }
+
+        .course-description h2 {
+            font-size: 1.5rem;
+        }
+
+        .course-description h3 {
+            font-size: 1.25rem;
+        }
+
+        .course-description p {
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
 
 
     <!-- ========================================================= -->
@@ -816,18 +947,17 @@
                                     {{ course.title }}
                                 </h2>
 
+                                  
                             </div>
 
 
                             <!-- ================================================= -->
                             <!-- IMPORTANT: COURSE DESCRIPTION -->
                             <!-- ================================================= -->
-
-                            <div class="course-description">
-
-                                {{ course.description|safe }}
-
-                            </div>
+                         
+                         <div class="course-description">
+                           {{ course.description|safe }}
+                         </div>              
 
                         </article>
 
