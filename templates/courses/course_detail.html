@@ -2,10 +2,10 @@
 {% load number_filters %}
 
 
-{% block title %}دوره‌های آموزشی | LinuxVerse{% endblock %}
+{% block title %}{{ course.title }} | LinuxVerse{% endblock %}
 
 
-{% block meta_description %}دوره‌های تخصصی لینوکس، شبکه، برنامه‌نویسی و امنیت — آموزش عملی و حرفه‌ای{% endblock %}
+{% block meta_description %}{{ course.description|striptags|truncatewords:30 }}{% endblock %}
 
 
 {% block content %}
@@ -84,14 +84,14 @@
                                 font-black
                                 text-gray-950
                             ">
-                                1000
+                                {{ course.price|toman }}
                             </span>
 
                             <span class="
                                 text-[10px]
                                 text-gray-400
                             ">
-                                تومان
+                                
                             </span>
 
                         </div>
@@ -100,7 +100,7 @@
 
 
                     <a
-                        href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                        href="{% url 'create_order' course.slug %}"
                         class="
                             flex
                             flex-1
@@ -199,7 +199,7 @@
                             text-gray-600
                             sm:max-w-none
                         ">
-                            دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                            {{ course.title }}
                         </span>
 
                     </nav>
@@ -296,15 +296,21 @@
                                     sm:aspect-video
                                 ">
 
+                                    {% if course.image %}
                                     <img
-                                        src="/media/courses/ChatGPT_Image_Sep_7_2026_01_42_41_PM.png"
-                                        alt="دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی"
+                                        src="{{ course.image.url }}"
+                                        alt="{{ course.title }}"
                                         class="
                                             h-full
                                             w-full
                                             object-cover
                                         "
                                     >
+                                    {% else %}
+                                    <div class="flex h-full w-full items-center justify-center text-gray-400 text-sm">
+                                        تصویر دوره
+                                    </div>
+                                    {% endif %}
 
 
                                     <!-- Category -->
@@ -345,7 +351,7 @@
                                         text-red-600
                                         shadow-md
                                     ">
-                                        🔴 مقدماتی تا متوسط
+                                        🔴 {{ course.level|default:"عمومی" }}
                                     </div>
 
                                 </div>
@@ -367,14 +373,16 @@
 
                                         <div>
 
+                                            {% if course.original_price > course.price %}
                                             <div class="
                                                 mb-1
                                                 text-xs
                                                 text-gray-400
                                                 line-through
                                             ">
-                                                7,000 تومان
+                                                {{ course.original_price|toman }} 
                                             </div>
+                                            {% endif %}
 
                                             <div class="
                                                 flex
@@ -389,7 +397,7 @@
                                                     text-gray-950
                                                     sm:text-3xl
                                                 ">
-                                                    1,000 تومان
+                                                    {{ course.price|toman }} 
                                                 </span>
 
                                             </div>
@@ -400,7 +408,7 @@
                                         <!-- BUY BUTTON -->
 
                                         <a
-                                            href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                                            href="{% url 'create_order' course.slug %}"
                                             class="
                                                 hidden
                                                 items-center
@@ -498,7 +506,7 @@
                                 sm:text-4xl
                                 lg:text-5xl
                             ">
-                                دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                                {{ course.title }}
                             </h1>
 
 
@@ -514,7 +522,7 @@
                                 sm:text-lg
                                 sm:leading-8
                             ">
-                                یادگیری لینوکس به‌صورت عملی، ساختاریافته و قدم‌به‌قدم.
+                                {{ course.description|striptags|truncatewords:20 }}
                             </div>
 
 
@@ -562,7 +570,7 @@
                                         sm:mt-1
                                         sm:text-sm
                                     ">
-                                        مقدماتی تا متوسط
+                                        {{ course.level|default:"عمومی" }}
                                     </div>
 
                                 </div>
@@ -598,7 +606,7 @@
                                         sm:mt-1
                                         sm:text-sm
                                     ">
-                                        12:42 ساعت
+                                        {{ course.duration|default:"نامشخص" }}
                                     </div>
 
                                 </div>
@@ -634,7 +642,7 @@
                                         sm:mt-1
                                         sm:text-sm
                                     ">
-                                        اسپات پلیر
+                                      اسپات پلیر
                                     </div>
 
                                 </div>
@@ -805,7 +813,7 @@
                                     sm:mt-2
                                     sm:text-3xl
                                 ">
-                                    دوره آموزش لینوکس از صفر تا LPIC-1 | جامع و کاربردی
+                                    {{ course.title }}
                                 </h2>
 
                             </div>
@@ -969,7 +977,7 @@
 
 
                                 <a
-                                    href="/orders/courses/dorh-mozsh-lnos-z-sfr-t-lpic-1-gmaa-o-rbrd/buy/"
+                                    href="{% url 'create_order' course.slug %}"
                                     class="
                                         flex
                                         w-full
