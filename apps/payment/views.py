@@ -15,6 +15,8 @@ def start_payment(request, access_token):
         access_token=access_token
     )
 
+    # اگر سفارش قبلاً پرداخت شده است،
+    # دوباره وارد فرایند پرداخت نشو.
     if order.status == 'paid':
         return redirect(
             'payment:success',
@@ -30,7 +32,14 @@ def start_payment(request, access_token):
     service = ZarinpalService()
 
     try:
-        result = service.request_payment(payment)
+        # دریافت Referer از درخواست ورودی مرورگر
+        referer = request.META.get('HTTP_REFERER')
+
+        # ارسال درخواست ایجاد تراکنش به زرین‌پال
+        result = service.request_payment(
+            payment,
+            referer=referer,
+        )
 
     except Exception:
         payment.status = 'failed'
@@ -46,6 +55,7 @@ def start_payment(request, access_token):
 
     data = result.get('data', {})
 
+    # بررسی پاسخ زرین‌پال
     if data.get('code') != 100:
 
         payment.status = 'failed'
@@ -74,12 +84,14 @@ def start_payment(request, access_token):
             access_token=order.access_token
         )
 
+    # ذخیره شناسه تراکنش
     payment.authority = authority
 
     payment.save(
         update_fields=['authority']
     )
 
+    # هدایت کاربر به صفحه پرداخت زرین‌پال
     return redirect(
         service.payment_url(authority)
     )
@@ -105,19 +117,24 @@ def payment_callback(request):
         authority=authority
     )
 
+    # بررسی وضعیت بازگشتی از درگاه
     if status != 'OK':
 
-        payment.status = 'failed'
+        # پرداخت موفق قبلی را ناموفق نکن.
+        if payment.status != 'success':
 
-        payment.save(
-            update_fields=['status']
-        )
+            payment.status = 'failed'
+
+            payment.save(
+                update_fields=['status']
+            )
 
         return redirect(
             'payment:failed',
             access_token=payment.order.access_token
         )
 
+    # اگر قبلاً تأیید شده، دوباره تأیید نکن.
     if payment.status == 'success':
 
         return redirect(
@@ -146,6 +163,8 @@ def payment_callback(request):
     data = result.get('data', {})
     code = data.get('code')
 
+    # کد 100 یعنی تأیید موفق.
+    # کد 101 نشان‌دهنده تراکنش تأییدشده قبلی است.
     if code not in [100, 101]:
 
         payment.status = 'failed'
@@ -161,6 +180,7 @@ def payment_callback(request):
 
     ref_id = data.get('ref_id')
 
+    # ثبت اتمیک وضعیت پرداخت و سفارش
     with transaction.atomic():
 
         order = (

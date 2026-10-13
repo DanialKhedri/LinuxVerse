@@ -17,7 +17,7 @@ class ZarinpalService:
         "https://www.zarinpal.com/pg/StartPay/"
     )
 
-    def request_payment(self, payment):
+    def request_payment(self, payment, referer=None):
 
         # مبلغ در دیتابیس بر حسب تومان است.
         # زرین‌پال مبلغ را بر حسب ریال دریافت می‌کند.
@@ -33,9 +33,15 @@ class ZarinpalService:
             "callback_url": settings.ZARINPAL_CALLBACK_URL,
         }
 
+        headers = {}
+
+        if referer:
+            headers["Referer"] = referer
+
         response = requests.post(
             self.REQUEST_URL,
             json=data,
+            headers=headers,
             timeout=15,
         )
 
@@ -45,6 +51,7 @@ class ZarinpalService:
 
     def verify_payment(self, payment):
 
+        # مبلغ در دیتابیس بر حسب تومان است.
         amount_in_rial = payment.amount * 10
 
         data = {
